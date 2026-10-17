@@ -1,23 +1,34 @@
 {
+ "id": "./?app=meishi-sumaho",
  "name": "名刺帳（スマホ版）",
  "short_name": "名刺帳",
+ "description": "名刺を見る・探すためのアプリ（データはこのスマホの中だけ）",
  "lang": "ja",
+ "dir": "ltr",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",
+ "orientation": "portrait",
  "background_color": "#f4f5f2",
  "theme_color": "#0f5c5c",
  "icons": [
   {
    "src": "icon-192.png",
    "sizes": "192x192",
-   "type": "image/png"
+   "type": "image/png",
+   "purpose": "any"
   },
   {
    "src": "icon-512.png",
    "sizes": "512x512",
    "type": "image/png",
-   "purpose": "any maskable"
+   "purpose": "any"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
   }
  ]
 }
