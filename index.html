@@ -136,6 +136,27 @@ main{flex:1;display:flex;min-height:0}
 .qrow img,.qrow .noimg{width:96px;height:58px;object-fit:contain;background:#fff;border-radius:4px;border:1px solid var(--line)}
 .qrow .qt{min-width:0}.qrow .qn{font-weight:bold;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .qrow .qs{font-size:12px;color:var(--sub)}.qrow .qs.err{color:var(--bad)}
+.pvstage{position:relative;margin:8px 0;line-height:0}.pvstage img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line)}
+.pvbox{position:absolute;padding:0;margin:0;min-height:0;background:rgba(255,255,255,.08);border:3px solid #2b6cb0;border-radius:3px;cursor:pointer;line-height:1}
+.pvbox span{position:absolute;left:-3px;top:-3px;min-width:26px;padding:3px 5px;font:bold 15px/1.1 sans-serif;color:#fff;background:#2b6cb0;border-radius:3px 0 6px 0}
+.pvbox.ok{border-color:#1f8a4c}.pvbox.ok span{background:#1f8a4c}.pvbox.bad{border-color:#d03a3a}.pvbox.bad span{background:#d03a3a}
+.pvbox.miss{border-color:#e08a00;border-style:dashed}.pvbox.miss span{background:#c06f00}.pvbox.off{border-color:#8a9396}.pvbox.off span{background:#6c777b}
+.pvlegend{display:flex;flex-wrap:wrap;gap:6px}.pvkey{font-size:13px;padding:3px 8px;border-radius:12px;color:#fff;background:#2b6cb0}
+.pvkey.ok,.pvnum.ok{background:#1f8a4c}.pvkey.bad,.pvnum.bad{background:#d03a3a}.pvkey.miss,.pvnum.miss{background:#c06f00}.pvkey.off,.pvnum.off{background:#6c777b}
+.pvrow{display:grid;grid-template-columns:34px 1fr;gap:4px 10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:6px}
+.pvrow .acts{grid-column:1/-1;margin:0}.pvrow .acts:empty{display:none}.pvrow .acts button{min-height:36px;padding:5px 10px;font-size:14px}
+.pvrow .qn{font-weight:bold;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pvrow .qt{min-width:0}.pvrow .qs{font-size:12px;color:var(--sub)}.pvrow .qs.err{color:var(--bad)}
+.pvnum{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;color:#fff;font-weight:bold;background:#2b6cb0}
+.pvrow.flash{animation:pvflash 1.4s}@keyframes pvflash{0%,40%{box-shadow:0 0 0 3px var(--pri)}100%{box-shadow:none}}
+.cosug{border:1px solid var(--line);border-radius:8px;background:var(--card);margin-top:4px;overflow:hidden}
+.cosugh{font-size:12px;color:var(--sub);padding:6px 10px 2px}
+.cosugi{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;text-align:left;border:0;border-top:1px solid var(--line);border-radius:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:42px;font-size:15px}
+.cosugi:hover,.cosugi:focus{background:var(--chip)}.cosugi .cnt{font-size:12px;color:var(--sub);flex:none}
+.conote{margin-top:6px;padding:8px 10px;border-radius:8px;background:var(--warn-bg);color:var(--ink);font-size:13px}
+.conote .acts{margin:6px 0 0}.conote .acts button{min-height:36px;padding:5px 10px;font-size:14px}
+#coFill{background:var(--chip)}
+.fld .hint{font-size:12.5px;color:var(--warn);margin-top:3px}
+.xhist{margin-top:8px}.xhist .xh{font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums}
 .qrow .acts{grid-column:1/-1}.qrow .acts button{min-height:36px;padding:5px 10px;font-size:14px}
 .laterstat{font-size:14px;margin:8px 0;padding:8px 10px;border-radius:8px;background:var(--card);border:1px solid var(--line)}
 .laterstat.busy{border-color:var(--warn);background:var(--warn-bg);color:var(--warn);font-weight:bold}
@@ -321,7 +342,7 @@ body.printing .help .pdfonly{display:block}
 .help .phone{max-width:260px}
 .help .figs2{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:8px 0 12px}
 .help .figs2 figure{margin:0}
-@media print{ body.printing #bnav{display:none!important} body.printing .help{font-size:8.8pt!important;line-height:1.34!important} body.printing .help table{font-size:8.4pt!important} body.printing .help h3{margin:2.5mm 0 1mm!important} body.printing .help .figs2 img{max-height:50mm;width:auto;max-width:100%} body.printing .help .figs2{grid-template-columns:repeat(3,auto);justify-content:start} }
+@media print{ body.printing #bnav{display:none!important} body.printing .help{font-size:8.8pt!important;line-height:1.31!important} body.printing .help table{font-size:8.4pt!important} body.printing .help h3{margin:2.5mm 0 1mm!important} body.printing .help .figs2 img{max-height:50mm;width:auto;max-width:100%} body.printing .help .figs2{grid-template-columns:repeat(3,auto);justify-content:start} }
 </style>
 
 <div class="hh">
@@ -431,13 +452,12 @@ body.printing .help .pdfonly{display:block}
   <li>下の <span class="b">＋ 登録</span> を押し、区分を選んで項目を入力します。<b>氏名か会社名のどちらかは必須</b>です。
     <ul><li>今ある区分にない区分にするときは、区分の欄で <b>「＋ 新しい区分を作る…」</b>を選び、名前（例：本社用）を入れます。登録すると、上の区分のボタンに増えます。</li>
     <li>あとから区分を変えるときは、詳細の区分欄で選び直します（ここでも新しい区分を作れます）。その区分の名刺がなくなると、区分のボタンも自動で消えます。</li></ul></li>
-  <li>氏名は「山田 太郎」のように<b>姓と名の間に空白</b>を入れます（結婚などで姓が変わった人を見つけやすくなります）。</li>
-  <li>メール・電話・郵便番号の形がおかしいと注意が出ます。全角の数字は自動で半角に直ります。</li>
+  <li><b>会社名は登録済みの会社から選ぶ</b>と書き方がそろいます。2〜3文字打つと候補が出るので押します（住所・代表電話なども <span class="b">空欄に入れる</span> で入ります）。「株式会社」の有無・空白・全角半角だけ違うと「表記が違います」と出るので、同じ会社なら <span class="b">「○○」に合わせる</span>。</li>
+  <li>欄を離れると形がそろいます（(株)→株式会社、全角英数字→半角、フリガナ→カタカナ、電話・郵便番号の区切り）。氏名は「山田 太郎」のように<b>姓と名の間に空白</b>（無いと注意が出ます）。</li>
   <li>名刺の写真を付けるときは <span class="b">カメラで撮る</span> か <span class="b">写真から選ぶ</span>（どこにも送りません）。
     <ul>
-      <li><b>四隅を合わせる画面</b>が開き、名刺の四隅を自動で探します。ずれていたら写真の上をなぞって角に合わせ、<span class="b">この範囲で補正する</span>（名刺だけを長方形に切り抜き、明るさも整えます）。そのまま使うなら <span class="b">補正しない</span>。</li>
-      <li>写真が横向きなら <span class="b">向きを回す（90°）</span>、逆さなら <span class="b">ひっくり返す（180°）</span>。</li>
-      <li>付けたあとも、画像の下の <span class="b">四隅を補正</span>・<span class="b">明るさ補正：入／切</span>・<span class="b">90°回転</span>・<span class="b">180°回転</span>・<span class="b">外す</span> で直せます（<span class="b">四隅を補正</span> は前に切り抜いた範囲から始まるので、ずれた角だけ動かせば直せます）。</li>
+      <li><b>四隅を合わせる画面</b>が開き、名刺の四隅を自動で探します。ずれていたら写真の上をなぞって角に合わせ、<span class="b">この範囲で補正する</span>（名刺だけを長方形に切り抜き、明るさも整えます）。そのまま使うなら <span class="b">補正しない</span>。横向き・逆さなら <span class="b">向きを回す（90°）</span>・<span class="b">ひっくり返す（180°）</span>。</li>
+      <li>付けたあとも、画像の下の <span class="b">四隅を補正</span>・<span class="b">明るさ補正：入／切</span>・<span class="b">90°回転</span>・<span class="b">180°回転</span>・<span class="b">外す</span> で直せます（<span class="b">四隅を補正</span> は前に切り抜いた範囲から始まります）。</li>
     </ul></li>
   <li><span class="b">登録する</span>。「登録したら、続けて次の名刺の登録へ進む」がオンなら、すぐ次の入力欄が開きます。</li>
 </ol>
@@ -510,7 +530,7 @@ body.printing .help .pdfonly{display:block}
   <li>このスマホを使える人は、ここに入れた名刺をすべて見て直せます。<b>お店・会社の名刺以外は入れないでください</b>。スマホには画面ロック（パスコード）をかけてください。</li>
   <li><b>合言葉</b>は口頭など、ファイルとは別の方法でやり取りします。ファイルと一緒に送らないでください。</li>
   <li>引き渡しファイル・全件ファイルを、決められた場所以外（個人のアカウントなど）に保存しないでください。取り込んだあとのファイルは、LINE・メールのトークからも削除しておくと安心です。</li>
-  <li>スマホを手放す・機種変更するときは、全件ファイルを保存してから <span class="b">入出力</span> → <span class="b">すべての名刺を消去</span> を実行し、アプリをホーム画面から削除します。</li>
+  <li>機種変更のときは、全件ファイルを保存してから <span class="b">入出力</span> → <span class="b">すべての名刺を消去</span>、アプリを削除します。</li>
 </ul>
 </div>
 </template>
@@ -810,12 +830,44 @@ function ymd(){ const d = new Date(), p = n => String(n).padStart(2,'0'); return
 
 // ---------- 入力の整形と点検 ----------
 function z2h(s){ return s.replace(/[！-～]/g, c => String.fromCharCode(c.charCodeAt(0) - 0xFEE0)).replace(/　/g, ' ').replace(/[‐‑‒–—―ー－]/g, '-'); }
+// 表記ブレを防ぐ整形（入力欄を離れたときと、保存するときに使う）
+// NFKC：全角英数字・全角空白→半角、半角カナ→全角、㈱→(株) など。長音「ー」はそのまま
+const nfkc = s => String(s || '').normalize('NFKC');
+const sp1 = s => s.replace(/\s+/g, ' ').trim();
+const LEGAL_RE = '株式会社|有限会社|合同会社|合資会社|合名会社|一般社団法人|一般財団法人|公益社団法人|公益財団法人|医療法人社団|医療法人|社会福祉法人|学校法人|特定非営利活動法人|NPO法人';
+const DASHES = /[‐‑‒–—―−－﹣]/g;
+function normCompany(s){
+  let t = sp1(nfkc(s).replace(/\(\s*株\s*\)/g, '株式会社').replace(/\(\s*有\s*\)/g, '有限会社').replace(/\(\s*同\s*\)/g, '合同会社'));
+  return t.replace(new RegExp('^(' + LEGAL_RE + ')\\s+'), '$1').replace(new RegExp('\\s+(' + LEGAL_RE + ')$'), '$1');   // 「株式会社 ○○」→「株式会社○○」
+}
+const kata = s => s.replace(/[\u3041-\u3096]/g, ch => String.fromCharCode(ch.charCodeAt(0) + 0x60));
+function fmtPhone(s){
+  let t = nfkc(s).trim().replace(DASHES, '-'); if (!t) return '';
+  if (/[^0-9+()\-\s]/.test(t)) return sp1(t);                      // 内線などの文字が入っているときは、形だけそろえる
+  if (t.startsWith('+')) return sp1(t);
+  t = t.replace(/\s*[()]\s*/g, '-').replace(/\s+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+  if (t.includes('-')) return t;
+  const d = t;                                                      // ハイフンが無いときは、区切りがはっきりしている番号だけ区切る
+  if (/^0[5-9]0\d{8}$/.test(d)) return d.slice(0, 3) + '-' + d.slice(3, 7) + '-' + d.slice(7);
+  if (/^0120\d{6}$/.test(d)) return d.slice(0, 4) + '-' + d.slice(4, 7) + '-' + d.slice(7);
+  if (/^0800\d{7}$/.test(d)) return d.slice(0, 4) + '-' + d.slice(4, 7) + '-' + d.slice(7);
+  if (/^0[36]\d{8}$/.test(d)) return d.slice(0, 2) + '-' + d.slice(2, 6) + '-' + d.slice(6);
+  return d;
+}
+function fmtPostal(s){ const t = nfkc(s).replace(/〒/g, '').replace(DASHES, '-').trim(), d = t.replace(/[^0-9]/g, ''); return d.length === 7 ? d.slice(0, 3) + '-' + d.slice(3) : t; }
+const POSTAL_HEAD = /^〒?\s*(\d{3})\s*-?\s*(\d{4})\s*/;
+function normAddress(s){ return sp1(nfkc(s).replace(/(\d)\s*[‐‑‒–—―−－ー-]\s*(?=\d)/g, '$1-').replace(POSTAL_HEAD, '')); }
+const NORM = {
+  // 登録済みの会社名と同じ表記なら、そのまま（すでにある表記に合わせたものを、整形で崩さない）
+  company: v => { const t = String(v || '').trim(); return t && S.cards.some(o => !o.deleted && o.company === t) ? t : normCompany(t); }, department: s => sp1(nfkc(s)), position: s => sp1(nfkc(s)), full_name: s => sp1(nfkc(s)),
+  name_kana: s => sp1(kata(nfkc(s))), email: s => nfkc(s).replace(/^mailto:/i, '').replace(/\s+/g, '').toLowerCase(),
+  phone_mobile: fmtPhone, phone_work: fmtPhone, fax: fmtPhone, postal_code: fmtPostal, address: normAddress,
+  website: s => z2h(nfkc(s)).trim().replace(/^https?:\/\//i, '').replace(/\/$/, '')
+};
 function normalize(c){
-  ['email','phone_mobile','phone_work','fax','postal_code','website'].forEach(f => { if (c[f]) c[f] = z2h(c[f]).trim(); });
-  if (c.email) c.email = c.email.replace(/^mailto:/i, '').replace(/\s+/g, '');
-  if (c.postal_code) { const d = c.postal_code.replace(/[^0-9]/g, ''); if (d.length === 7) c.postal_code = d.slice(0,3) + '-' + d.slice(3); }
-  if (c.website) c.website = c.website.replace(/^https?:\/\//i, '').replace(/\/$/, '');
-  FIELDS.forEach(f => { c[f] = (c[f] || '').trim(); });
+  // 住所の頭に郵便番号が付いていて、郵便番号の欄が空なら、そちらへ移す
+  const m = nfkc(c.address || '').trim().match(POSTAL_HEAD); if (m && !(c.postal_code || '').trim()) c.postal_code = m[1] + m[2];
+  FIELDS.forEach(f => { c[f] = NORM[f] ? NORM[f](c[f] || '') : String(c[f] || '').trim(); });
   return c;
 }
 function validate(c){
@@ -1206,7 +1258,8 @@ function rotQuad(q, deg){
 const validQuad = q => Array.isArray(q) && q.length === 4 && q.every(p => p && isFinite(p.x) && isFinite(p.y) && p.x >= -0.01 && p.x <= 1.01 && p.y >= -0.01 && p.y <= 1.01);
 const FULL_QUAD = [{ x: .005, y: .005 }, { x: .995, y: .005 }, { x: .995, y: .995 }, { x: .005, y: .995 }];
 // init：前に切り抜いた範囲（あれば、その位置から少しだけ直せるように最初から表示する）
-function openCrop(src, label, init){
+// note：最初に出す案内（ページの写真から漏れた名刺を囲むときなど）
+function openCrop(src, label, init, note){
   return new Promise(resolve => {
     const NS = 'http://www.w3.org/2000/svg';
     const fromPrev = validQuad(init);
@@ -1263,7 +1316,8 @@ function openCrop(src, label, init){
           status.textContent = '名刺の四隅を自動で推定しました。ずれていたら、丸を動かして角に合わせてください。'; }
         else if (!found) { status.dataset.auto = '0'; status.textContent = '四隅を自動で見つけられませんでした。4つの丸を名刺の角に合わせてください。'; }
       }).catch(() => { status.dataset.auto = '0'; status.textContent = '4つの丸を名刺の角に合わせてください。'; }); };
-    if (fromPrev) { status.dataset.auto = 'prev'; status.textContent = '前に切り抜いた範囲を表示しています。ずれている角だけ動かしてください。'; }
+    if (note) { status.dataset.auto = 'note'; status.textContent = note; }
+    else if (fromPrev) { status.dataset.auto = 'prev'; status.textContent = '前に切り抜いた範囲を表示しています。ずれている角だけ動かしてください。'; }
     else runDetect();
     // 写真の向きが逆さ・横向きのときに回す（真下に向けて撮ると、スマホが上下を判断できず逆さになることがある）
     const rotate = async deg => { const r = await guard('回転中…', () => shrink(cur, 2800, 0.92, deg)); if (!r) return;
@@ -1280,7 +1334,7 @@ function openCrop(src, label, init){
       h('div', { class: 'acts' }, h('button', { class: 'pri', onclick: apply }, 'この範囲で補正する'),
         h('button', { onclick: () => rotate(90), id: 'cropRotate' }, '向きを回す（90°）'),
         h('button', { onclick: () => rotate(180), id: 'cropFlip' }, 'ひっくり返す（180°）'),
-        fromPrev ? h('button', { onclick: () => runDetect(true), id: 'cropRedetect' }, '四隅を自動で探し直す') : null,
+        (fromPrev && !note) ? h('button', { onclick: () => runDetect(true), id: 'cropRedetect' }, '四隅を自動で探し直す') : null,
         h('button', { onclick: () => done('skip') }, '補正しない'), h('button', { onclick: () => done(null) }, 'やめる'))));
     openCrop.cancel = () => done(null);
     draw(); $('crop').classList.add('open'); $('crop').scrollTop = 0; handles[0].focus();
@@ -1834,12 +1888,68 @@ async function openForm(card, opt){
   const check = () => { const v = normalize(collect()); const w = validate(v); FIELDS.forEach(f => { warnEls[f].textContent = w[f] || ''; }); return w; };
   const collect = () => { const o = {}; FIELDS.forEach(f => { o[f] = inputs[f].value; }); return o; };
   const fld = f => { inputs[f] = h('input', { type: types[f] || 'text', value: c[f] || '', maxlength: 500, autocomplete: 'off',
-      oninput: () => { inferred.delete(f); tagEls[f].hidden = true; edited.add(f); }, onblur: check });
+      oninput: () => { inferred.delete(f); tagEls[f].hidden = true; edited.add(f); if (f === 'company') co.suggest(); }, onblur: () => { tidy(f); check(); assist(); } });
     warnEls[f] = h('div', { class: 'w', role: 'alert' });
     tagEls[f] = h('span', { class: 'tag warn', hidden: !inferred.has(f) }, 'AIの推測');
     const lowTag = low.includes(f) ? h('span', { class: 'tag warn' }, '読み取りに自信なし') : null;
     return h('div', { class: 'fld' + (low.includes(f) || inferred.has(f) ? ' low' : '') }, h('label', null, LABELS[f], tagEls[f], lowTag, inputs[f]), warnEls[f]); };
   const tagEls = {};
+  // ---- 表記ブレを防ぐ手伝い ----
+  // 欄を離れたら形をそろえる（全角英数字→半角、(株)→株式会社、電話番号の区切り、フリガナはカタカナ など）
+  const tidy = f => { const el = inputs[f]; if (!el) return;
+    if (f === 'address') { const m = nfkc(el.value).trim().match(POSTAL_HEAD); if (m && inputs.postal_code && !inputs.postal_code.value.trim()) inputs.postal_code.value = fmtPostal(m[1] + m[2]); }
+    const v = NORM[f] ? NORM[f](el.value) : el.value; if (v !== el.value) el.value = v; };
+  // 登録済みの会社名（この名刺は除く）。同じ表記ごとに枚数と、いちばん新しい名刺
+  const FILL = ['postal_code', 'address', 'phone_work', 'fax', 'website'];
+  const coIndex = (() => { const m = new Map(); S.cards.forEach(o => { if (o.deleted || !o.company || o.id === c.id) return;
+    const e = m.get(o.company) || { name: o.company, n: 0, cards: [] }; e.n++; e.cards.push(o); m.set(o.company, e); });
+    const out = Array.from(m.values());
+    // 会社の情報（住所・代表電話など）は、その会社の名刺のうち新しいものから、空でない値を使う
+    out.forEach(e => { e.cards.sort((a, b) => (b.updated_at || '').localeCompare(a.updated_at || '')); e.info = {}; FILL.forEach(f => { const o = e.cards.find(x => (x[f] || '').trim()); if (o) e.info[f] = o[f]; }); });
+    return out; })();
+  const sugBox = h('div', { class: 'cosug', id: 'coSug', hidden: true, role: 'listbox', 'aria-label': '登録済みの会社名' });
+  const coNote = h('div', { class: 'conote', id: 'coNote', hidden: true });
+  const fillBox = h('div', { class: 'conote', id: 'coFill', hidden: true });
+  const nameHint = h('div', { class: 'hint', id: 'nameHint', hidden: true }), kanaHint = h('div', { class: 'hint', id: 'kanaHint', hidden: true });
+  const dl = { department: h('datalist', { id: 'dlDept' }), position: h('datalist', { id: 'dlPos' }), address: h('datalist', { id: 'dlAddr' }) };
+  const pickCo = e => { inputs.company.value = e.name; inferred.delete('company'); tagEls.company.hidden = true; edited.add('company'); sugBox.hidden = true; assist(); check(); };
+  const co = {
+    suggest(){                         // 打ちかけの会社名に合う、登録済みの会社名を出す（押すとその表記で入る）
+      const q = coreName(inputs.company.value); if (!q) { sugBox.hidden = true; return; }
+      const hit = coIndex.map(e => { const k = coreName(e.name); return { e, sc: k === q ? 0 : k.startsWith(q) ? 1 : k.includes(q) ? 2 : -1 }; })
+        .filter(x => x.sc >= 0 && x.e.name !== inputs.company.value).sort((a, b) => a.sc - b.sc || b.e.n - a.e.n).slice(0, 6);
+      setKids(sugBox, hit.length ? [h('div', { class: 'cosugh' }, '登録済みの会社（押すとこの表記で入ります）')].concat(hit.map(x => h('button', { type: 'button', role: 'option', class: 'cosugi',
+        onpointerdown: ev => ev.preventDefault(), onclick: () => pickCo(x.e) }, x.e.name, h('span', { class: 'cnt' }, x.e.n + ' 枚')))) : []);
+      sugBox.hidden = !hit.length;
+    }
+  };
+  const assist = () => {
+    const v = inputs.company.value.trim(), k = coreName(v);
+    // 1. 登録済みの会社と「株式会社」の有無・空白・全角半角だけが違う → 合わせるか尋ねる
+    const vars = k ? coIndex.filter(e => e.name !== v && coreName(e.name) === k).sort((a, b) => b.n - a.n) : [];
+    const ex = coIndex.find(e => e.name === v), fs = (isNew && ex) ? FILL.filter(f => !inputs[f].value.trim() && ex.info[f]) : [];
+    // 中身が変わらないときは作り直さない（押そうとしたボタンが、欄を離れた拍子に作り直されて押せなくなるのを防ぐ）
+    const sig = JSON.stringify([v, vars.map(e => e.name), fs]);
+    if (sig !== assist.sig) { assist.sig = sig;
+    setKids(coNote, vars.length ? [h('div', null, '登録済みの会社と表記が違います。同じ会社なら、表記を合わせてください（「同じ会社」の確認や検索がしやすくなります）。'),
+      h('div', { class: 'acts' }, vars.slice(0, 3).map(e => h('button', { type: 'button', onclick: () => pickCo(e) }, '「' + e.name + '」に合わせる（' + e.n + ' 枚）')))] : []);
+    coNote.hidden = !vars.length;
+    // 2. 登録済みの会社を選んだ → その会社の住所・代表電話などを空欄に入れられる（新しく登録するときだけ）
+    setKids(fillBox, fs.length ? [h('div', null, '「' + v + '」の登録済みの名刺に、' + fs.map(f => LABELS[f]).join('・') + ' があります。'),
+      h('div', { class: 'acts' }, h('button', { type: 'button', id: 'btnCoFill', onclick: () => { fs.forEach(f => { if (!inputs[f].value.trim()) { inputs[f].value = ex.info[f]; edited.add(f); } }); assist(); check(); toast('会社の情報を入れました。違っていれば直してください'); } }, '空欄に入れる'))] : []);
+    fillBox.hidden = !fs.length; }
+    // 3. 部署・役職・住所の候補（同じ会社の名刺にあるものを先に）
+    const same = S.cards.filter(o => !o.deleted && o.id !== c.id && k && coreName(o.company) === k), all = S.cards.filter(o => !o.deleted);
+    const uniq = (list, f) => Array.from(new Set(list.map(o => (o[f] || '').trim()).filter(Boolean)));
+    const opts = f => { const a = uniq(same, f), b = f === 'address' ? [] : uniq(all, f).filter(x => !a.includes(x)); return a.concat(b).slice(0, 60).map(x => h('option', { value: x })); };
+    ['department', 'position', 'address'].forEach(f => setKids(dl[f], opts(f)));
+    // 4. 氏名とフリガナの形
+    const nm = inputs.full_name.value.trim(), kn = inputs.name_kana.value.trim();
+    nameHint.textContent = /^[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}々〆ヶ]{3,}$/u.test(nm) ? '姓と名の間に空白を1つ入れてください（例：山田 太郎）。同じ人の確認に使います。' : '';
+    kanaHint.textContent = kn && !/^[\p{Script=Katakana}ー・\s]+$/u.test(kn) ? 'フリガナはカタカナで入力してください。'
+      : (kn && nm.includes(' ') && !kn.includes(' ')) ? 'セイとメイの間にも空白を1つ入れてください。' : '';
+    nameHint.hidden = !nameHint.textContent; kanaHint.hidden = !kanaHint.textContent;
+  };
   const cp = catPicker(c.category), catSel = cp.sel;
   const memoTa = isNew ? h('textarea', { maxlength: 2000, placeholder: '任意' }, opt.memo || '') : null;
   const stop = () => { if (!opt.onDone) { closeDlg(); return; }
@@ -1930,16 +2040,19 @@ async function openForm(card, opt){
   openDlg(h('div', null,
     h('h2', null, (opt.batch ? (opt.batch.label || 'まとめて登録') + '（' + opt.batch.i + ' / ' + opt.batch.n + ' 枚目）：' : '') + (isNew ? (opt.scanned ? '読み取り結果の確認' : '名刺を登録') : '名刺を編集')),
     opt.scanned ? h('p', { class: 'note warn' }, '画像と見比べて、間違いがあれば直してから保存してください。色の付いた項目は特に確認が必要です。') : null,
-    (opt.scanned && FIELDS.filter(f => c[f]).length < 3 && !(c.full_name && c.company)) ? h('p', { class: 'note warn', id: 'thinWarn' },
+    opt.readErr ? h('p', { class: 'note warn', id: 'readErrNote' }, 'この名刺は読み取れませんでした（' + opt.readErr + '）。「AIで読み直す」を押すか、画像を見て手で入力してください。') : null,
+    (opt.scanned && !opt.readErr && FIELDS.filter(f => c[f]).length < 3 && !(c.full_name && c.company)) ? h('p', { class: 'note warn', id: 'thinWarn' },
       '読み取れた項目がほとんどありません。名刺の一部しか写っていない可能性があります。画像の「四隅を補正」で名刺全体を囲み、「直した画像でAIで読み直す」を押してください。') : null,
     opt.usage ? h('p', { class: 'note', id: 'usageNote' }, '今回の読み取り：' + opt.usage.model + '／入力 ' + opt.usage.input.toLocaleString() + '＋出力 ' + opt.usage.output.toLocaleString() + ' トークン' + (opt.usage.yen !== null && opt.usage.yen !== undefined ? '／約 ' + yen(opt.usage.yen) + '（概算）' : '／単価不明のため金額は出せません')) : null,
     h('div', { class: 'grid2' }, imageSlot('front', '表面', st), imageSlot('back', '裏面', st)),
     rereadBox,
     (S.cats.length > 1 || S.cfg.dynamicCategories) ? h('div', { class: 'catf' }, h('label', null, '区分'), cp.el) : null,
-    fld('company'), h('div', { class: 'grid2' }, fld('department'), fld('position')),
-    h('div', { class: 'grid2' }, fld('full_name'), fld('name_kana')),
+    (() => { const el = fld('company'); el.append(sugBox, coNote, fillBox); return el; })(),
+    h('div', { class: 'grid2' }, fld('department'), fld('position')),
+    h('div', { class: 'grid2' }, (() => { const el = fld('full_name'); el.append(nameHint); return el; })(), (() => { const el = fld('name_kana'); el.append(kanaHint); return el; })()),
     fld('email'), h('div', { class: 'grid2' }, fld('phone_mobile'), fld('phone_work')),
     h('div', { class: 'grid2' }, fld('fax'), fld('postal_code')), fld('address'), fld('website'),
+    Object.values(dl),
     isNew ? h('div', { class: 'fld' }, h('label', null, 'メモ', memoTa)) : null,
     (isNew && !opt.onDone) ? h('label', { class: 'chk' }, h('input', { type: 'checkbox', id: 'contChk', checked: S.cont, onchange: e => { S.cont = e.target.checked; savePrefs(); } }), '登録したら、続けて次の名刺の登録へ進む') : null,
     h('div', { class: 'acts' }, h('button', { class: 'pri', onclick: save }, isNew ? (opt.onDone ? '登録して次へ' : '登録する') : '保存する'),
@@ -1948,6 +2061,11 @@ async function openForm(card, opt){
       h('button', { onclick: stop }, opt.onDone ? (opt.queueId ? '確認をやめる' : 'まとめて登録をやめる') : 'やめる'))));
   if (opt.onDone) dlgEscape = stop;
   updateReread();
+  inputs.department.setAttribute('list', 'dlDept'); inputs.position.setAttribute('list', 'dlPos'); inputs.address.setAttribute('list', 'dlAddr');
+  inputs.company.addEventListener('focus', () => co.suggest());
+  inputs.company.addEventListener('blur', () => setTimeout(() => { if (!sugBox.contains(document.activeElement)) sugBox.hidden = true; }, 150));
+  if (isNew && !opt.scanned && !opt.images) inputs.name_kana.placeholder = 'カタカナ（ひらがなでも自動で直ります）';
+  assist();
   check();
 }
 async function openScanned(r, images, cat, more){
@@ -1966,7 +2084,7 @@ async function openScanned(r, images, cat, more){
     if (raw[sd]) { raw[sd] = await shrink(raw[sd], 2800, 0.92, rot[sd]); quad[sd] = rotQuad(quad[sd], rot[sd]); }
     turned = true; } return true; });
   if (turned) toast('画像の向きを自動で直しました');
-  openForm(card, { batch: more.batch, onDone: more.onDone, queueId: more.queueId, queueOrig: more.queueOrig, bgSave: more.bgSave, raw, fix, quad, isNew: true, scanned: true, images, low: r.low || [], usage: r.usage || null,
+  openForm(card, { batch: more.batch, onDone: more.onDone, queueId: more.queueId, queueOrig: more.queueOrig, bgSave: more.bgSave, raw, fix, quad, isNew: true, scanned: true, images, low: r.low || [], usage: r.usage || null, readErr: more.readErr || '',
     memo: more.memo !== undefined ? more.memo : (r.other ? '名刺のその他の記載：' + r.other : '') });
 }
 function openAdd(){
@@ -2137,7 +2255,7 @@ async function prepBatchCard(img, box){
 // ---------- あとで確認（撮って保存だけ → 時間があるときに確認・登録） ----------
 // 保存（送信）はこの画面の裏で1枚ずつ行い、保存できたらすぐ読み取りを頼む（読み取りはサーバー側で進むので、送ったあとは画面を閉じてもよい）
 const LQ = { jobs: [], busy: false, saved: 0, failed: [], reading: 0, readWait: [], readingIds: new Set(), count: 0, cat: '', onChange: null,
-  pageWait: [], pageIds: new Set(), paging: false, pagesWaiting: 0, pagesDone: 0, pageCards: 0 };
+  pageWait: [], pageIds: new Set(), paging: false, pagesWaiting: 0, pagesDone: 0, pageCards: 0, autoRetried: new Set(), pagesOpen: 0 };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 function laterAdd(st, cat){
   LQ.jobs.push({ front: st.front, back: st.back || null, rawFront: (st.raw && st.raw.front) || null, rawBack: (st.raw && st.raw.back) || null, category: cat,
@@ -2158,10 +2276,10 @@ async function laterPump(){
         pageQueue(r.qid, pg, false);
       } else {
         const item = { front: it.front, back: it.back, category: it.category, thumb: await makeThumb(it.front),
-          rawFront: it.rawFront ? await shrink(it.rawFront, 2000, 0.85, 0) : null, rawBack: it.rawBack ? await shrink(it.rawBack, 2000, 0.85, 0) : null, quad: it.quad || null };
+          rawFront: it.rawFront ? await shrink(it.rawFront, 2000, 0.85, 0) : null, rawBack: it.rawBack ? await shrink(it.rawBack, 2000, 0.85, 0) : null, quad: it.quad || null,
+          page: it.fromPage ? { qid: it.fromPage.qid, n: it.fromPage.n } : null };       // ページの何番の名刺か（ページの写真の上で、登録済みか・漏れていないかを確かめるため）
         const r = await api.queueAdd(item);
         LQ.saved++; LQ.count++; laterRead(r.qid);
-        if (it.fromPage) { it.fromPage.left--; if (!it.fromPage.left) api.queueRemove(it.fromPage.qid).catch(() => {}); }   // ページの名刺がすべて入ったら、ページの写真は消す
       }
     } catch (e) {
       it.tries = (it.tries || 0) + 1;
@@ -2188,8 +2306,9 @@ async function pagePump(){
       const img = await loadImg(page), fb = fixPageBoxes(found.boxes, img.naturalWidth, img.naturalHeight);   // 名刺の一部しか囲んでいない枠を直す
       const hAvg = fb.reduce((t, b) => t + (b.y1 - b.y0), 0) / fb.length;
       const boxes = fb.slice().sort((a, b) => Math.abs((a.y0 + a.y1) - (b.y0 + b.y1)) / 2 > hAvg * 0.5 ? (a.y0 + a.y1) - (b.y0 + b.y1) : a.x0 - b.x0);
-      const from = { qid: job.qid, left: boxes.length };
-      for (const b of boxes) { const prep = await prepBatchCard(img, b); LQ.jobs.push({ front: prep.front, back: null, rawFront: prep.rawWide, rawBack: null, category: c.category, fromPage: from, quad: { front: prep.quad, back: null } }); }
+      const sp = await api.queuePageSplit(job.qid, boxes.map(b => ({ x0: b.x0, y0: b.y0, x1: b.x1, y1: b.y1 }))); if (!sp.ok) continue; LQ.pagesOpen++;   // 見つけた枠を記録（ページの写真は確かめ終わるまで残す）
+      for (let n = 0; n < boxes.length; n++) { const prep = await prepBatchCard(img, boxes[n]);
+        LQ.jobs.push({ front: prep.front, back: null, rawFront: prep.rawWide, rawBack: null, category: c.category, fromPage: { qid: job.qid, n }, quad: { front: prep.quad, back: null } }); laterPump(); }
       LQ.pagesDone++; LQ.pageCards += boxes.length; laterPump();
     } catch (e) { await api.queuePageFail(job.qid, '名刺を切り出せませんでした（' + e.message + '）').catch(() => {}); }
     finally { LQ.pageIds.delete(job.qid); LQ.pagesWaiting = Math.max(0, LQ.pagesWaiting - 1); laterChanged(); }
@@ -2199,21 +2318,36 @@ async function pagePump(){
 // 前回、切り出す前に閉じたページがあれば、続きから切り出す
 function resumePages(list){ list.filter(x => x.kind === 'page' && x.status === 'page').forEach(x => pageQueue(x.qid, null, false)); }
 function laterRead(qid){ if (LQ.readingIds.has(qid)) return; LQ.readingIds.add(qid); LQ.readWait.push(qid); laterReadPump(); }
+// 読み取りは同時に2件まで（多く重ねるとサーバー側で混み合い、かえって止まりやすい）。頼めなかったときは少し待って頼み直す
 function laterReadPump(){
-  while (LQ.reading < 3 && LQ.readWait.length) {
+  while (LQ.reading < 2 && LQ.readWait.length) {
     const q = LQ.readWait.shift(); LQ.reading++;
-    api.queueRead(q).catch(() => null).then(() => { LQ.reading--; LQ.readingIds.delete(q); laterReadPump(); laterChanged(); });
+    (async () => {
+      for (let t = 1; t <= 3; t++) {
+        try { await api.queueRead(q); return; }
+        catch (e) {
+          if (/見つかりません|ページの写真は/.test(e.message) || t === 3) { if (t === 3) toast('読み取りを始められませんでした（' + e.message + '）。少し待って「もう一度読み取る」を押してください'); return; }
+          await sleep(3000 * t);
+        }
+      }
+    })().then(() => { LQ.reading--; LQ.readingIds.delete(q); laterReadPump(); laterChanged(); });
   }
 }
+// 「途中で止まった」名刺は、この画面を開いている間に1回だけ自動で読み直す
+function autoRetryStale(list){
+  list.filter(x => x.kind !== 'page' && x.status === 'error' && x.stale && !LQ.autoRetried.has(x.qid)).forEach(x => {
+    LQ.autoRetried.add(x.qid); x.status = 'reading'; x.error = ''; laterRead(x.qid); });
+}
 async function refreshQueueCount(){ if (!S.cfg.canQueue) return;
-  try { const l = await api.queueList(); LQ.count = l.filter(x => x.kind !== 'page').length; resumePages(l); } catch (e) {} updateQueueBtn(); }
+  try { const l = await api.queueList(); LQ.count = l.filter(x => x.kind !== 'page').length; LQ.pagesOpen = l.filter(x => x.kind === 'page' && x.status === 'split').length; resumePages(l); autoRetryStale(l); } catch (e) {} updateQueueBtn(); }
 function updateQueueBtn(){
   const b = $('btnQueue'); if (!S.cfg.canQueue) { b.hidden = true; return; }
   const sending = LQ.jobs.length;
   b.hidden = !LQ.count && !sending && !SP.pending && !LQ.failed.length;
   const busyN = sending + SP.pending, pages = LQ.pagesWaiting;
-  b.hidden = b.hidden && !pages;
-  b.textContent = '確認待ち ' + LQ.count + (busyN ? '（保存中 ' + busyN + '）' : '') + (pages ? '（ページ切り出し中 ' + pages + '）' : '') + (LQ.failed.length ? '（未保存 ' + LQ.failed.length + '）' : '');
+  b.hidden = b.hidden && !pages && !LQ.pagesOpen;
+  b.textContent = '確認待ち ' + LQ.count + (busyN ? '（保存中 ' + busyN + '）' : '') + (pages ? '（ページ切り出し中 ' + pages + '）' : '') + (LQ.failed.length ? '（未保存 ' + LQ.failed.length + '）' : '')
+    + (!pages && LQ.pagesOpen ? '（ページの確かめ ' + LQ.pagesOpen + '）' : '');
 }
 window.addEventListener('beforeunload', e => { if (LQ.jobs.length) { e.preventDefault(); e.returnValue = ''; } });
 
@@ -2275,10 +2409,11 @@ async function openQueue(){
   const close = () => { alive = false; LQ.onChange = null; closeDlg(); };
   const fmtStat = x => x.status === 'ready' ? '読み取り済み' : x.status === 'error' ? '読み取れませんでした：' + (x.error || '') : 'AIが読み取り中…';
   const draw = () => {
+    list.forEach(x => { if (x.kind !== 'page' && x.status === 'error' && LQ.readingIds.has(x.qid)) { x.status = 'reading'; x.error = ''; } });   // この端末で読み取りを頼んでいる最中
     const cards = list.filter(x => x.kind !== 'page');
-    LQ.count = cards.length; updateQueueBtn();
+    LQ.count = cards.length; LQ.pagesOpen = list.filter(x => x.kind === 'page' && x.status === 'split').length; updateQueueBtn();
     cards.filter(x => x.status === 'saved').forEach(x => laterRead(x.qid));          // まだ読み取っていない名刺は、読み取りを始める
-    resumePages(list);
+    autoRetryStale(list); resumePages(list);
     const ready = cards.filter(x => x.status === 'ready');
     setKids(box, h('h2', null, '確認待ち（' + cards.length + ' 件）'),
       LQ.jobs.length ? h('p', { class: 'note warn' }, '保存中の名刺が ' + LQ.jobs.length + ' 枚あります。保存が終わると、ここに並びます。') : null,
@@ -2288,7 +2423,8 @@ async function openQueue(){
         list.length ? h('button', { class: 'pri', id: 'btnReviewAll', disabled: !ready.length, onclick: () => { close(); reviewQueue(cards.filter(x => x.status !== 'saved')); } }, '順に確認する（' + ready.length + ' 件）') : null,
         h('button', { onclick: async () => { const l = await guard('読み込み中…', () => api.queueList()); if (l) { list = l; draw(); } } }, '最新の状態にする'),
         h('button', { onclick: close }, '閉じる')),
-      list.map((x, i) => x.kind === 'page' ? h('div', { class: 'qrow', 'data-qid': x.qid, 'data-kind': 'page' },
+      list.map((x, i) => (x.kind === 'page' && x.status === 'split') ? pageRow(x)
+      : x.kind === 'page' ? h('div', { class: 'qrow', 'data-qid': x.qid, 'data-kind': 'page' },
         x.thumb ? h('img', { src: x.thumb, alt: '名刺ホルダーのページ' }) : h('div', { class: 'noimg' }),
         h('div', { class: 'qt' }, h('div', { class: 'qn' }, '名刺ホルダーのページ'),
           h('div', { class: 'qs' + (x.status === 'error' ? ' err' : '') }, fmtDate(x.at) + '・' + x.category + '・' + (x.status === 'error' ? x.error : '名刺を切り出し中…'))),
@@ -2299,13 +2435,26 @@ async function openQueue(){
       : h('div', { class: 'qrow', 'data-qid': x.qid },
         x.thumb ? h('img', { src: x.thumb, alt: '撮った名刺' }) : h('div', { class: 'noimg' }),
         h('div', { class: 'qt' }, h('div', { class: 'qn' }, x.full_name || x.company || '（' + (i + 1) + ' 枚目）'), (x.full_name && x.company) ? h('div', { class: 'qs' }, x.company) : null,
-          h('div', { class: 'qs' + (x.status === 'error' || x.thin ? ' err' : '') }, fmtDate(x.at) + '・' + x.category + '・' + fmtStat(x) + (x.status === 'ready' && x.thin ? '（読み取れた項目が少ない：切り出しを確認）' : ''))),
+          h('div', { class: 'qs' + (x.status === 'error' || x.thin ? ' err' : '') }, fmtDate(x.at) + '・' + x.category + (x.pageNo ? '・ページの ' + x.pageNo + ' 番' : '') + '・' + fmtStat(x) + (x.status === 'ready' && x.thin ? '（読み取れた項目が少ない：切り出しを確認）' : ''))),
         h('div', { class: 'acts' },
           h('button', { disabled: x.status === 'saved' || x.status === 'reading', onclick: () => { close(); reviewQueue(list.slice(i).filter(y => y.kind !== 'page' && y.status !== 'saved')); } }, 'ここから確認する'),
           x.status === 'error' ? h('button', { onclick: () => { x.status = 'reading'; laterRead(x.qid); draw(); } }, 'もう一度読み取る') : null,
           h('button', { class: 'danger', onclick: async () => { if (!confirm('この名刺を確認待ちから捨てますか？（登録しません。撮った画像も消えます）')) return;
             const r = await guard('捨てています…', () => api.queueRemove(x.qid)); if (r) { list = list.filter(y => y.qid !== x.qid); draw(); } } }, '捨てる')))));
   };
+  // 切り出し済みのページ：名刺それぞれの状態を数で出し、写真の上で確かめられるようにする
+  const pageRow = x => { const sm = x.summary || {}, todo = (sm.ready || 0) + (sm.error || 0) + (sm.reading || 0) + (sm.missing || 0);
+    const parts = [['saved', '登録済み'], ['ready', '確認待ち'], ['reading', '読み取り中'], ['error', '読み取れず'], ['missing', '未保存'], ['dropped', '捨てた']].filter(k => sm[k[0]]).map(k => k[1] + ' ' + sm[k[0]]);
+    return h('div', { class: 'qrow', 'data-qid': x.qid, 'data-kind': 'page', 'data-split': '1' },
+      x.thumb ? h('img', { src: x.thumb, alt: '名刺ホルダーのページ' }) : h('div', { class: 'noimg' }),
+      h('div', { class: 'qt' }, h('div', { class: 'qn' }, '名刺ホルダーのページ（' + (sm.total || 0) + ' 枚）'),
+        h('div', { class: 'qs' }, fmtDate(x.at) + '・' + x.category),
+        h('div', { class: 'qs' + ((sm.error || sm.missing) ? ' err' : '') }, parts.join('・') || '名刺なし'),
+        todo ? null : h('div', { class: 'qs' }, 'すべて済みました。写真で漏れがないか確かめてから片付けてください。')),
+      h('div', { class: 'acts' },
+        h('button', { class: todo ? '' : 'pri', onclick: () => { close(); openPageView(x.qid); } }, 'ページの写真で確かめる'),
+        h('button', { class: 'danger', onclick: async () => { if (!confirm('このページの写真を片付けますか？\n（切り出した名刺は、確認待ち・登録済みのまま残ります）')) return;
+          const r = await guard('片付けています…', () => api.queueRemove(x.qid)); if (r) { list = list.filter(y => y.qid !== x.qid); draw(); } } }, '片付ける'))); };
   draw(); openDlg(box); dlgEscape = close;
   // 読み取り中の名刺があれば、終わるまでときどき見直す
   const tick = async () => { if (!alive || !$('dlg').contains(box)) return;
@@ -2313,6 +2462,80 @@ async function openQueue(){
     setTimeout(tick, 4000); };
   setTimeout(tick, 4000);
 }
+// ---------- ページの写真で確かめる ----------
+// 切り出した名刺それぞれを、ページの写真の上に番号と色で示す（登録済み・確認待ち・読み取れず・未保存）。
+// 枠の無い名刺は AI が見つけられなかったもの → 囲んで足せる。どの名刺が漏れたか、名前を探して回らなくてよい
+const PV_STATE = { saved: ['登録済み', 'ok'], ready: ['確認待ち', 'wait'], reading: ['読み取り中', 'wait'], error: ['読み取れず', 'bad'], missing: ['未保存', 'miss'], dropped: ['捨てた', 'off'] };
+async function openPageView(qid){
+  const g = await guard('ページの写真を読み込み中…', () => api.queueGet(qid)); if (!g) return;
+  const page = g.images && g.images.front; if (!page) { alert('ページの写真を読み込めませんでした。'); return; }
+  let entries = g.entries || [], img = null;
+  const getImg = async () => img || (img = await loadImg(page));
+  const box = h('div', { id: 'pageView' });
+  const reopen = () => openPageView(qid);
+  const flash = n => { const r = box.querySelector('.pvrow[data-n="' + n + '"]'); if (r) { r.scrollIntoView({ block: 'center', behavior: 'smooth' }); r.classList.remove('flash'); void r.offsetWidth; r.classList.add('flash'); } };
+  const cutAgain = async e => {           // 保存できなかった名刺を、記録してある枠からもう一度切り出す
+    const prep = await guard('切り出しています…', async () => prepBatchCard(await getImg(), e.box)); if (!prep) return;
+    LQ.jobs.push({ front: prep.front, back: null, rawFront: prep.rawWide, rawBack: null, category: g.category, fromPage: { qid, n: e.n }, quad: { front: prep.quad, back: null } });
+    laterChanged(); laterPump(); e.state = 'reading'; draw(); toast(e.n + 1 + ' 番を確認待ちに入れています'); };
+  const addMissing = async () => {        // AIが見つけられなかった名刺を、写真の上で囲んで足す
+    const ws = entries.filter(e => e.box && !e.box.none).map(e => e.box), mw = ws.length ? medianOf(ws.map(b => b.x1 - b.x0)) : 0.4, mh = ws.length ? medianOf(ws.map(b => b.y1 - b.y0)) : 0.2;
+    const init = [{ x: .5 - mw / 2, y: .5 - mh / 2 }, { x: .5 + mw / 2, y: .5 - mh / 2 }, { x: .5 + mw / 2, y: .5 + mh / 2 }, { x: .5 - mw / 2, y: .5 + mh / 2 }];
+    const res = await openCrop(page, '漏れている名刺', init, '足りない名刺の四隅に、4つの丸を合わせてください（写真の上をなぞると、近い角が動きます）。');
+    if (!res || !res.out || res.out === 'skip') return;
+    const prep = await guard('名刺を準備しています…', async () => {
+      let bx = null, rawWide, quad;
+      if (res.src === page) {
+        const xs = res.quad.map(p => p.x), ys = res.quad.map(p => p.y), im = await getImg();
+        bx = { x0: Math.max(0, Math.min(...xs)), y0: Math.max(0, Math.min(...ys)), x1: Math.min(1, Math.max(...xs)), y1: Math.min(1, Math.max(...ys)) };
+        const wr = cropRect(im, bx, 0.22), ww = wr.x1 - wr.x0, wh = wr.y1 - wr.y0, W = im.naturalWidth, H = im.naturalHeight;
+        rawWide = await shrink(cropBox(im, bx, 0.22), 2400, 0.9, 0);
+        quad = res.quad.map(p => ({ x: (p.x * W - wr.x0) / ww, y: (p.y * H - wr.y0) / wh }));
+      } else { rawWide = await shrink(res.src, 2400, 0.9, 0); quad = res.quad; }     // 写真を回したとき：枠は記録できないが、名刺は足せる
+      const nl = await normalizeLighting(res.out).catch(() => null);
+      return { box: bx, rawWide, quad, front: nl && nl.applied ? nl.url : res.out };
+    }); if (!prep) return;
+    const r = await guard('足しています…', () => api.queuePageAddBox(qid, prep.box)); if (!r) return;
+    LQ.jobs.push({ front: prep.front, back: null, rawFront: prep.rawWide, rawBack: null, category: g.category, fromPage: { qid, n: r.n }, quad: { front: prep.quad, back: null } });
+    laterChanged(); laterPump();
+    entries.push({ n: r.n, box: prep.box || { none: true }, state: 'reading', name: '' }); draw(); flash(r.n);
+    toast(r.n + 1 + ' 番として確認待ちに入れました。AIが読み取ります');
+  };
+  const stage = () => h('div', { class: 'pvstage' }, h('img', { src: page, alt: '名刺ホルダーのページの写真' }),
+    entries.filter(e => e.box && !e.box.none).map(e => h('button', { type: 'button', class: 'pvbox ' + PV_STATE[e.state][1], 'data-n': e.n, 'aria-label': (e.n + 1) + ' 番：' + PV_STATE[e.state][0],
+      style: 'left:' + (e.box.x0 * 100) + '%;top:' + (e.box.y0 * 100) + '%;width:' + ((e.box.x1 - e.box.x0) * 100) + '%;height:' + ((e.box.y1 - e.box.y0) * 100) + '%',
+      onclick: () => flash(e.n) }, h('span', null, String(e.n + 1)))));
+  const row = e => { const [label, cls] = PV_STATE[e.state];
+    return h('div', { class: 'pvrow ' + cls, 'data-n': e.n },
+      h('span', { class: 'pvnum ' + cls }, String(e.n + 1)),
+      h('div', { class: 'qt' }, h('div', { class: 'qn' }, e.name || (e.state === 'missing' ? '確認待ちに入っていません' : e.state === 'dropped' ? '—' : '（名前はまだありません）')),
+        h('div', { class: 'qs' + (cls === 'bad' || cls === 'miss' ? ' err' : '') }, label + (e.company ? '・' + e.company : '') + (e.error ? '：' + e.error : ''))),
+      h('div', { class: 'acts' },
+        (e.state === 'ready' || e.state === 'error') ? h('button', { onclick: () => { closeDlg(); reviewQueue([{ qid: e.qid }], reopen); } }, e.state === 'error' ? '画像を見て入力する' : '確認する') : null,
+        e.state === 'error' ? h('button', { onclick: () => { LQ.autoRetried.add(e.qid); laterRead(e.qid); e.state = 'reading'; e.error = ''; draw(); } }, 'もう一度読み取る') : null,
+        e.state === 'missing' && e.box && !e.box.none ? h('button', { onclick: () => cutAgain(e) }, 'この名刺を切り出す') : null,
+        e.state === 'saved' && e.id && S.cards.some(c => c.id === e.id && !c.deleted) ? h('button', { onclick: () => { closeDlg(); select(e.id); } }, '名刺を見る') : null)); };
+  const draw = () => {
+    const cnt = k => entries.filter(e => e.state === k).length, todo = cnt('ready') + cnt('error') + cnt('reading') + cnt('missing');
+    setKids(box, h('h2', null, 'ページの写真で確かめる（' + entries.length + ' 枚）'),
+      h('p', { class: 'note' }, fmtDate(g.at) + '・' + g.category + '。枠の色で、それぞれの名刺がどうなったかがわかります。番号を押すと、下の一覧のその名刺へ移ります。'),
+      h('p', { class: 'note warn' }, '枠の無い名刺が写っていたら、AIが見つけられなかった名刺です。「漏れている名刺を足す」で囲んで足してください。'),
+      h('div', { class: 'pvlegend' }, ['saved', 'ready', 'error', 'missing', 'dropped'].map(k => h('span', { class: 'pvkey ' + PV_STATE[k][1] }, PV_STATE[k][0] + ' ' + cnt(k) + (k === 'ready' && cnt('reading') ? '（読み取り中 ' + cnt('reading') + '）' : '')))),
+      stage(),
+      h('div', { class: 'acts' }, h('button', { class: 'pri', onclick: addMissing }, '漏れている名刺を足す')),
+      h('div', { class: 'pvlist' }, entries.slice().sort((a, b) => a.n - b.n).map(row)),
+      todo ? null : h('p', { class: 'note' }, 'すべて済みました。漏れがなければ、写真を片付けてください。'),
+      h('div', { class: 'acts' },
+        h('button', { onclick: async () => { const l = await guard('読み込み中…', () => api.queueGet(qid)); if (l) { entries = l.entries || []; draw(); } } }, '最新の状態にする'),
+        h('button', { class: todo ? 'danger' : 'danger pri', onclick: async () => {
+          if (!confirm(todo ? 'まだ済んでいない名刺があります（' + todo + ' 枚）。それでも写真を片付けますか？\n（切り出した名刺は確認待ちに残ります）' : 'このページの写真を片付けますか？')) return;
+          const r = await guard('片付けています…', () => api.queueRemove(qid)); if (r) { closeDlg(); toast('ページの写真を片付けました'); refreshQueueCount(); } } }, '写真を片付ける'),
+        h('button', { onclick: () => { closeDlg(); openQueue(); } }, '確認待ちの一覧へ'),
+        h('button', { onclick: closeDlg }, '閉じる')));
+  };
+  draw(); openDlg(box);
+}
+
 // 確認待ちを1枚ずつ確認して登録する（「あとで確認する（残す）」で飛ばした名刺は確認待ちに残る）
 // 待ち時間をなくすため、今の名刺を確認している間に次の名刺を読み込んでおき、登録の保存は裏で順に進める
 const SP = { chain: Promise.resolve(), pending: 0, failed: [] };
@@ -2324,14 +2547,17 @@ async function fetchQueueItem(qid){
     for (let t = 0; t < 80; t++) {
       const s0 = await api.queueGet(qid, true);
       if (s0.status === 'ready') { const g = await api.queueGet(qid); if (g.result) return g; }
-      else if (s0.status === 'error') return { _err: s0.error || '読み取りが途中で止まりました' };
-      else if (s0.status === 'saved') { const rr = await api.queueRead(qid); if (rr.status === 'error') return { _err: rr.error }; continue; }
+      else if (s0.status === 'error') {
+        if (s0.stale && !LQ.autoRetried.has(qid)) { LQ.autoRetried.add(qid); await api.queueRead(qid).catch(() => null); continue; }   // 途中で止まっていた：1回だけ読み直す
+        const g = await api.queueGet(qid).catch(() => null);            // 画像は見られるようにして、読み直すか手で入力できるようにする
+        return Object.assign(g || {}, { _err: s0.error || '読み取りが途中で止まりました' }); }
+      else if (s0.status === 'saved') { const rr = await api.queueRead(qid); if (rr.status === 'error') { const g = await api.queueGet(qid).catch(() => null); return Object.assign(g || {}, { _err: rr.error }); } continue; }
       await sleep(2000);                                                   // ほかで読み取り中：終わるのを待つ
     }
     return { _err: '読み取りが終わりませんでした' };
   } catch (e) { return { _err: e.message }; }
 }
-async function reviewQueue(items){
+async function reviewQueue(items, after){
   let saved = 0, later = 0, dropped = 0, n = 0, stopped = false; const failed0 = SP.failed.length;
   let next = items.length ? fetchQueueItem(items[0].qid) : null;
   for (let i = 0; i < items.length; i++) {
@@ -2340,11 +2566,12 @@ async function reviewQueue(items){
     const tm = setTimeout(() => { if (!ready) busy('確認待ち ' + n + ' / ' + items.length + ' を準備中…（読み取りがまだのときは、終わるまで待ちます）'); }, 150);   // 先読みが済んでいれば何も出さない
     const g = await next; clearTimeout(tm); busy('');
     next = i + 1 < items.length ? fetchQueueItem(items[i + 1].qid) : null;        // 次の名刺を先に読み込んでおく
-    if (g._err) {
-      if (!confirm((g._err ? 'この名刺を読み取れませんでした（' + g._err + '）。' : '') + '\n次の名刺へ進みますか？（この名刺は確認待ちに残ります）')) { stopped = true; break; }
+    if (g._err && !(g.images && g.images.front)) {
+      if (!confirm('この名刺を読み取れませんでした（' + g._err + '）。\n次の名刺へ進みますか？（この名刺は確認待ちに残ります）')) { stopped = true; break; }
       later++; continue; }
-    const res = await new Promise(resolve => openScanned(g.result, { front: g.images.front, back: g.images.back }, g.category,
-      { batch: { i: n, n: items.length, label: '確認待ち' }, raw: { front: g.images.rawFront, back: g.images.rawBack }, quad: g.quad || null, onDone: resolve,
+    // 読み取れなかった名刺も、画像を出して「AIで読み直す」か手で入力できるようにする（どの名刺かわかるように）
+    const res = await new Promise(resolve => openScanned(g._err ? { fields: {}, inferred: [], low: [] } : g.result, { front: g.images.front, back: g.images.back }, g.category,
+      { batch: { i: n, n: items.length, label: '確認待ち' + (g.pageNo ? '・ページの ' + g.pageNo + ' 番' : '') }, raw: { front: g.images.rawFront, back: g.images.rawBack }, quad: g.quad || null, onDone: resolve, readErr: g._err || '',
         queueId: x.qid, queueOrig: { front: g.images.front, back: g.images.back }, bgSave }));
     if (res === 'saved') { saved++; LQ.count = Math.max(0, LQ.count - 1); }
     else if (res === 'drop') { dropped++; LQ.count = Math.max(0, LQ.count - 1); }
@@ -2358,23 +2585,25 @@ async function reviewQueue(items){
   alert('確認待ちの確認が終わりました。\n登録：' + (saved - failed.length) + ' 枚' + (later ? '\nあとで確認（残した）：' + later + ' 枚' : '') + (dropped ? '\n捨てた：' + dropped + ' 枚' : '') +
     (failed.length ? '\n\n保存できなかった名刺（確認待ちに残っています）：\n' + failed.join('\n') : '') +
     (stopped && n < items.length ? '\n（途中でやめました。残りは確認待ちに残っています）' : '') + '\n\n確認待ちは、あと ' + LQ.count + ' 件です。');
+  if (after) after();
 }
 
 // ---------- 書き出し・取り込み ----------
 async function buildExport(cats, withImages, pass, onProgress, extra){
   extra = extra || {};
   const cards = extra.ids ? S.cards.filter(c => extra.ids.includes(c.id)) : S.cards.filter(c => !cats || cats.includes(c.category));
-  const out = [];
-  let n = 0;
-  for (const c of cards) {
+  const out = new Array(cards.length);
+  let n = 0, next = 0;
+  // 画像の読み込みは4枚ずつ並べて進める（1枚ずつ順に待つより速い）
+  const worker = async () => { while (next < cards.length) { const i = next++, c = cards[i];
     const o = JSON.parse(JSON.stringify(c));
     if (withImages && !c.deleted && (c.has_front || c.has_back)) {
       const im = await api.images(c.id); o.images = {};
       for (const s of ['front', 'back']) if (im[s]) o.images[s] = await shrink(im[s], 1000, 0.7, 0);
     }
-    out.push(o); onProgress(++n, cards.length);
-  }
-  let text = JSON.stringify({ format: FILE_FORMAT, version: 1, exported_at: nowIso(), source: MODE === 'gas' ? 'personal' : 'shared-pc', kind: extra.kind || (MODE === 'gas' ? 'export' : 'full'), handoff: extra.handoff || null, categories: cats || null, cards: out });
+    out[i] = o; onProgress(++n, cards.length); } };
+  await Promise.all(Array.from({ length: Math.min(4, cards.length) }, worker));
+  let text = JSON.stringify({ format: FILE_FORMAT, version: 1, exported_at: nowIso(), source: MODE === 'gas' ? 'personal' : 'shared-pc', kind: extra.kind || (MODE === 'gas' ? 'export' : 'full'), handoff: extra.handoff || null, categories: cats || null, since: extra.since || null, cards: out });
   if (pass) text = await encryptText(text, pass);
   return { text, count: out.filter(c => !c.deleted).length };
 }
@@ -2418,19 +2647,57 @@ function openIO(){
   const withImg = h('input', { type: 'checkbox', checked: true });
   const catBoxes = S.cats.map((k, i) => h('input', { type: 'checkbox', value: k, checked: MODE === 'gas' ? i === 0 : true }));
   const askNoPass = () => pass.value || confirm('合言葉なしで書き出すと、ファイルを開いた人は誰でも中身を読めます。\nこのまま書き出しますか？');
+  // ---- 書き出し（スマホ用）：全件か、前回の書き出し以降に追加・変更した分だけ ----
+  let xlog = [];
+  const rangeSel = h('select', { id: 'exportRange', 'aria-label': '書き出す範囲' });
+  const xcount = h('div', { class: 'note', id: 'exportCount' });
+  const xhist = h('div', { class: 'xhist', id: 'exportHist' });
+  const selCats = () => catBoxes.filter(b => b.checked).map(b => b.value);
+  const diffCards = (cats, since) => S.cards.filter(c => cats.includes(c.category) && (c.updated_at || '') > since);
+  // 基準にできる書き出し：選んだ区分をすべて含み、画像を含めるならそのときも画像つきだったもの
+  const bases = () => { const cats = selCats(); return xlog.filter(x => cats.length && cats.every(k => x.cats.includes(k)) && (x.images || !withImg.checked)); };
+  const drawRange = () => {
+    const keep = rangeSel.value, bs = bases();
+    setKids(rangeSel, bs.map((x, i) => h('option', { value: x.at }, fmtDate(x.at) + ' の書き出し以降に追加・変更した分だけ' + (i === 0 ? '（前回）' : ''))),
+      h('option', { value: '' }, '全件'));
+    rangeSel.value = bs.some(x => x.at === keep) || keep === '' && rangeSel.dataset.touched ? keep : (bs[0] ? bs[0].at : '');
+    drawCount();
+  };
+  const drawCount = () => {
+    const cats = selCats(), since = rangeSel.value;
+    if (!cats.length) { xcount.textContent = '書き出す区分を選んでください。'; return; }
+    if (!since) { xcount.textContent = '書き出す名刺：' + S.cards.filter(c => !c.deleted && cats.includes(c.category)).length + ' 件（全件）' + (bases().length ? '' : '。区分と画像の有無が同じ書き出しをしたことがないので、初回は全件です。'); return; }
+    const l = diffCards(cats, since), del = l.filter(c => c.deleted).length;
+    xcount.textContent = fmtDate(since) + ' 以降に追加・変更した名刺：' + (l.length - del) + ' 件' + (del ? '、削除した名刺：' + del + ' 件' : '') + (l.length ? '' : '（書き出すものはありません）');
+  };
+  const drawHist = () => setKids(xhist, xlog.length ? [h('div', { class: 'note' }, 'これまでの書き出し（新しい順）'),
+    xlog.slice(0, 6).map(x => h('div', { class: 'xh' }, fmtDate(x.at) + '・' + x.cats.join('+') + '・' + (x.kind === 'diff' ? '差分 ' + x.count + ' 件' + (x.removed ? '（削除 ' + x.removed + '）' : '') : '全件 ' + x.count + ' 件') + (x.images ? '・画像あり' : '・画像なし') + (x.drive ? '・ドライブ' : '')))]
+    : h('div', { class: 'note' }, 'まだ書き出しの記録はありません。'));
+  if (MODE === 'gas') { catBoxes.forEach(b => b.addEventListener('change', drawRange)); withImg.addEventListener('change', drawRange);
+    rangeSel.addEventListener('change', () => { rangeSel.dataset.touched = '1'; drawCount(); });
+    api.exportLog().then(l => { xlog = Array.isArray(l) ? l : []; drawRange(); drawHist(); }).catch(() => { drawRange(); drawHist(); }); }
+  const stamp = iso => { const d = new Date(iso), p = n => String(n).padStart(2, '0'); return '' + d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + '-' + p(d.getHours()) + p(d.getMinutes()); };
   const doExport = async toDrive => {
-    const cats = MODE === 'gas' ? catBoxes.filter(b => b.checked).map(b => b.value) : null;
+    const cats = MODE === 'gas' ? selCats() : null;
     if (cats && !cats.length) { alert('書き出す区分を選んでください。'); return; }
+    const since = MODE === 'gas' ? rangeSel.value : '';
+    const ids = since ? diffCards(cats, since).map(c => c.id) : null;
+    if (ids && !ids.length) { alert(fmtDate(since) + ' の書き出しのあとに、追加・変更した名刺はありません。'); return; }
     if (!askNoPass()) return;
     const r = await guard('書き出し中…', async () => {
-      const b = await buildExport(cats, withImg.checked, pass.value, (n, t) => busy('書き出し中… ' + n + ' / ' + t));
+      const t0 = MODE === 'gas' ? (await api.exportBegin()).at : null;       // この時刻が、次の「前回以降」の基準になる
+      const b = await buildExport(cats, withImg.checked, pass.value, (n, t) => busy('書き出し中… ' + n + ' / ' + t), ids ? { ids, kind: 'diff', since } : {});
       const d = new Date(), hm = String(d.getHours()).padStart(2, '0') + String(d.getMinutes()).padStart(2, '0');
-      const name = MODE === 'gas' ? '名刺帳_' + cats.join('+') + '_' + ymd() + '.meishi.json' : (MOBILE ? '名刺帳_スマホ_全件_' : '名刺帳_共用PC_全件_') + ymd() + '_' + hm + '.meishi.json';
+      const name = MODE === 'gas' ? '名刺帳_' + cats.join('+') + (since ? '_差分_' + stamp(since) + '以降' : '_全件') + '_' + ymd() + '_' + hm + '.meishi.json'
+        : (MOBILE ? '名刺帳_スマホ_全件_' : '名刺帳_共用PC_全件_') + ymd() + '_' + hm + '.meishi.json';
       if (toDrive) { if (b.text.length > 25000000) throw new Error('ファイルが大きすぎます。「画像を含める」を外すか、ダウンロードを使ってください。'); await api.saveToDrive(name, b.text); }
       else download(name, b.text);
-      return { name, count: b.count };
+      const removed = ids ? S.cards.filter(c => ids.includes(c.id) && c.deleted).length : 0;
+      if (t0) { const l = await api.exportDone({ at: t0, cats, kind: since ? 'diff' : 'full', since, count: b.count, removed, images: withImg.checked, name, drive: toDrive }).catch(() => null);
+        if (l) { xlog = l; rangeSel.dataset.touched = ''; drawRange(); drawHist(); } }
+      return { name, count: b.count, removed };
     });
-    if (r) toast(r.count + ' 件を書き出しました' + (toDrive ? '（マイドライブの「名刺帳_書き出し」フォルダ）' : ''));
+    if (r) toast((since ? '追加・変更 ' + r.count + ' 件' + (r.removed ? '・削除 ' + r.removed + ' 件' : '') : r.count + ' 件') + 'を書き出しました' + (toDrive ? '（マイドライブの「名刺帳_書き出し」フォルダ）' : ''));
   };
   // ---- 取り込み（ファイルを複数／フォルダごと）----
   const files = h('input', { type: 'file', accept: MOBILE ? null : '.json,application/json', multiple: true, 'aria-label': '取り込むファイル', id: 'importFiles' });   // スマホは届いたファイルが選べなくならないよう絞らない
@@ -2521,6 +2788,9 @@ function openIO(){
       MODE === 'gas' ? h('div', null, h('div', { class: 'note' }, '書き出す区分（選んだ区分の名刺だけがファイルに入ります）'),
         catBoxes.map(b => h('label', { class: 'chk' }, b, b.value))) : h('p', { class: 'note' }, '' + DEV + 'に入っている名刺をすべて、1つのファイルに書き出します。取り込みのあとに作っておけば、それまでの引き渡しファイルはこの1つで代わりになります。'),
       h('label', { class: 'chk' }, withImg, '名刺の画像を含める'),
+      MODE === 'gas' ? h('div', { class: 'fld', id: 'exportRangeBox' }, h('label', null, '書き出す範囲', rangeSel), xcount,
+        h('p', { class: 'note' }, '2回目からは「前回の書き出し以降に追加・変更した分だけ」で、短い時間で書き出せます（削除した名刺も「削除」として入ります）。共用PCでは、届いたファイルを順に「追加と更新」で取り込めば、全件を書き出したのと同じになります。ファイル名に書き出した日時と「全件」「差分」が入ります。')) : null,
+      MODE === 'gas' ? xhist : null,
       h('div', { class: 'acts' }, h('button', { class: MODE === 'gas' ? '' : 'pri', onclick: () => doExport(false) }, MODE === 'gas' ? 'ファイルをダウンロード' : MOBILE ? '全件のファイルを作る' : '全件のファイルをダウンロード'),
         MODE === 'gas' ? h('button', { onclick: () => doExport(true) }, 'Googleドライブに保存') : null)),
     importBox,
