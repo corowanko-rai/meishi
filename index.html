@@ -187,7 +187,11 @@ svg.sn{display:block;width:100%;touch-action:none;cursor:grab;user-select:none;-
 .nnow,.npast{font-size:12px;padding:1px 8px;border-radius:10px}.nnow{background:var(--mm-ctr);color:var(--mm-ctr-ink)}.npast{background:var(--chip);color:var(--sub)}
 .nd{font-size:12px;color:var(--sub);margin-left:6px}
 .nins{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.nins h3{font-size:14px;margin:6px 0}.nlink{font-size:14px;min-height:0;padding:2px 0}
-.mmframe.dgf{overflow:visible;max-height:none}.dgwrap{display:flex;align-items:flex-start}.dgwrap .dg-side{flex:none;border-right:1px solid var(--mm-grid)}
+.mmframe.dgf{overflow:visible;max-height:none}.dgwrap{display:flex;align-items:flex-start;position:relative;max-width:100%;min-width:0}
+.dgside{flex:none;position:relative;border-right:1px solid var(--mm-grid)}
+.dglab{position:absolute;left:6px;max-width:calc(100% - 14px);box-sizing:border-box;transform:translateY(-50%);background:var(--mm-top);color:var(--mm-top-ink);font-size:13px;font-weight:600;line-height:1.3;padding:3px 10px;border-radius:12px}
+.dglab span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:auto-phrase;text-wrap:balance;overflow-wrap:anywhere}
+.dgover{position:absolute;left:0;top:0;right:0;pointer-events:none}.dgover .dglab{transform:none;left:8px;max-width:calc(100% - 16px);pointer-events:auto;box-shadow:0 1px 2px rgba(0,0,0,.08)}.dgover .dglab span{display:block;white-space:nowrap;text-overflow:ellipsis}
 .dgscroll{overflow-x:auto;overflow-y:hidden;min-width:0;flex:1;-webkit-overflow-scrolling:touch}
 .dg .dg-under{fill:var(--mm-bg);stroke:none}
 .mm .mm-lines path{stroke:var(--mm-line);stroke-width:2;fill:none}
@@ -2269,26 +2273,26 @@ function dangoChart(c, by){
   const all = Array.from(rows.values()).flat(); if (!all.length) return h('p', { class: 'note' }, 'この会社の名刺はまだありません。');
   const ys = all.filter(e => e.d).map(e => yearOf(e.d)), nND = all.filter(e => !e.d).length;
   const y0 = ys.length ? Math.min(...ys) : yearOf(today()), y1 = Math.max(yearOf(today()), ...ys);
-  const PY = window.innerWidth < 700 ? 66 : 96, L = 24, T = 40, RH = 92, R = 15;      // 1年の幅（スマホは狭く）
+  // スマホ（狭い画面）：部署名は各行の上に出し（左に固定）、年の並びを画面の幅いっぱいに使う。PC：部署名は左の決まった幅の欄（長い名前は2行まで折り返す）
+  const narrow = window.innerWidth < 700, PY = narrow ? 66 : 96, L = 24, T = 40, RH = narrow ? 106 : 92, R = 15, TOP = narrow ? 62 : 44;
   // 作成日のない名刺は、年の並びの左に「作成日なし」の欄を作って、そこに並べる
   const maxND = Math.max(0, ...rk.map(k => rows.get(k).filter(e => !e.d).length)), UW = maxND ? 34 + maxND * (R * 2 + 6) : 0;
-  const W = L + UW + (y1 - y0 + 1) * PY + 30, H = T + rk.length * RH + 46;
+  const W = L + UW + (y1 - y0 + 1) * PY + 30, H = T + rk.length * RH + 46 + (narrow ? 14 : 0);
   const xOf = d => { const t = new Date(d + 'T00:00:00'), s = new Date(y0 + '-01-01T00:00:00'); return L + UW + 14 + (t - s) / (365.25 * 864e5) * PY; };
   const color = new Map(); people.slice().sort((a, b) => a.first.localeCompare(b.first)).forEach((p, i) => color.set(p, DANGO[i % DANGO.length]));
   const svg = sv('svg', { viewBox: `0 0 ${Math.ceil(W)} ${H}`, width: Math.ceil(W), height: H, class: 'dg', role: 'img', 'aria-label': coLabel(c) + ' の担当者の移り変わり' });
-  // 串の名前は左に固定（横に動かしても見える）
-  const LW = Math.max(...rk.map(k => textW(k, 13) + 24)) + 12;
-  const side = sv('svg', { viewBox: `0 0 ${Math.ceil(LW)} ${H}`, width: Math.ceil(LW), height: H, class: 'dg dg-side', 'aria-hidden': 'true' });
+  // 部署（タグ）の名前は横に動かしても見えるよう、年の並びとは別の層に置く
+  const LW = Math.min(200, Math.max(...rk.map(k => textW(k, 13) + 30)) + 10);
+  const labels = h('div', { class: narrow ? 'dgover' : 'dgside', style: (narrow ? '' : 'width:' + Math.ceil(LW) + 'px;') + 'height:' + H + 'px' });
   for (let y = y0; y <= y1 + 1; y++) { const x = xOf(y + '-01-01');
     svg.append(sv('line', { x1: x, y1: T - 14, x2: x, y2: H - 30, class: 'dg-grid' }));
     if (y <= y1) svg.append(sv('text', { x: x + PY / 2, y: H - 12, class: 'dg-year' }, y + '年')); }
   const tx = xOf(today()); svg.append(sv('line', { x1: tx, y1: T - 14, x2: tx, y2: H - 30, class: 'dg-now' }), sv('text', { x: tx, y: T - 20, class: 'dg-nowt' }, '今'));
   if (UW) svg.append(sv('rect', { x: L - 4, y: T - 14, width: UW - 4, height: H - 30 - (T - 14), rx: 8, class: 'dg-ndbox' }), sv('text', { x: L - 4 + (UW - 4) / 2, y: H - 12, class: 'dg-year' }, '作成日なし'));
   rk.forEach((k, ri) => {
-    const yy = T + ri * RH + 44, pi = p => people.indexOf(p);
+    const yy = T + ri * RH + TOP, pi = p => people.indexOf(p);
     const list = rows.get(k).filter(e => e.d).sort((a, b) => a.d.localeCompare(b.d)), nd = rows.get(k).filter(e => !e.d).sort((a, b) => pi(a.p) - pi(b.p) || (a.o.created_at || '').localeCompare(b.o.created_at || ''));
-    const lw = textW(k, 13) + 24;
-    side.append(sv('g', { class: 'dg-row' }, sv('rect', { x: 6, y: yy - 12, width: lw, height: 24, rx: 12 }), sv('text', { x: 6 + lw / 2, y: yy + 1, class: 'dg-rowt' }, k)));
+    labels.append(h('div', { class: 'dglab', title: k, style: 'top:' + (narrow ? yy - 58 : yy) + 'px', onclick: () => toast(k) }, h('span', null, k)));
     svg.append(sv('line', { x1: 0, y1: yy, x2: W - 10, y2: yy, class: 'dg-stick' }));
     let prevP = null, lastX = -99, lastP = null, flip = 1;
     nd.concat(list).forEach((e, i) => { const und = i < nd.length; let x = und ? L + 10 + R + i * (R * 2 + 6) : xOf(e.d), cy = yy;
@@ -2305,7 +2309,7 @@ function dangoChart(c, by){
       if (e.p !== prevP) svg.append(sv('text', { x, y: yy + 34 + (und && i % 2 ? 12 : 0), class: 'dg-name' + (e.p.here ? '' : ' former') }, clip(nm.replace(/\s.*/, ''), 5) + (e.p.here ? '' : '（他社へ）')));
       prevP = e.p; lastX = x; lastP = e.p; });
   });
-  const wrap = h('div', { class: 'dgwrap' }, side, h('div', { class: 'dgscroll' }, svg));
+  const wrap = narrow ? h('div', { class: 'dgwrap narrow' }, h('div', { class: 'dgscroll' }, svg), labels) : h('div', { class: 'dgwrap' }, labels, h('div', { class: 'dgscroll' }, svg));
   return nND ? h('div', null, h('p', { class: 'note dgnd', id: 'dgNoDate' }, '作成日の入っていない名刺 ' + nND + ' 枚は、左の「作成日なし」に並べています（いつの名刺かわからないため）。作成日を入れると年の位置に移ります（名刺の［編集］、または一覧で選んで［作成日を入れる］）。'), wrap) : wrap;
 }
 

@@ -1,5 +1,5 @@
 // 名刺帳（スマホ版）：一度開いたら、電波がなくても開けるようにする。名刺のデータはここでは扱わない（アプリの画面だけ）
-const CACHE = 'meishi-app-0362a2e62c';
+const CACHE = 'meishi-app-e1c1d21b09';
 const FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => {
