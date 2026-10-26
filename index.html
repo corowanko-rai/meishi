@@ -156,7 +156,75 @@ main{flex:1;display:flex;min-height:0}
 .conote .acts{margin:6px 0 0}.conote .acts button{min-height:36px;padding:5px 10px;font-size:14px}
 #coFill{background:var(--chip)}
 .fld .hint{font-size:12.5px;color:var(--warn);margin-top:3px}
-.xhist{margin-top:8px}.xhist .xh{font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums}
+.xhist{margin-top:8px}
+:root{--mm-bg:#eef8f3;--mm-grid:#d5ebe1;--mm-line:#9fcdb9;--mm-ctr:#17a673;--mm-ctr-ink:#fff;--mm-top:#a8e3cb;--mm-top-ink:#0b5a3e;--mm-leaf:#fff;--mm-leaf-bd:#a8e3cb;--mm-leaf-ink:#1f3d33;--mm-sub:#5a7d70;--mm-acc:#f5b800;--mm-acc-ink:#4a3700;--mm-acc-soft:#fff3c4}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--mm-bg:#13261f;--mm-grid:#21402f;--mm-line:#3f7d64;--mm-ctr:#1fb47f;--mm-ctr-ink:#04241a;--mm-top:#2c6b52;--mm-top-ink:#dff7ec;--mm-leaf:#1b3329;--mm-leaf-bd:#3f7d64;--mm-leaf-ink:#e4f3ec;--mm-sub:#9cc7b5;--mm-acc:#f5b800;--mm-acc-ink:#2c2000;--mm-acc-soft:#3d3412}}
+:root[data-theme="dark"]{--mm-bg:#13261f;--mm-grid:#21402f;--mm-line:#3f7d64;--mm-ctr:#1fb47f;--mm-ctr-ink:#04241a;--mm-top:#2c6b52;--mm-top-ink:#dff7ec;--mm-leaf:#1b3329;--mm-leaf-bd:#3f7d64;--mm-leaf-ink:#e4f3ec;--mm-sub:#9cc7b5;--mm-acc:#f5b800;--mm-acc-ink:#2c2000;--mm-acc-soft:#3d3412}
+.cotools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0 8px}
+.mmframe{background:var(--mm-bg);border-radius:12px;padding:10px;overflow:auto;max-height:70vh;-webkit-overflow-scrolling:touch}
+.mmframe svg.mm{display:block;max-width:100%;height:auto;margin:0 auto}.mmframe.zoom svg.mm{max-width:none;width:auto;height:auto}
+.mmframe svg.dg{display:block}
+.nettools{display:flex;flex-direction:column;gap:6px;margin:4px 0 8px}.ntrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.ntrow input[type=search]{flex:1;min-width:10em}
+.ntrow.nyear input[type=range]{flex:1;min-width:8em}
+.ntrow select{width:auto;max-width:100%;flex:0 1 auto}.ntrow .chk{margin:0}
+.netframe{position:relative;background:var(--nw-bg);border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+svg.sn{display:block;width:100%;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+/* つながり図の色：やわらかめの緑と黄色（強すぎないよう、明るさを上げて彩度を落とす） */
+:root{--nw-bg:#f3faf6;--nw-co:#5cc29c;--nw-pe:#bfe5d4;--nw-br:#5cc29c;--nw-acc:#f4d06a;--nw-edge:#c9e5d8;--nw-gedge:#f1d98f;--nw-ink:#2f5a4a;--nw-dim:#e3e9e6;--nw-ring:#e9b949}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--nw-bg:#14241d;--nw-co:#3f9e7b;--nw-pe:#3b6b59;--nw-br:#3f9e7b;--nw-acc:#cfae4a;--nw-edge:#2c4c3f;--nw-gedge:#6e5d2a;--nw-ink:#cfe6db;--nw-dim:#26332d;--nw-ring:#d9b54f}}
+:root[data-theme="dark"]{--nw-bg:#14241d;--nw-co:#3f9e7b;--nw-pe:#3b6b59;--nw-br:#3f9e7b;--nw-acc:#cfae4a;--nw-edge:#2c4c3f;--nw-gedge:#6e5d2a;--nw-ink:#cfe6db;--nw-dim:#26332d;--nw-ring:#d9b54f}
+.netzoom{position:absolute;right:8px;top:8px;display:flex;gap:4px}.netzoom button{min-height:34px;padding:2px 10px;background:var(--card)}
+.sn .sn-e{stroke:var(--nw-edge);stroke-width:1.1}.sn .sn-e.past{stroke-dasharray:4 3}.sn .sn-e.group{stroke:var(--nw-gedge);stroke-width:2}.sn .sn-e.hid{display:none}
+.sn .sn-n{cursor:pointer}.sn .sn-n:focus{outline:none;stroke:var(--nw-ring);stroke-width:3;vector-effect:non-scaling-stroke}
+.sn .sn-n.company{fill:var(--nw-co)}.sn .sn-n.person{fill:var(--nw-pe)}.sn .sn-n.bridge{fill:var(--nw-br);stroke:var(--nw-pe);stroke-width:2;vector-effect:non-scaling-stroke}.sn .sn-n.group{fill:var(--nw-acc)}
+.sn .sn-n.tagged{stroke:var(--nw-ring);stroke-width:3;vector-effect:non-scaling-stroke}.sn .sn-n.faded{opacity:.35}
+.sn .sn-n.dim{fill:var(--nw-dim);stroke:none;opacity:1}.sn .sn-n.sel{stroke:var(--card);stroke-width:2.5;vector-effect:non-scaling-stroke}
+.sn .sn-l{font-size:12px;fill:var(--nw-ink);dominant-baseline:middle;pointer-events:none;paint-order:stroke;stroke:var(--nw-bg);stroke-width:3px;stroke-linejoin:round;font-family:inherit}.sn .sn-l.company,.sn .sn-l.group{font-weight:600}
+.sn .sn-l.f{stroke:none;font-weight:400}.sn .sn-lbox{fill:var(--card);stroke:none;filter:drop-shadow(0 1px 4px rgba(0,0,0,.22))}
+.dg .dg-ndbox{fill:none;stroke:var(--line);stroke-dasharray:4 3}.dg .dg-d.nd .dgc{stroke:var(--sub);stroke-width:1.5;stroke-dasharray:3 2}.dgnd{margin:0 0 6px}
+.netinfo{margin-top:10px}.nihead{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:16px}
+.nilist{margin:6px 0;padding-left:0;list-style:none}.nilist li{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;padding:3px 0;border-top:1px solid var(--line)}
+.nnow,.npast{font-size:12px;padding:1px 8px;border-radius:10px}.nnow{background:var(--mm-ctr);color:var(--mm-ctr-ink)}.npast{background:var(--chip);color:var(--sub)}
+.nd{font-size:12px;color:var(--sub);margin-left:6px}
+.nins{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.nins h3{font-size:14px;margin:6px 0}.nlink{font-size:14px;min-height:0;padding:2px 0}
+.mmframe.dgf{overflow:visible;max-height:none}.dgwrap{display:flex;align-items:flex-start}.dgwrap .dg-side{flex:none;border-right:1px solid var(--mm-grid)}
+.dgscroll{overflow-x:auto;overflow-y:hidden;min-width:0;flex:1;-webkit-overflow-scrolling:touch}
+.dg .dg-under{fill:var(--mm-bg);stroke:none}
+.mm .mm-lines path{stroke:var(--mm-line);stroke-width:2;fill:none}
+.mm text{text-anchor:middle;dominant-baseline:middle;font-family:inherit}
+.mm .t1{font-size:14px;font-weight:600}.mm .t2{font-size:11px;fill:var(--mm-sub)}
+.mm .ctr rect{fill:var(--mm-ctr)}.mm .ctr .t1{fill:var(--mm-ctr-ink);font-size:16px}.mm .ctr .t2{fill:var(--mm-ctr-ink);opacity:.85}
+.mm .top rect{fill:var(--mm-top)}.mm .top .t1{fill:var(--mm-top-ink)}
+.mm .grp rect{fill:var(--mm-acc)}.mm .grp .t1{fill:var(--mm-acc-ink)}
+.mm .leaf rect{fill:var(--mm-leaf);stroke:var(--mm-leaf-bd);stroke-width:1.5}.mm .leaf .t1{fill:var(--mm-leaf-ink)}
+.mm .gleaf rect{fill:var(--mm-acc-soft);stroke:var(--mm-acc);stroke-width:1.5}.mm .gleaf .t1{fill:var(--mm-acc-ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mm .gleaf .t1{fill:#ffe7a0}}:root[data-theme="dark"] .mm .gleaf .t1{fill:#ffe7a0}
+.mm .former rect{stroke-dasharray:5 4;opacity:.8}.mm .former .t1{fill:var(--mm-sub)}
+.mm .go{cursor:pointer}.mm .go:hover rect,.mm .go:focus rect{stroke:var(--mm-ctr);stroke-width:2.5}.mm .go:focus{outline:none}
+.mm .mm-empty{fill:var(--mm-sub);font-size:13px}
+.dg text{font-family:inherit;dominant-baseline:middle;text-anchor:middle}
+.dg .dg-grid{stroke:var(--mm-grid);stroke-width:1}.dg .dg-year{fill:var(--mm-sub);font-size:12px}
+.dg .dg-now{stroke:var(--mm-acc);stroke-width:2;stroke-dasharray:4 4}.dg .dg-nowt{fill:var(--mm-acc-ink);font-size:12px;font-weight:600}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .dg .dg-nowt{fill:var(--mm-acc)}}:root[data-theme="dark"] .dg .dg-nowt{fill:var(--mm-acc)}
+.dg .dg-row rect{fill:var(--mm-top)}.dg .dg-rowt{fill:var(--mm-top-ink);font-size:13px;font-weight:600}
+.dg .dg-stick{stroke:#c9a27a;stroke-width:4;stroke-linecap:round}
+.dg .dg-d{cursor:pointer}.dg .dg-d circle{stroke:var(--mm-bg);stroke-width:2.5}.dg .dg-d:hover circle,.dg .dg-d:focus circle{stroke:var(--mm-ink, #0b5a3e);stroke-width:3}.dg .dg-d:focus{outline:none}
+.dg .dg-ini{fill:#fff;font-size:13px;font-weight:700;pointer-events:none}
+.dg .dg-d.former circle{opacity:.55}
+.dg .dg-name{fill:var(--mm-leaf-ink);font-size:12px}.dg .dg-name.former{fill:var(--mm-sub)}
+.cospan{padding:6px 0;border-top:1px solid var(--line)}.cospan:first-child{border-top:0}.cospan .csl{font-size:13px;color:var(--sub);margin-bottom:2px}
+.cospan .csv{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;font-size:14px;overflow-wrap:anywhere}.cospan .csd{font-variant-numeric:tabular-nums;color:var(--sub);min-width:9.5em;font-size:13px}
+.cospan .cnt{font-size:12px;color:var(--sub)}.cospan.chg .csv:last-child{font-weight:bold}
+.cperson{width:100%;text-align:left}
+.utag{background:#e9f0fb;color:#1f4f8f;border-color:#bcd0ee}.chip.utag[aria-pressed="true"]{background:#2b6cb0;color:#fff;border-color:#2b6cb0}
+.tag.utag{margin-left:6px;font-weight:normal}
+.tagtg{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px}.tagtg .chip.link{border-style:dashed}
+.tagadd{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.tagadd input{width:12em;max-width:100%}
+.fld .flbl{font-size:13px;color:var(--sub);margin-bottom:3px}
+.tag.grpco{background:#f3ecfb;color:#5b3a8c;border-color:#d7c6ef;margin-left:6px;font-weight:normal}
+.colink{background:none;border:0;padding:0;min-height:0;color:inherit;font:inherit;text-decoration:underline dotted;cursor:pointer;text-align:left}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .utag{background:#1d2c42;color:#b9d3f5;border-color:#33507a}:root:not([data-theme="light"]) .tag.grpco{background:#2c2240;color:#d9c8f5;border-color:#4b3a6c}}
+:root[data-theme="dark"] .utag{background:#1d2c42;color:#b9d3f5;border-color:#33507a}:root[data-theme="dark"] .tag.grpco{background:#2c2240;color:#d9c8f5;border-color:#4b3a6c}.xhist .xh{font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums}
 .qrow .acts{grid-column:1/-1}.qrow .acts button{min-height:36px;padding:5px 10px;font-size:14px}
 .laterstat{font-size:14px;margin:8px 0;padding:8px 10px;border-radius:8px;background:var(--card);border:1px solid var(--line)}
 .laterstat.busy{border-color:var(--warn);background:var(--warn-bg);color:var(--warn);font-weight:bold}
@@ -259,6 +327,7 @@ body.m #toast{bottom:calc(84px + env(safe-area-inset-bottom, 0px))}
     <button class="pri" id="btnAdd">＋ 登録</button>
     <button id="btnQueue" hidden></button>
     <button id="btnSelect" aria-pressed="false">選択</button>
+    <button id="btnNet">つながり図</button>
     <button id="btnIO">入出力</button>
     <button id="btnSet" hidden>設定</button>
     <button id="btnHelp" hidden>使い方</button>
@@ -273,6 +342,7 @@ body.m #toast{bottom:calc(84px + env(safe-area-inset-bottom, 0px))}
 <nav id="bnav" aria-label="メニュー" hidden>
   <button type="button" id="bnList"><span class="ic" aria-hidden="true">☰</span>一覧</button>
   <button type="button" id="bnSelect" aria-pressed="false"><span class="ic" aria-hidden="true">☑</span>選択</button>
+  <button type="button" id="bnNet"><span class="ic" aria-hidden="true">◎</span>つながり</button>
   <button type="button" id="bnAdd" class="pri"><span class="ic" aria-hidden="true">＋</span>登録</button>
   <button type="button" id="bnIO"><span class="ic" aria-hidden="true">⇅</span>入出力</button>
   <button type="button" id="bnHelp"><span class="ic" aria-hidden="true">？</span>使い方</button>
@@ -342,14 +412,14 @@ body.printing .help .pdfonly{display:block}
 .help .phone{max-width:260px}
 .help .figs2{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:8px 0 12px}
 .help .figs2 figure{margin:0}
-@media print{ body.printing #bnav{display:none!important} body.printing .help{font-size:8.8pt!important;line-height:1.31!important} body.printing .help table{font-size:8.4pt!important} body.printing .help h3{margin:2.5mm 0 1mm!important} body.printing .help .figs2 img{max-height:50mm;width:auto;max-width:100%} body.printing .help .figs2{grid-template-columns:repeat(3,auto);justify-content:start} }
+@media print{ body.printing #bnav{display:none!important} body.printing .help{font-size:8.8pt!important;line-height:1.29!important} body.printing .help table{font-size:8.4pt!important} body.printing .help h3{margin:2.5mm 0 1mm!important} body.printing .help .figs2 img{max-height:40mm;width:auto;max-width:100%} body.printing .help .figs2{grid-template-columns:repeat(3,auto);justify-content:start} }
 </style>
 
 <div class="hh">
   <h2>名刺帳（スマホ版）の使い方</h2>
   <div class="acts"><button type="button" class="pri" data-help="close">閉じる</button></div>
 </div>
-<p class="ver">共用PC用と同じしくみの、スマホで使う版の説明書です（2026年10月17日版）。画面写真の人名・会社名は架空の見本です。</p>
+<p class="ver">共用PC用と同じしくみの、スマホで使う版の説明書です（2026年10月25日版）。画面写真の人名・会社名は架空の見本です。</p>
 
 <ol class="toc">
   <li><button type="button" data-go="h-about">このアプリについて</button></li>
@@ -445,6 +515,9 @@ body.printing .help .pdfonly{display:block}
   <li><b>この人の名刺の履歴</b>：同じ人の前の名刺を開けます。前の名刺のメモも一緒に表示されます。</li>
   <li><span class="b">編集</span>：項目の修正や画像の差し替え・向きの修正。<span class="b">削除</span>：この1枚を消します（元に戻せません）。</li>
   <li><span class="b">同じ人の名刺とまとめる</span>・<span class="b">同じ会社とまとめる</span>：あとから手で重ねる・まとめるときに使います。まとめてある名刺は「まとめ：○○」を押すと、まとめの名前を変えたり外したりできます。</li>
+  <li><b>用件タグ</b>（資材取り寄せなど）：押すと付き、もう一度で外れます。一覧の「タグ：すべて」で選ぶと、その人だけの一覧に。<b>名刺の作成日</b>：<span class="b">編集</span> で直せます。未入力の名刺は「作成日が入っていない名刺」で絞り、<span class="b">選択</span> →「作成日を入れる」でまとめて。</li>
+  <li><b>会社名を押す</b>と、この会社の人（いつからいつまでか）・連絡先の移り変わり・<span class="b">グループ会社を記録する</span>。<span class="b">担当者マップ</span>（会社から部署、人へ枝分かれした図）・<span class="b">担当者の年表</span>（担当の移り変わり）にも切り替えられます（部署ごと／用件タグごと）。</li>
+  <li>下の <span class="b">つながり</span>：全社・全員を1枚の図に（拡大すると名前が増え、点を押すと相手以外は灰色）。</li>
 </ul>
 
 <h3 id="h-add">5. 手入力で登録する</h3>
@@ -529,11 +602,41 @@ body.printing .help .pdfonly{display:block}
 <ul>
   <li>このスマホを使える人は、ここに入れた名刺をすべて見て直せます。<b>お店・会社の名刺以外は入れないでください</b>。スマホには画面ロック（パスコード）をかけてください。</li>
   <li><b>合言葉</b>は口頭など、ファイルとは別の方法でやり取りします。ファイルと一緒に送らないでください。</li>
-  <li>引き渡しファイル・全件ファイルを、決められた場所以外（個人のアカウントなど）に保存しないでください。取り込んだあとのファイルは、LINE・メールのトークからも削除しておくと安心です。</li>
-  <li>機種変更のときは、全件ファイルを保存してから <span class="b">入出力</span> → <span class="b">すべての名刺を消去</span>、アプリを削除します。</li>
+  <li>引き渡しファイル・全件ファイルは決められた場所以外に保存せず、取り込んだらLINE・メールのトークからも削除を。機種変更のときは、全件ファイルを保存してから <span class="b">入出力</span> → <span class="b">すべての名刺を消去</span>、アプリを削除します。</li>
 </ul>
 </div>
 </template>
+<script>
+/* d3-dispatch 3.0.1, d3-timer 3.0.1, d3-quadtree 3.0.1, d3-force 3.0.0 — https://d3js.org
+   Copyright 2010-2021 Mike Bostock. ISC License:
+   Copyright 2010-2021 Mike Bostock
+   
+   Permission to use, copy, modify, and/or distribute this software for any purpose
+   with or without fee is hereby granted, provided that the above copyright notice
+   and this permission notice appear in all copies.
+   
+   THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+   REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+   FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+   INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+   OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+   TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+   THIS SOFTWARE.
+*/
+// https://d3js.org/d3-dispatch/ v3.0.1 Copyright 2010-2021 Mike Bostock
+!function(n,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"function"==typeof define&&define.amd?define(["exports"],e):e((n="undefined"!=typeof globalThis?globalThis:n||self).d3=n.d3||{})}(this,(function(n){"use strict";var e={value:()=>{}};function t(){for(var n,e=0,t=arguments.length,o={};e<t;++e){if(!(n=arguments[e]+"")||n in o||/[\s.]/.test(n))throw new Error("illegal type: "+n);o[n]=[]}return new r(o)}function r(n){this._=n}function o(n,e){return n.trim().split(/^|\s+/).map((function(n){var t="",r=n.indexOf(".");if(r>=0&&(t=n.slice(r+1),n=n.slice(0,r)),n&&!e.hasOwnProperty(n))throw new Error("unknown type: "+n);return{type:n,name:t}}))}function i(n,e){for(var t,r=0,o=n.length;r<o;++r)if((t=n[r]).name===e)return t.value}function f(n,t,r){for(var o=0,i=n.length;o<i;++o)if(n[o].name===t){n[o]=e,n=n.slice(0,o).concat(n.slice(o+1));break}return null!=r&&n.push({name:t,value:r}),n}r.prototype=t.prototype={constructor:r,on:function(n,e){var t,r=this._,l=o(n+"",r),a=-1,u=l.length;if(!(arguments.length<2)){if(null!=e&&"function"!=typeof e)throw new Error("invalid callback: "+e);for(;++a<u;)if(t=(n=l[a]).type)r[t]=f(r[t],n.name,e);else if(null==e)for(t in r)r[t]=f(r[t],n.name,null);return this}for(;++a<u;)if((t=(n=l[a]).type)&&(t=i(r[t],n.name)))return t},copy:function(){var n={},e=this._;for(var t in e)n[t]=e[t].slice();return new r(n)},call:function(n,e){if((t=arguments.length-2)>0)for(var t,r,o=new Array(t),i=0;i<t;++i)o[i]=arguments[i+2];if(!this._.hasOwnProperty(n))throw new Error("unknown type: "+n);for(i=0,t=(r=this._[n]).length;i<t;++i)r[i].value.apply(e,o)},apply:function(n,e,t){if(!this._.hasOwnProperty(n))throw new Error("unknown type: "+n);for(var r=this._[n],o=0,i=r.length;o<i;++o)r[o].value.apply(e,t)}},n.dispatch=t,Object.defineProperty(n,"__esModule",{value:!0})}));
+
+// https://d3js.org/d3-timer/ v3.0.1 Copyright 2010-2021 Mike Bostock
+!function(t,n){"object"==typeof exports&&"undefined"!=typeof module?n(exports):"function"==typeof define&&define.amd?define(["exports"],n):n((t="undefined"!=typeof globalThis?globalThis:t||self).d3=t.d3||{})}(this,(function(t){"use strict";var n,e,o=0,i=0,r=0,l=0,u=0,a=0,s="object"==typeof performance&&performance.now?performance:Date,c="object"==typeof window&&window.requestAnimationFrame?window.requestAnimationFrame.bind(window):function(t){setTimeout(t,17)};function f(){return u||(c(_),u=s.now()+a)}function _(){u=0}function m(){this._call=this._time=this._next=null}function p(t,n,e){var o=new m;return o.restart(t,n,e),o}function w(){f(),++o;for(var t,e=n;e;)(t=u-e._time)>=0&&e._call.call(void 0,t),e=e._next;--o}function d(){u=(l=s.now())+a,o=i=0;try{w()}finally{o=0,function(){var t,o,i=n,r=1/0;for(;i;)i._call?(r>i._time&&(r=i._time),t=i,i=i._next):(o=i._next,i._next=null,i=t?t._next=o:n=o);e=t,y(r)}(),u=0}}function h(){var t=s.now(),n=t-l;n>1e3&&(a-=n,l=t)}function y(t){o||(i&&(i=clearTimeout(i)),t-u>24?(t<1/0&&(i=setTimeout(d,t-s.now()-a)),r&&(r=clearInterval(r))):(r||(l=s.now(),r=setInterval(h,1e3)),o=1,c(d)))}m.prototype=p.prototype={constructor:m,restart:function(t,o,i){if("function"!=typeof t)throw new TypeError("callback is not a function");i=(null==i?f():+i)+(null==o?0:+o),this._next||e===this||(e?e._next=this:n=this,e=this),this._call=t,this._time=i,y()},stop:function(){this._call&&(this._call=null,this._time=1/0,y())}},t.interval=function(t,n,e){var o=new m,i=n;return null==n?(o.restart(t,n,e),o):(o._restart=o.restart,o.restart=function(t,n,e){n=+n,e=null==e?f():+e,o._restart((function r(l){l+=i,o._restart(r,i+=n,e),t(l)}),n,e)},o.restart(t,n,e),o)},t.now=f,t.timeout=function(t,n,e){var o=new m;return n=null==n?0:+n,o.restart((e=>{o.stop(),t(e+n)}),n,e),o},t.timer=p,t.timerFlush=w,Object.defineProperty(t,"__esModule",{value:!0})}));
+
+// https://d3js.org/d3-quadtree/ v3.0.1 Copyright 2010-2021 Mike Bostock
+!function(t,i){"object"==typeof exports&&"undefined"!=typeof module?i(exports):"function"==typeof define&&define.amd?define(["exports"],i):i((t="undefined"!=typeof globalThis?globalThis:t||self).d3=t.d3||{})}(this,(function(t){"use strict";function i(t,i,e,n){if(isNaN(i)||isNaN(e))return t;var r,s,h,o,a,u,l,_,f,c=t._root,x={data:n},y=t._x0,d=t._y0,p=t._x1,v=t._y1;if(!c)return t._root=x,t;for(;c.length;)if((u=i>=(s=(y+p)/2))?y=s:p=s,(l=e>=(h=(d+v)/2))?d=h:v=h,r=c,!(c=c[_=l<<1|u]))return r[_]=x,t;if(o=+t._x.call(null,c.data),a=+t._y.call(null,c.data),i===o&&e===a)return x.next=c,r?r[_]=x:t._root=x,t;do{r=r?r[_]=new Array(4):t._root=new Array(4),(u=i>=(s=(y+p)/2))?y=s:p=s,(l=e>=(h=(d+v)/2))?d=h:v=h}while((_=l<<1|u)==(f=(a>=h)<<1|o>=s));return r[f]=c,r[_]=x,t}function e(t,i,e,n,r){this.node=t,this.x0=i,this.y0=e,this.x1=n,this.y1=r}function n(t){return t[0]}function r(t){return t[1]}function s(t,i,e){var s=new h(null==i?n:i,null==e?r:e,NaN,NaN,NaN,NaN);return null==t?s:s.addAll(t)}function h(t,i,e,n,r,s){this._x=t,this._y=i,this._x0=e,this._y0=n,this._x1=r,this._y1=s,this._root=void 0}function o(t){for(var i={data:t.data},e=i;t=t.next;)e=e.next={data:t.data};return i}var a=s.prototype=h.prototype;a.copy=function(){var t,i,e=new h(this._x,this._y,this._x0,this._y0,this._x1,this._y1),n=this._root;if(!n)return e;if(!n.length)return e._root=o(n),e;for(t=[{source:n,target:e._root=new Array(4)}];n=t.pop();)for(var r=0;r<4;++r)(i=n.source[r])&&(i.length?t.push({source:i,target:n.target[r]=new Array(4)}):n.target[r]=o(i));return e},a.add=function(t){const e=+this._x.call(null,t),n=+this._y.call(null,t);return i(this.cover(e,n),e,n,t)},a.addAll=function(t){var e,n,r,s,h=t.length,o=new Array(h),a=new Array(h),u=1/0,l=1/0,_=-1/0,f=-1/0;for(n=0;n<h;++n)isNaN(r=+this._x.call(null,e=t[n]))||isNaN(s=+this._y.call(null,e))||(o[n]=r,a[n]=s,r<u&&(u=r),r>_&&(_=r),s<l&&(l=s),s>f&&(f=s));if(u>_||l>f)return this;for(this.cover(u,l).cover(_,f),n=0;n<h;++n)i(this,o[n],a[n],t[n]);return this},a.cover=function(t,i){if(isNaN(t=+t)||isNaN(i=+i))return this;var e=this._x0,n=this._y0,r=this._x1,s=this._y1;if(isNaN(e))r=(e=Math.floor(t))+1,s=(n=Math.floor(i))+1;else{for(var h,o,a=r-e||1,u=this._root;e>t||t>=r||n>i||i>=s;)switch(o=(i<n)<<1|t<e,(h=new Array(4))[o]=u,u=h,a*=2,o){case 0:r=e+a,s=n+a;break;case 1:e=r-a,s=n+a;break;case 2:r=e+a,n=s-a;break;case 3:e=r-a,n=s-a}this._root&&this._root.length&&(this._root=u)}return this._x0=e,this._y0=n,this._x1=r,this._y1=s,this},a.data=function(){var t=[];return this.visit((function(i){if(!i.length)do{t.push(i.data)}while(i=i.next)})),t},a.extent=function(t){return arguments.length?this.cover(+t[0][0],+t[0][1]).cover(+t[1][0],+t[1][1]):isNaN(this._x0)?void 0:[[this._x0,this._y0],[this._x1,this._y1]]},a.find=function(t,i,n){var r,s,h,o,a,u,l,_=this._x0,f=this._y0,c=this._x1,x=this._y1,y=[],d=this._root;for(d&&y.push(new e(d,_,f,c,x)),null==n?n=1/0:(_=t-n,f=i-n,c=t+n,x=i+n,n*=n);u=y.pop();)if(!(!(d=u.node)||(s=u.x0)>c||(h=u.y0)>x||(o=u.x1)<_||(a=u.y1)<f))if(d.length){var p=(s+o)/2,v=(h+a)/2;y.push(new e(d[3],p,v,o,a),new e(d[2],s,v,p,a),new e(d[1],p,h,o,v),new e(d[0],s,h,p,v)),(l=(i>=v)<<1|t>=p)&&(u=y[y.length-1],y[y.length-1]=y[y.length-1-l],y[y.length-1-l]=u)}else{var w=t-+this._x.call(null,d.data),N=i-+this._y.call(null,d.data),g=w*w+N*N;if(g<n){var A=Math.sqrt(n=g);_=t-A,f=i-A,c=t+A,x=i+A,r=d.data}}return r},a.remove=function(t){if(isNaN(s=+this._x.call(null,t))||isNaN(h=+this._y.call(null,t)))return this;var i,e,n,r,s,h,o,a,u,l,_,f,c=this._root,x=this._x0,y=this._y0,d=this._x1,p=this._y1;if(!c)return this;if(c.length)for(;;){if((u=s>=(o=(x+d)/2))?x=o:d=o,(l=h>=(a=(y+p)/2))?y=a:p=a,i=c,!(c=c[_=l<<1|u]))return this;if(!c.length)break;(i[_+1&3]||i[_+2&3]||i[_+3&3])&&(e=i,f=_)}for(;c.data!==t;)if(n=c,!(c=c.next))return this;return(r=c.next)&&delete c.next,n?(r?n.next=r:delete n.next,this):i?(r?i[_]=r:delete i[_],(c=i[0]||i[1]||i[2]||i[3])&&c===(i[3]||i[2]||i[1]||i[0])&&!c.length&&(e?e[f]=c:this._root=c),this):(this._root=r,this)},a.removeAll=function(t){for(var i=0,e=t.length;i<e;++i)this.remove(t[i]);return this},a.root=function(){return this._root},a.size=function(){var t=0;return this.visit((function(i){if(!i.length)do{++t}while(i=i.next)})),t},a.visit=function(t){var i,n,r,s,h,o,a=[],u=this._root;for(u&&a.push(new e(u,this._x0,this._y0,this._x1,this._y1));i=a.pop();)if(!t(u=i.node,r=i.x0,s=i.y0,h=i.x1,o=i.y1)&&u.length){var l=(r+h)/2,_=(s+o)/2;(n=u[3])&&a.push(new e(n,l,_,h,o)),(n=u[2])&&a.push(new e(n,r,_,l,o)),(n=u[1])&&a.push(new e(n,l,s,h,_)),(n=u[0])&&a.push(new e(n,r,s,l,_))}return this},a.visitAfter=function(t){var i,n=[],r=[];for(this._root&&n.push(new e(this._root,this._x0,this._y0,this._x1,this._y1));i=n.pop();){var s=i.node;if(s.length){var h,o=i.x0,a=i.y0,u=i.x1,l=i.y1,_=(o+u)/2,f=(a+l)/2;(h=s[0])&&n.push(new e(h,o,a,_,f)),(h=s[1])&&n.push(new e(h,_,a,u,f)),(h=s[2])&&n.push(new e(h,o,f,_,l)),(h=s[3])&&n.push(new e(h,_,f,u,l))}r.push(i)}for(;i=r.pop();)t(i.node,i.x0,i.y0,i.x1,i.y1);return this},a.x=function(t){return arguments.length?(this._x=t,this):this._x},a.y=function(t){return arguments.length?(this._y=t,this):this._y},t.quadtree=s,Object.defineProperty(t,"__esModule",{value:!0})}));
+
+// https://d3js.org/d3-force/ v3.0.0 Copyright 2010-2021 Mike Bostock
+!function(n,t){"object"==typeof exports&&"undefined"!=typeof module?t(exports,require("d3-quadtree"),require("d3-dispatch"),require("d3-timer")):"function"==typeof define&&define.amd?define(["exports","d3-quadtree","d3-dispatch","d3-timer"],t):t((n="undefined"!=typeof globalThis?globalThis:n||self).d3=n.d3||{},n.d3,n.d3,n.d3)}(this,(function(n,t,e,r){"use strict";function i(n){return function(){return n}}function u(n){return 1e-6*(n()-.5)}function o(n){return n.x+n.vx}function f(n){return n.y+n.vy}function a(n){return n.index}function c(n,t){var e=n.get(t);if(!e)throw new Error("node not found: "+t);return e}const l=4294967296;function h(n){return n.x}function v(n){return n.y}var y=Math.PI*(3-Math.sqrt(5));n.forceCenter=function(n,t){var e,r=1;function i(){var i,u,o=e.length,f=0,a=0;for(i=0;i<o;++i)f+=(u=e[i]).x,a+=u.y;for(f=(f/o-n)*r,a=(a/o-t)*r,i=0;i<o;++i)(u=e[i]).x-=f,u.y-=a}return null==n&&(n=0),null==t&&(t=0),i.initialize=function(n){e=n},i.x=function(t){return arguments.length?(n=+t,i):n},i.y=function(n){return arguments.length?(t=+n,i):t},i.strength=function(n){return arguments.length?(r=+n,i):r},i},n.forceCollide=function(n){var e,r,a,c=1,l=1;function h(){for(var n,i,h,y,d,g,x,s=e.length,p=0;p<l;++p)for(i=t.quadtree(e,o,f).visitAfter(v),n=0;n<s;++n)h=e[n],g=r[h.index],x=g*g,y=h.x+h.vx,d=h.y+h.vy,i.visit(M);function M(n,t,e,r,i){var o=n.data,f=n.r,l=g+f;if(!o)return t>y+l||r<y-l||e>d+l||i<d-l;if(o.index>h.index){var v=y-o.x-o.vx,s=d-o.y-o.vy,p=v*v+s*s;p<l*l&&(0===v&&(p+=(v=u(a))*v),0===s&&(p+=(s=u(a))*s),p=(l-(p=Math.sqrt(p)))/p*c,h.vx+=(v*=p)*(l=(f*=f)/(x+f)),h.vy+=(s*=p)*l,o.vx-=v*(l=1-l),o.vy-=s*l)}}}function v(n){if(n.data)return n.r=r[n.data.index];for(var t=n.r=0;t<4;++t)n[t]&&n[t].r>n.r&&(n.r=n[t].r)}function y(){if(e){var t,i,u=e.length;for(r=new Array(u),t=0;t<u;++t)i=e[t],r[i.index]=+n(i,t,e)}}return"function"!=typeof n&&(n=i(null==n?1:+n)),h.initialize=function(n,t){e=n,a=t,y()},h.iterations=function(n){return arguments.length?(l=+n,h):l},h.strength=function(n){return arguments.length?(c=+n,h):c},h.radius=function(t){return arguments.length?(n="function"==typeof t?t:i(+t),y(),h):n},h},n.forceLink=function(n){var t,e,r,o,f,l,h=a,v=function(n){return 1/Math.min(o[n.source.index],o[n.target.index])},y=i(30),d=1;function g(r){for(var i=0,o=n.length;i<d;++i)for(var a,c,h,v,y,g,x,s=0;s<o;++s)c=(a=n[s]).source,v=(h=a.target).x+h.vx-c.x-c.vx||u(l),y=h.y+h.vy-c.y-c.vy||u(l),v*=g=((g=Math.sqrt(v*v+y*y))-e[s])/g*r*t[s],y*=g,h.vx-=v*(x=f[s]),h.vy-=y*x,c.vx+=v*(x=1-x),c.vy+=y*x}function x(){if(r){var i,u,a=r.length,l=n.length,v=new Map(r.map(((n,t)=>[h(n,t,r),n])));for(i=0,o=new Array(a);i<l;++i)(u=n[i]).index=i,"object"!=typeof u.source&&(u.source=c(v,u.source)),"object"!=typeof u.target&&(u.target=c(v,u.target)),o[u.source.index]=(o[u.source.index]||0)+1,o[u.target.index]=(o[u.target.index]||0)+1;for(i=0,f=new Array(l);i<l;++i)u=n[i],f[i]=o[u.source.index]/(o[u.source.index]+o[u.target.index]);t=new Array(l),s(),e=new Array(l),p()}}function s(){if(r)for(var e=0,i=n.length;e<i;++e)t[e]=+v(n[e],e,n)}function p(){if(r)for(var t=0,i=n.length;t<i;++t)e[t]=+y(n[t],t,n)}return null==n&&(n=[]),g.initialize=function(n,t){r=n,l=t,x()},g.links=function(t){return arguments.length?(n=t,x(),g):n},g.id=function(n){return arguments.length?(h=n,g):h},g.iterations=function(n){return arguments.length?(d=+n,g):d},g.strength=function(n){return arguments.length?(v="function"==typeof n?n:i(+n),s(),g):v},g.distance=function(n){return arguments.length?(y="function"==typeof n?n:i(+n),p(),g):y},g},n.forceManyBody=function(){var n,e,r,o,f,a=i(-30),c=1,l=1/0,y=.81;function d(r){var i,u=n.length,f=t.quadtree(n,h,v).visitAfter(x);for(o=r,i=0;i<u;++i)e=n[i],f.visit(s)}function g(){if(n){var t,e,r=n.length;for(f=new Array(r),t=0;t<r;++t)e=n[t],f[e.index]=+a(e,t,n)}}function x(n){var t,e,r,i,u,o=0,a=0;if(n.length){for(r=i=u=0;u<4;++u)(t=n[u])&&(e=Math.abs(t.value))&&(o+=t.value,a+=e,r+=e*t.x,i+=e*t.y);n.x=r/a,n.y=i/a}else{(t=n).x=t.data.x,t.y=t.data.y;do{o+=f[t.data.index]}while(t=t.next)}n.value=o}function s(n,t,i,a){if(!n.value)return!0;var h=n.x-e.x,v=n.y-e.y,d=a-t,g=h*h+v*v;if(d*d/y<g)return g<l&&(0===h&&(g+=(h=u(r))*h),0===v&&(g+=(v=u(r))*v),g<c&&(g=Math.sqrt(c*g)),e.vx+=h*n.value*o/g,e.vy+=v*n.value*o/g),!0;if(!(n.length||g>=l)){(n.data!==e||n.next)&&(0===h&&(g+=(h=u(r))*h),0===v&&(g+=(v=u(r))*v),g<c&&(g=Math.sqrt(c*g)));do{n.data!==e&&(d=f[n.data.index]*o/g,e.vx+=h*d,e.vy+=v*d)}while(n=n.next)}}return d.initialize=function(t,e){n=t,r=e,g()},d.strength=function(n){return arguments.length?(a="function"==typeof n?n:i(+n),g(),d):a},d.distanceMin=function(n){return arguments.length?(c=n*n,d):Math.sqrt(c)},d.distanceMax=function(n){return arguments.length?(l=n*n,d):Math.sqrt(l)},d.theta=function(n){return arguments.length?(y=n*n,d):Math.sqrt(y)},d},n.forceRadial=function(n,t,e){var r,u,o,f=i(.1);function a(n){for(var i=0,f=r.length;i<f;++i){var a=r[i],c=a.x-t||1e-6,l=a.y-e||1e-6,h=Math.sqrt(c*c+l*l),v=(o[i]-h)*u[i]*n/h;a.vx+=c*v,a.vy+=l*v}}function c(){if(r){var t,e=r.length;for(u=new Array(e),o=new Array(e),t=0;t<e;++t)o[t]=+n(r[t],t,r),u[t]=isNaN(o[t])?0:+f(r[t],t,r)}}return"function"!=typeof n&&(n=i(+n)),null==t&&(t=0),null==e&&(e=0),a.initialize=function(n){r=n,c()},a.strength=function(n){return arguments.length?(f="function"==typeof n?n:i(+n),c(),a):f},a.radius=function(t){return arguments.length?(n="function"==typeof t?t:i(+t),c(),a):n},a.x=function(n){return arguments.length?(t=+n,a):t},a.y=function(n){return arguments.length?(e=+n,a):e},a},n.forceSimulation=function(n){var t,i=1,u=.001,o=1-Math.pow(u,1/300),f=0,a=.6,c=new Map,h=r.timer(g),v=e.dispatch("tick","end"),d=function(){let n=1;return()=>(n=(1664525*n+1013904223)%l)/l}();function g(){x(),v.call("tick",t),i<u&&(h.stop(),v.call("end",t))}function x(e){var r,u,l=n.length;void 0===e&&(e=1);for(var h=0;h<e;++h)for(i+=(f-i)*o,c.forEach((function(n){n(i)})),r=0;r<l;++r)null==(u=n[r]).fx?u.x+=u.vx*=a:(u.x=u.fx,u.vx=0),null==u.fy?u.y+=u.vy*=a:(u.y=u.fy,u.vy=0);return t}function s(){for(var t,e=0,r=n.length;e<r;++e){if((t=n[e]).index=e,null!=t.fx&&(t.x=t.fx),null!=t.fy&&(t.y=t.fy),isNaN(t.x)||isNaN(t.y)){var i=10*Math.sqrt(.5+e),u=e*y;t.x=i*Math.cos(u),t.y=i*Math.sin(u)}(isNaN(t.vx)||isNaN(t.vy))&&(t.vx=t.vy=0)}}function p(t){return t.initialize&&t.initialize(n,d),t}return null==n&&(n=[]),s(),t={tick:x,restart:function(){return h.restart(g),t},stop:function(){return h.stop(),t},nodes:function(e){return arguments.length?(n=e,s(),c.forEach(p),t):n},alpha:function(n){return arguments.length?(i=+n,t):i},alphaMin:function(n){return arguments.length?(u=+n,t):u},alphaDecay:function(n){return arguments.length?(o=+n,t):+o},alphaTarget:function(n){return arguments.length?(f=+n,t):f},velocityDecay:function(n){return arguments.length?(a=1-n,t):1-a},randomSource:function(n){return arguments.length?(d=n,c.forEach(p),t):d},force:function(n,e){return arguments.length>1?(null==e?c.delete(n):c.set(n,p(e)),t):c.get(n)},find:function(t,e,r){var i,u,o,f,a,c=0,l=n.length;for(null==r?r=1/0:r*=r,c=0;c<l;++c)(o=(i=t-(f=n[c]).x)*i+(u=e-f.y)*u)<r&&(a=f,r=o);return a},on:function(n,e){return arguments.length>1?(v.on(n,e),t):v.on(n)}}},n.forceX=function(n){var t,e,r,u=i(.1);function o(n){for(var i,u=0,o=t.length;u<o;++u)(i=t[u]).vx+=(r[u]-i.x)*e[u]*n}function f(){if(t){var i,o=t.length;for(e=new Array(o),r=new Array(o),i=0;i<o;++i)e[i]=isNaN(r[i]=+n(t[i],i,t))?0:+u(t[i],i,t)}}return"function"!=typeof n&&(n=i(null==n?0:+n)),o.initialize=function(n){t=n,f()},o.strength=function(n){return arguments.length?(u="function"==typeof n?n:i(+n),f(),o):u},o.x=function(t){return arguments.length?(n="function"==typeof t?t:i(+t),f(),o):n},o},n.forceY=function(n){var t,e,r,u=i(.1);function o(n){for(var i,u=0,o=t.length;u<o;++u)(i=t[u]).vy+=(r[u]-i.y)*e[u]*n}function f(){if(t){var i,o=t.length;for(e=new Array(o),r=new Array(o),i=0;i<o;++i)e[i]=isNaN(r[i]=+n(t[i],i,t))?0:+u(t[i],i,t)}}return"function"!=typeof n&&(n=i(null==n?0:+n)),o.initialize=function(n){t=n,f()},o.strength=function(n){return arguments.length?(u="function"==typeof n?n:i(+n),f(),o):u},o.y=function(t){return arguments.length?(n="function"==typeof t?t:i(+t),f(),o):n},o},Object.defineProperty(n,"__esModule",{value:!0})}));
+
+
+</script>
 <script>
 'use strict';
 // ===== 共通ロジック（スマホ用サーバーと共用PC用の両方に同じものが入る） =====
@@ -552,6 +655,18 @@ function str_(v, max) {
 }
 function bool_(v) { return v === true || String(v).toUpperCase() === 'TRUE'; }
 function iso_(v, fallback) { return (typeof v === 'string' && ISO_RE.test(v)) ? v : fallback; }
+// 名刺の作成日（YYYY-MM-DD）。正しい日付だけ受け取る
+function day_(v) {
+  if (typeof v !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(v)) return '';
+  var d = new Date(v + 'T00:00:00Z'); return (!isNaN(d) && d.toISOString().slice(0, 10) === v && v >= '1950-01-01' && v <= '2100-12-31') ? v : '';
+}
+// 用件タグ（「資材取り寄せ」など）：20文字まで・20個まで・重ならない
+var TAG_MAX = 20;
+function tagName_(v) { return str_(v, 20).replace(/[\s　]+/g, ' ').replace(/[,、]/g, ''); }
+function tags_(a) {
+  var out = []; (Array.isArray(a) ? a : []).forEach(function (t) { t = tagName_(t); if (t && out.indexOf(t) === -1 && out.length < TAG_MAX) out.push(t); });
+  return out;
+}
 
 // 外から来たデータ（画面入力・取り込みファイル・AIの出力）を決まった形に整える
 function sanitizeCard(o, nowIso, newId) {
@@ -578,11 +693,14 @@ function sanitizeCard(o, nowIso, newId) {
   c.updated_at = iso_(o.updated_at, nowIso);
   c.person_id = (typeof o.person_id === 'string' && ID_RE.test(o.person_id)) ? o.person_id : c.id;   // 同じ人の名刺は同じ person_id を持つ
   c.company_group = str_(o.company_group, 100);      // 別名の会社を「同じ会社」としてまとめるときの、まとめ先の名前
+  c.corp_group = str_(o.corp_group, 100);            // グループ会社（別の会社だが同じグループ）のグループ名
+  c.tags = tags_(o.tags);                            // 用件タグ（資材取り寄せの連絡先 など）
+  c.card_date = day_(o.card_date);                   // 名刺の作成日（もらった日など、いつ時点の名刺か）
   c.has_front = bool_(o.has_front);
   c.has_back = bool_(o.has_back);
   if (c.deleted) {            // 削除済みは中身を持たない
     FIELDS.forEach(function (f) { c[f] = ''; });
-    c.inferred = []; c.memos = []; c.has_front = false; c.has_back = false; c.active = false; c.person_id = c.id; c.company_group = '';
+    c.inferred = []; c.memos = []; c.has_front = false; c.has_back = false; c.active = false; c.person_id = c.id; c.company_group = ''; c.corp_group = ''; c.tags = []; c.card_date = '';
   }
   return c;
 }
@@ -639,7 +757,7 @@ const api = (() => {
   let dbp = null, volatile = false;
   // IndexedDB が使えないブラウザ（保存が禁止されている等）では、画面を閉じるまでのメモリ上で動かす
   function memDb() {
-    const data = { cards: new Map(), images: new Map() };
+    const data = { cards: new Map(), images: new Map(), meta: new Map() };
     const cl = v => (v === undefined ? v : JSON.parse(JSON.stringify(v)));
     return { transaction() {
       const t = {}, pending = [];
@@ -654,10 +772,10 @@ const api = (() => {
     if (!dbp) dbp = new Promise(res => {
       const fallback = () => { volatile = true; res(memDb()); };
       let r;
-      try { r = indexedDB.open('meishi-cho', 1); } catch (e) { fallback(); return; }
-      r.onupgradeneeded = () => {
-        r.result.createObjectStore('cards', { keyPath: 'id' });
-        r.result.createObjectStore('images', { keyPath: 'id' });
+      try { r = indexedDB.open('meishi-cho', 2); } catch (e) { fallback(); return; }
+      r.onupgradeneeded = () => {       // 版1→2：タグの一覧などを置く「meta」を足す（名刺と画像はそのまま）
+        const names = r.result.objectStoreNames;
+        ['cards', 'images', 'meta'].forEach(n => { if (!names.contains(n)) r.result.createObjectStore(n, { keyPath: 'id' }); });
       };
       r.onsuccess = () => res(r.result);
       r.onerror = e => { if (e && e.preventDefault) e.preventDefault(); fallback(); };
@@ -685,6 +803,10 @@ const api = (() => {
     });
     return card;
   }
+  async function getMeta(id) { let v; await tx(['meta'], 'readonly', t => { t.objectStore('meta').get(id).onsuccess = e => { v = e.target.result; }; }); return v ? v.value : undefined; }
+  async function setMeta(id, value) { await tx(['meta'], 'readwrite', t => { t.objectStore('meta').put({ id, value }); }); return value; }
+  const tagMaster = async () => tags_((await getMeta('tags')) || []).concat([]);
+  const setMaster = list => { const out = []; (list || []).forEach(t => { t = tagName_(t); if (t && !out.includes(t) && out.length < 100) out.push(t); }); return setMeta('tags', out); };
   async function applyImages(card, images) {
     if (!images) return undefined;
     const cur = await getImgs(card.id);
@@ -702,10 +824,11 @@ const api = (() => {
       await db();
       // 以前の版で取り込んだ名刺に、ほかの区分（「店舗用」など）が残っていれば、先頭の区分に寄せる（更新日時は変えない）
       let all = []; await tx(['cards'], 'readonly', t => { t.objectStore('cards').getAll().onsuccess = e => { all = e.target.result; }; });
-      if (DYN_CATS) return { mode: 'local', canScan: false, categories: [], fixedCategories: false, dynamicCategories: true, volatile };
+      const tags = await tagMaster();
+      if (DYN_CATS) return { mode: 'local', canScan: false, categories: [], fixedCategories: false, dynamicCategories: true, volatile, tags };
       const stray = all.filter(c => !c.deleted && LOCAL_CATEGORIES.indexOf(c.category) === -1);
       if (stray.length) await tx(['cards'], 'readwrite', t => { stray.forEach(c => { c.category = LOCAL_CATEGORIES[0]; t.objectStore('cards').put(c); }); });
-      return { mode: 'local', canScan: false, categories: LOCAL_CATEGORIES.slice(), fixedCategories: true, volatile };
+      return { mode: 'local', canScan: false, categories: LOCAL_CATEGORIES.slice(), fixedCategories: true, volatile, tags };
     },
     async list() {
       let all = [];
@@ -727,6 +850,8 @@ const api = (() => {
       if ('active' in changes) c.active = !!changes.active;
       if ('category' in changes && (DYN_CATS ? !!catOf(changes.category) : LOCAL_CATEGORIES.indexOf(changes.category) !== -1)) c.category = DYN_CATS ? catOf(changes.category) : changes.category;
       if ('company_group' in changes) c.company_group = str_(changes.company_group, 100);
+      if ('corp_group' in changes) c.corp_group = str_(changes.corp_group, 100);
+      if ('tags' in changes) c.tags = tags_(changes.tags);
       if ('person_id' in changes && typeof changes.person_id === 'string' && ID_RE.test(changes.person_id)) c.person_id = changes.person_id;
       c.updated_at = nowIso();
       return put(c);
@@ -749,6 +874,36 @@ const api = (() => {
       const t = sanitizeCard({ id: c.id, category: c.category, deleted: true, created_at: c.created_at }, nowIso(), c.id);
       t.updated_at = nowIso();
       return put(t, null);
+    },
+    // 用件タグ：一覧の保存・名前の変更・削除（名刺からも）・名刺に付ける／外す（スマホ用のサーバーと同じ動き）
+    async tagOp(op, name, to, ids) {
+      if (op === 'set') return { tags: await setMaster(name), cards: [] };
+      name = tagName_(name); if (!name) throw new Error('タグの名前がありません');
+      if (op === 'rename') { to = tagName_(to); if (!to) throw new Error('新しい名前を入れてください'); }
+      const idSet = new Set(ids || []), now = nowIso(), changed = [];
+      let all = []; await tx(['cards'], 'readonly', t => { t.objectStore('cards').getAll().onsuccess = e => { all = e.target.result; }; });
+      for (const c of all) {
+        if (c.deleted) continue;
+        let t = (c.tags || []).slice(); const had = t.includes(name);
+        if (op === 'rename' && had) t = tags_(t.map(x => x === name ? to : x));
+        else if (op === 'delete' && had) t = t.filter(x => x !== name);
+        else if (op === 'add' && idSet.has(c.id) && !had) t = tags_(t.concat([name]));
+        else if (op === 'remove' && idSet.has(c.id) && had) t = t.filter(x => x !== name);
+        else continue;
+        c.tags = t; c.updated_at = now; changed.push(c);
+      }
+      if (changed.length) await tx(['cards'], 'readwrite', t => { changed.forEach(c => t.objectStore('cards').put(c)); });
+      let m = await tagMaster();
+      if (op === 'rename') m = m.map(x => x === name ? to : x); else if (op === 'delete') m = m.filter(x => x !== name); else if (op === 'add' && !m.includes(name)) m.push(name);
+      return { tags: await setMaster(m), cards: changed };
+    },
+    async setCardDate(ids, day, onlyEmpty) {
+      day = day_(day); if (!day) throw new Error('日付を入れてください');
+      const idSet = new Set(ids || []), now = nowIso(), changed = [];
+      let all = []; await tx(['cards'], 'readonly', t => { t.objectStore('cards').getAll().onsuccess = e => { all = e.target.result; }; });
+      for (const c of all) { if (c.deleted || !idSet.has(c.id) || (onlyEmpty && c.card_date) || c.card_date === day) continue; c.card_date = day; c.updated_at = now; changed.push(c); }
+      if (changed.length) await tx(['cards'], 'readwrite', t => { changed.forEach(c => t.objectStore('cards').put(c)); });
+      return changed;
     },
     async removeMany(ids) { const out = []; for (const id of ids) { const t = await this.remove(id); if (t) out.push(t); } return out; },
     async images(id) { const i = await getImgs(id); return { front: i.front || null, back: i.back || null }; },
@@ -789,18 +944,19 @@ const api = (() => {
       return r;
     },
     async wipe() {
-      await tx(['cards', 'images'], 'readwrite', t => { t.objectStore('cards').clear(); t.objectStore('images').clear(); });
+      await tx(['cards', 'images', 'meta'], 'readwrite', t => { t.objectStore('cards').clear(); t.objectStore('images').clear(); t.objectStore('meta').clear(); });
     }
   };
 })();
 
 
-const S = { cards: [], cats: DEFAULT_CATEGORIES.slice(), cat: '', showOff: true, sort: 'updated', group: 'company', view: 'list', selMode: false, picked: new Set(), cont: true, closed: new Set(), q: '', sel: null, cfg: {} };
+const S = { cards: [], cats: DEFAULT_CATEGORIES.slice(), cat: '', tag: '', showOff: true, sort: 'updated', group: 'company', view: 'list', selMode: false, picked: new Set(), cont: true, closed: new Set(), q: '', sel: null, cfg: {} };
 // 表示の好み（表示方法・まとめ方・並び順）はこの端末に覚えておく
 function loadPrefs(){ try { const p = JSON.parse(localStorage.getItem('meishi-prefs') || '{}');
-  if (['list', 'image'].includes(p.view)) S.view = p.view; if (['company', 'kana', 'category', ''].includes(p.group)) S.group = p.group;
-  if (['updated', 'company', 'kana'].includes(p.sort)) S.sort = p.sort; if (typeof p.cont === 'boolean') S.cont = p.cont; } catch (e) {} }
-function savePrefs(){ try { localStorage.setItem('meishi-prefs', JSON.stringify({ view: S.view, group: S.group, sort: S.sort, cont: S.cont })); } catch (e) {} }
+  if (['list', 'image'].includes(p.view)) S.view = p.view; if (['company', 'kana', 'category', 'tag', 'corp', ''].includes(p.group)) S.group = p.group;
+  if (['updated', 'company', 'kana', 'carddate'].includes(p.sort)) S.sort = p.sort; if (typeof p.cont === 'boolean') S.cont = p.cont;
+  if (['info', 'map', 'dango'].includes(p.coView)) S.coView = p.coView; if (['dept', 'tag'].includes(p.mapBy)) S.mapBy = p.mapBy; } catch (e) {} }
+function savePrefs(){ try { localStorage.setItem('meishi-prefs', JSON.stringify({ view: S.view, group: S.group, sort: S.sort, cont: S.cont, coView: S.coView, mapBy: S.mapBy })); } catch (e) {} }
 const $ = id => document.getElementById(id);
 function h(tag, attrs, ...kids){
   const e = document.createElement(tag);
@@ -887,9 +1043,73 @@ function validate(c){
 }
 // ---------- 同じ人の名刺をまとめる ----------
 const pid = c => c.person_id || c.id;
-// 同じ人の名刺の束。先頭が「現在の名刺」（現役のもの優先、その中で登録が新しい順）
+// 名刺の作成日（いつ時点の名刺か）。入っていない名刺は登録した日
+const p2 = n => String(n).padStart(2, '0');
+const dayOf = d => d.getFullYear() + '-' + p2(d.getMonth() + 1) + '-' + p2(d.getDate());
+const today = () => dayOf(new Date());
+const isoDay = iso => { const d = new Date(iso || ''); return isNaN(d) ? '' : dayOf(d); };
+const cardDay = c => c.card_date || isoDay(c.created_at);
+const NODATE = '\u0000nodate';          // 絞り込み「作成日が入っていない名刺」
+const noDayPersons = () => allPersons().filter(r => stackOf(r).some(o => !o.card_date));
+const fmtDay = d => d ? d.replace(/-/g, '/') : '';
+// 同じ人の名刺の束。先頭が「現在の名刺」（現役のもの優先、その中で名刺の作成日が新しい順）
 function stackOf(c){ const k = pid(c);
-  return S.cards.filter(x => !x.deleted && pid(x) === k).sort((a, b) => (b.active - a.active) || (b.created_at || '').localeCompare(a.created_at || '')); }
+  return S.cards.filter(x => !x.deleted && pid(x) === k).sort((a, b) => (b.active - a.active) || cardDay(b).localeCompare(cardDay(a)) || (b.created_at || '').localeCompare(a.created_at || '')); }
+// ---------- 用件タグ（資材取り寄せの連絡先 など） ----------
+// タグは「人」に付く（同じ人の名刺のどれかに付いていれば、その人のタグ）
+const personTags = c => { const out = []; stackOf(c).forEach(o => (o.tags || []).forEach(t => { if (!out.includes(t)) out.push(t); })); return out; };
+// タグの一覧：作った順（設定の一覧）＋名刺に付いているのに一覧にないもの（取り込んだファイルから来たなど）
+function allTags(){ const m = (S.cfg.tags || []).slice(); const extra = new Set();
+  S.cards.forEach(c => { if (!c.deleted) (c.tags || []).forEach(t => { if (!m.includes(t)) extra.add(t); }); });
+  return m.concat(Array.from(extra).sort((a, b) => a.localeCompare(b, 'ja'))); }
+const tagCount = t => new Set(S.cards.filter(c => !c.deleted && (c.tags || []).includes(t)).map(pid)).size;
+async function tagRun(op, name, to, ids){ const r = await api.tagOp(op, name, to, ids); S.cfg.tags = r.tags; (r.cards || []).forEach(upsert); return r; }
+// 人にタグを付ける／外す（同じ人の名刺すべて）
+async function setPersonTag(c, t, on){ const ids = stackOf(c).map(o => o.id); return tagRun(on ? 'add' : 'remove', t, null, ids); }
+// タグの管理：作る・名前を変える・並べ替える・消す
+function openTags(){
+  const rows = allTags().map(t => ({ orig: t, name: t })), box = h('div', { id: 'tagEdit' });
+  const draw = () => setKids(box, rows.length ? rows.map((r, i) => h('div', { class: 'catrow' },
+    h('input', { type: 'text', value: r.name, maxlength: 20, 'aria-label': 'タグ ' + (i + 1) + ' の名前', oninput: e => { r.name = e.target.value; } }),
+    h('span', { class: 'cnt' }, r.orig ? tagCount(r.orig) + ' 人' : '新規'),
+    h('button', { type: 'button', 'aria-label': '上へ', disabled: i === 0, onclick: () => { rows.splice(i - 1, 0, rows.splice(i, 1)[0]); draw(); } }, '↑'),
+    h('button', { type: 'button', 'aria-label': '下へ', disabled: i === rows.length - 1, onclick: () => { rows.splice(i + 1, 0, rows.splice(i, 1)[0]); draw(); } }, '↓'),
+    h('button', { type: 'button', class: 'danger', onclick: () => { r.del = true; rows.splice(i, 1); (openTags.dels = openTags.dels || []).push(r); draw(); } }, '削除')))
+    : h('p', { class: 'note' }, 'タグはまだありません。「＋ タグを追加」で作れます。'),
+    h('button', { type: 'button', onclick: () => { if (rows.length >= 100) { alert('タグは100個までです。'); return; } rows.push({ orig: null, name: '' }); draw(); const ins = box.querySelectorAll('input'); ins[ins.length - 1].focus(); } }, '＋ タグを追加'));
+  openTags.dels = [];
+  const save = async () => {
+    const names = rows.map(r => tagName_(r.name));
+    if (names.some(n => !n)) { alert('名前が空のタグがあります。'); return; }
+    if (new Set(names).size !== names.length) { alert('同じ名前のタグがあります。'); return; }
+    const dels = openTags.dels.filter(r => r.orig), used = dels.filter(r => tagCount(r.orig));
+    if (used.length && !confirm('次のタグを消します。付いている人からも外れます。\n' + used.map(r => '・' + r.orig + '（' + tagCount(r.orig) + ' 人）').join('\n') + '\n\nよろしいですか？')) return;
+    const ok = await guard('保存中…', async () => {
+      for (const r of dels) await tagRun('delete', r.orig);
+      for (const r of rows) if (r.orig && tagName_(r.name) !== r.orig) await tagRun('rename', r.orig, tagName_(r.name));
+      await tagRun('set', names); return true; });
+    if (ok) { closeDlg(); if (S.tag && !names.includes(S.tag)) S.tag = ''; renderFilters(); renderList(); renderDetail(); toast('タグを保存しました'); }
+  };
+  draw();
+  openDlg(h('div', null, h('h2', null, 'タグの管理'),
+    h('p', { class: 'note' }, '用件ごとの連絡先に付けるタグです（例：資材取り寄せ）。名前を変えると、付いている人のタグも変わります。消すと、付いている人からも外れます。'),
+    box, h('div', { class: 'acts' }, h('button', { class: 'pri', id: 'btnTagSave', onclick: save }, '保存'), h('button', { onclick: closeDlg }, 'やめる'))));
+}
+// タグを押して付け外しする並び（詳細・登録画面で使う）
+function tagToggles(has, onToggle, id){
+  const box = h('div', { class: 'tagtg', id });
+  let adding = false;
+  const make = async inp => { const v = tagName_(inp.value); if (!v) { inp.focus(); return; }
+    if (!allTags().includes(v)) { const r = await guard('保存中…', () => tagRun('set', allTags().concat([v]))); if (!r) return; }
+    adding = false; await onToggle(v, true); draw(); };
+  const draw = () => {
+    const inp = adding ? h('input', { type: 'text', maxlength: 20, placeholder: '例：資材取り寄せ', 'aria-label': '新しいタグの名前', class: 'tagnew', onkeydown: e => { if (e.key === 'Enter') { e.preventDefault(); make(inp); } } }) : null;
+    setKids(box, allTags().map(t => h('button', { type: 'button', class: 'chip utag', 'aria-pressed': String(has().includes(t)), onclick: async () => { await onToggle(t, !has().includes(t)); draw(); } }, t)),
+      adding ? h('span', { class: 'tagadd' }, inp, h('button', { type: 'button', class: 'pri', onclick: () => make(inp) }, '作って付ける'), h('button', { type: 'button', onclick: () => { adding = false; draw(); } }, 'やめる'))
+        : h('button', { type: 'button', class: 'chip link', onclick: () => { adding = true; draw(); box.querySelector('.tagnew').focus(); } }, '＋ 新しいタグ'));
+  };
+  draw(); return { el: box, draw };
+}
 const nkey = s => (s || '').replace(/[\s　]+/g, '').toLowerCase();
 const digits = s => (s || '').replace(/[^0-9]/g, '');
 function givenName(s){ const t = (s || '').replace(/　/g, ' ').trim().split(/\s+/); return t.length >= 2 ? t[t.length - 1] : ''; }
@@ -1388,13 +1608,14 @@ function visibleCards(){
   const q = S.q.trim().toLowerCase();
   // 同じ人の名刺は1行にまとめ、現在の名刺を代表として出す。検索は過去の名刺・メモも対象（旧姓や前の会社名でも見つかる）
   const groups = new Map(); S.cards.forEach(c => { if (c.deleted) return; const k = pid(c); if (!groups.has(k)) groups.set(k, []); groups.get(k).push(c); });
-  const text = c => (FIELDS.map(f => c[f]).join('\n') + '\n' + (c.company_group || '') + '\n' + (c.memos || []).map(m => m.text).join('\n')).toLowerCase();
+  const text = c => (FIELDS.map(f => c[f]).join('\n') + '\n' + (c.company_group || '') + '\n' + (c.corp_group || '') + '\n' + (c.tags || []).join('\n') + '\n' + (c.memos || []).map(m => m.text).join('\n')).toLowerCase();
   let list = [];
   groups.forEach(g => { const st = stackOf(g[0]), rep = st[0];
     if ((S.cat && rep.category !== S.cat) || (!S.showOff && !rep.active)) return;
+    if (S.tag === NODATE ? !st.some(c => !c.card_date) : (S.tag && !st.some(c => (c.tags || []).includes(S.tag)))) return;
     if (q && !st.some(c => text(c).includes(q))) return;
     list.push(rep); });
-  const by = { updated: (a, b) => (b.updated_at || '').localeCompare(a.updated_at || ''),
+  const by = { updated: (a, b) => (b.updated_at || '').localeCompare(a.updated_at || ''), carddate: (a, b) => (!a.card_date - !b.card_date) || cardDay(b).localeCompare(cardDay(a)) || (b.updated_at || '').localeCompare(a.updated_at || ''),
     company: (a, b) => (a.company || '').localeCompare(b.company || '', 'ja') || (a.name_kana || '').localeCompare(b.name_kana || '', 'ja'),
     kana: (a, b) => (a.name_kana || a.full_name || '').localeCompare(b.name_kana || b.full_name || '', 'ja') };
   return list.sort(by[S.sort]);
@@ -1416,12 +1637,14 @@ function buildCoLabels(){
   cnt.forEach((m, k) => { let best = '', n = -1; m.forEach((v, name) => { if (v > n || (v === n && name < best)) { best = name; n = v; } }); CO_LABEL.set(k, best); });
 }
 const coLabel = c => { const name = c.company_group || c.company; return name ? (CO_LABEL.get(nkey(name)) || name) : '（会社名なし）'; };
-function groupKey(c){ return S.group === 'company' ? coLabel(c) : S.group === 'category' ? c.category : kanaRow(c); }
+function groupKey(c){ return S.group === 'company' ? coLabel(c) : S.group === 'corp' ? (c.corp_group || coLabel(c)) : S.group === 'category' ? c.category : kanaRow(c); }
 function groupCards(list){
-  if (S.group === 'company') buildCoLabels();
+  if (S.group === 'company' || S.group === 'corp') buildCoLabels();
   const map = new Map();
-  list.forEach(c => { const k = groupKey(c); if (!map.has(k)) map.set(k, []); map.get(k).push(c); });
-  const order = S.group === 'category' ? S.cats : S.group === 'kana' ? KANA_ROWS.map(k => k[0]) : null;
+  const add = (k, c) => { if (!map.has(k)) map.set(k, []); map.get(k).push(c); };
+  // タグごと：タグが複数ある人は、それぞれのタグの見出しに出る
+  list.forEach(c => { if (S.group === 'tag') { const ts = personTags(c); (ts.length ? ts : ['（タグなし）']).forEach(t => add(t, c)); } else add(groupKey(c), c); });
+  const order = S.group === 'category' ? S.cats : S.group === 'kana' ? KANA_ROWS.map(k => k[0]) : S.group === 'tag' ? allTags() : null;
   const rank = k => { const i = order ? order.indexOf(k) : -1; return i === -1 ? 9999 : i; };
   return Array.from(map.entries()).sort((a, b) => {
     const last = k => /^（|^その他/.test(k) ? 1 : 0;
@@ -1484,24 +1707,33 @@ function renderFilters(){
   const sortSel = h('select', { 'aria-label': '並び順', onchange: e => { S.sort = e.target.value; savePrefs(); renderList(); } },
     h('option', { value: 'updated', selected: S.sort === 'updated' }, '更新が新しい順'),
     h('option', { value: 'company', selected: S.sort === 'company' }, '会社名順'),
-    h('option', { value: 'kana', selected: S.sort === 'kana' }, '氏名順'));
+    h('option', { value: 'kana', selected: S.sort === 'kana' }, '氏名順'),
+    h('option', { value: 'carddate', selected: S.sort === 'carddate' }, '名刺の作成日が新しい順'));
   const groupSel = h('select', { 'aria-label': 'まとめ方', onchange: e => { S.group = e.target.value; S.closed.clear(); savePrefs(); renderList(); } },
     h('option', { value: 'company', selected: S.group === 'company' }, '会社ごとにまとめる'),
     h('option', { value: 'kana', selected: S.group === 'kana' }, '氏名の五十音でまとめる'),
     h('option', { value: 'category', selected: S.group === 'category' }, '区分ごとにまとめる'),
+    h('option', { value: 'tag', selected: S.group === 'tag' }, 'タグごとにまとめる'),
+    h('option', { value: 'corp', selected: S.group === 'corp' }, 'グループ会社ごとにまとめる'),
     h('option', { value: '', selected: !S.group }, 'まとめない'));
   const viewBtn = (label, val) => h('button', { 'aria-pressed': String(S.view === val), onclick: () => { S.view = val; savePrefs(); renderFilters(); renderList(); } }, label);
   const viewSeg = h('div', { class: 'seg', role: 'group', 'aria-label': '表示方法' }, viewBtn('リスト', 'list'), viewBtn('名刺画像', 'image'));
+  const tags = allTags();
+  const tagSel = h('select', { 'aria-label': 'タグで絞り込む', id: 'tagFilter', onchange: e => { if (e.target.value === '\u0000manage') { e.target.value = S.tag; openTags(); return; } S.tag = e.target.value; renderFilters(); renderList(); } },
+    h('option', { value: '', selected: !S.tag }, 'タグ：すべて'), tags.map(t => h('option', { value: t, selected: S.tag === t }, t + '（' + tagCount(t) + '）')),
+    (S.tag === NODATE || noDayPersons().length) ? h('option', { value: NODATE, selected: S.tag === NODATE }, '作成日が入っていない名刺（' + noDayPersons().length + '）') : null,
+    h('option', { value: '\u0000manage' }, 'タグを作る・管理する…'));
   const offChk = h('label', null, h('input', { type: 'checkbox', checked: S.showOff, onchange: e => { S.showOff = e.target.checked; renderList(); } }), '無効も表示');
   if (MOBILE) {        // スマホ版：区分だけを1行に並べ、表示の切り替えは「表示」の中にたたむ（名刺を見る場所を広くする）
-    const chips = h('div', { class: 'chips', id: 'catChips' }, chip('すべて', ''), cats.map(c => chip(c, c)));
+    const chips = h('div', { class: 'chips', id: 'catChips' }, chip('すべて', ''), cats.map(c => chip(c, c)),
+      S.tag ? h('button', { class: 'chip utag', 'aria-pressed': 'true', id: 'tagChip', 'aria-label': (S.tag === NODATE ? '作成日なし' : 'タグ「' + S.tag + '」') + 'の絞り込みをやめる', onclick: () => { S.tag = ''; renderFilters(); renderList(); } }, (S.tag === NODATE ? '作成日なし' : S.tag) + ' ×') : null);
     const tgl = h('button', { class: 'chip viewbtn', id: 'viewToggle', 'aria-expanded': String(!!S.viewOpen), onclick: () => { S.viewOpen = !S.viewOpen; renderFilters(); } }, '表示 ' + (S.viewOpen ? '▴' : '▾'));
     setKids($('filters'), h('div', { class: 'chiprow' }, chips, tgl),
-      S.viewOpen ? h('div', { class: 'viewpanel', id: 'viewPanel' }, viewSeg, groupSel, sortSel, offChk) : null);
+      S.viewOpen ? h('div', { class: 'viewpanel', id: 'viewPanel' }, viewSeg, groupSel, sortSel, tagSel, offChk) : null);
     return;
   }
   setKids($('filters'), 
-    chip('すべて', ''), ...(cats.length > 1 ? cats.map(c => chip(c, c)) : []), viewSeg, groupSel, sortSel, offChk);
+    chip('すべて', ''), ...(cats.length > 1 ? cats.map(c => chip(c, c)) : []), viewSeg, groupSel, sortSel, tagSel, offChk);
 }
 // ---------- 選んでまとめて削除 ----------
 function setSelMode(on){ S.selMode = on; S.picked.clear(); $('btnSelect').setAttribute('aria-pressed', String(on)); $('btnSelect').textContent = on ? '選択をやめる' : '選択';
@@ -1532,8 +1764,35 @@ function selBar(list){
     h('div', { class: 'acts' },
       h('button', { onclick: () => { list.forEach(c => S.picked.add(pid(c))); renderList(); } }, 'すべて選択' + (visKeys.size !== allPersons().length ? '（表示中の ' + visKeys.size + ' 件）' : '')),
       S.cats.length > 1 ? catSel : null,
+      h('select', { 'aria-label': '選んだ人にタグを付ける・外す', id: 'pickTag', disabled: !n, onchange: async e => { const v = e.target.value; e.target.value = ''; if (!v) return;
+          const op = v.slice(0, 1) === '+' ? 'add' : 'remove', t = v.slice(1), ids = [];
+          allPersons().filter(r => S.picked.has(pid(r))).forEach(r => stackOf(r).forEach(o => ids.push(o.id)));
+          const r = await guard('保存中…', () => tagRun(op, t, null, ids)); if (r) { renderList(); renderDetail(); toast(n + ' 人' + (op === 'add' ? 'に「' + t + '」を付けました' : 'から「' + t + '」を外しました')); } } },
+        h('option', { value: '' }, '選んだ人にタグを…'), allTags().map(t => h('option', { value: '+' + t }, '「' + t + '」を付ける')), allTags().map(t => h('option', { value: '-' + t }, '「' + t + '」を外す'))),
+      h('button', { id: 'btnPickDate', onclick: openBulkDate, disabled: !n }, '作成日を入れる'),
       h('button', { onclick: () => { S.picked.clear(); renderList(); }, disabled: !n }, '選択を解除'),
       h('button', { class: 'danger', onclick: deletePicked, disabled: !n }, '選んだ名刺を削除')));
+}
+// 選んだ人の名刺に、作成日をまとめて入れる（前から入っている名刺の作成日は、ふつうは変えない）
+function openBulkDate(){
+  const persons = allPersons().filter(r => S.picked.has(pid(r))); if (!persons.length) return;
+  const di = h('input', { type: 'date', id: 'bulkDate', min: '1950-01-01', max: '2100-12-31' });
+  const allChk = h('input', { type: 'checkbox', id: 'bulkAll' }), keepChk = h('input', { type: 'checkbox', id: 'bulkKeep', checked: true });
+  const info = h('p', { class: 'note', id: 'bulkInfo' });
+  const targets = () => { const out = []; persons.forEach(r => (allChk.checked ? stackOf(r) : [stackOf(r)[0]]).forEach(o => { if (!(keepChk.checked && o.card_date)) out.push(o); })); return out; };
+  const upd = () => { info.textContent = targets().length + ' 枚に入れます。'; };
+  allChk.onchange = upd; keepChk.onchange = upd;
+  const go = async () => { const d = day_(di.value); if (!d) { toast('日付を入れてください'); di.focus(); return; }
+    const ids = targets().map(o => o.id); if (!ids.length) { toast('入れる名刺がありません'); return; }
+    const r = await guard('保存中…', () => api.setCardDate(ids, d, keepChk.checked)); if (!r) return;
+    r.forEach(upsert); closeDlg(); renderFilters(); renderList(); renderDetail(); toast(r.length + ' 枚に作成日（' + fmtDay(d) + '）を入れました'); };
+  openDlg(h('div', null, h('h2', null, '名刺の作成日をまとめて入れる'),
+    h('p', { class: 'note' }, '選んだ ' + persons.length + ' 人の名刺に、同じ作成日を入れます。はっきりしないときは、だいたいの日（その年の4月1日など）でかまいません。あとから名刺ごとに［編集］で直せます。'),
+    h('div', { class: 'fld' }, h('label', null, '名刺の作成日', di)),
+    h('label', { class: 'chk' }, keepChk, 'すでに作成日が入っている名刺は変えない'),
+    h('label', { class: 'chk' }, allChk, '同じ人の過去の名刺にも入れる（ふつうは今の名刺だけ。過去の名刺は、それより前の日付を名刺ごとに入れてください）'),
+    info, h('div', { class: 'acts' }, h('button', { class: 'pri', id: 'btnBulkDate', onclick: go }, '入れる'), h('button', { onclick: closeDlg }, 'やめる'))));
+  upd(); di.focus();
 }
 function pickBox(c){ return h('input', { type: 'checkbox', class: 'pick', checked: S.picked.has(pid(c)), 'aria-label': (c.full_name || c.company || '名刺') + ' を選ぶ',
   onclick: e => e.stopPropagation(), onchange: () => togglePick(c) }); }
@@ -1571,7 +1830,7 @@ function renderList(){
     h('button', { class: 'txt', onclick: () => S.selMode ? togglePick(c) : select(c.id) },
       h('div', { class: 'co' }, c.company || '（会社名なし）', !S.cat && S.cats.length > 1 && S.group !== 'category' ? h('span', { class: 'tag' }, c.category) : null),
       h('div', { class: 'nm' }, c.full_name || '（氏名なし）', stackOf(c).length > 1 ? h('span', { class: 'tag' }, '名刺 ' + stackOf(c).length + ' 枚') : null),
-      h('div', { class: 'po' }, [c.department, c.position].filter(Boolean).join(' / ') || ' ')),
+      h('div', { class: 'po' }, [c.department, c.position].filter(Boolean).join(' / ') || ' ', personTags(c).map(t => h('span', { class: 'tag utag' }, t)))),
     sw(c));
   const put = cards => { if (S.view === 'image') nodes.push(h('div', { class: 'grid' }, cards.map(tileEl))); else cards.forEach(c => nodes.push(rowEl(c))); };
   if (!S.group || !list.length) { if (list.length) put(list); }
@@ -1584,7 +1843,8 @@ function renderList(){
     groups.forEach(([key, cards]) => {
       const open = searching || !S.closed.has(key);
       nodes.push(h('button', { class: 'grp', 'aria-expanded': String(open), onclick: () => { if (S.closed.has(key)) S.closed.delete(key); else S.closed.add(key); renderList(); } },
-        h('span', { class: 'ar', 'aria-hidden': 'true' }, open ? '▾' : '▸'), h('span', { class: 'gn' }, key), h('span', { class: 'gc' }, cards.length + ' 件')));
+        h('span', { class: 'ar', 'aria-hidden': 'true' }, open ? '▾' : '▸'), h('span', { class: 'gn' }, key),
+        S.group === 'company' && cards[0].corp_group ? h('span', { class: 'tag grpco' }, cards[0].corp_group) : null, h('span', { class: 'gc' }, cards.length + ' 件')));
       if (open) put(cards);
     });
   }
@@ -1623,6 +1883,7 @@ function renderDetail(){
     kv.append(h('dt', null, LABELS[f]), h('dd', null, link(f, c[f]), (c.inferred || []).includes(f) ? h('span', { class: 'tag warn', title: '名刺に記載がなくAIが推測した値です' }, '推測') : null));
   });
   if (!kv.children.length) kv.append(h('dt', null, ''), h('dd', null, '連絡先の記録はありません'));
+  kv.append(h('dt', null, '名刺の作成日'), h('dd', { id: 'cardDay' }, fmtDay(cardDay(c)), c.card_date ? null : h('span', { class: 'tag', title: '名刺の作成日が入っていないため、登録した日を出しています' }, '登録日')));
   const setCat = async v => { const r = await guard('保存中…', () => api.patch(c.id, { category: v })); if (r) { upsert(r); renderList(); renderDetail(); } };
   const catSel = h('select', { 'aria-label': '区分', onchange: async e => {
       if (e.target.value !== '\u0000new') return setCat(e.target.value);
@@ -1645,11 +1906,15 @@ function renderDetail(){
   const histBox = stack.length > 1 ? h('div', { class: 'box', id: 'history' }, h('h3', null, 'この人の名刺の履歴（' + stack.length + ' 枚）'),
     stack.map((o, i) => h('div', { class: 'hist' + (o.id === c.id ? ' cur' : '') },
       h('button', { class: 'txt', onclick: () => select(o.id), 'aria-current': String(o.id === c.id) },
-        h('div', { class: 'd' }, fmtDate(o.created_at).slice(0, 10) + ' 登録', h('span', { class: 'tag' + (i === 0 ? '' : ' warn') }, i === 0 ? '現在の名刺' : '過去の名刺'), o.id === c.id ? h('span', { class: 'tag' }, '表示中') : null),
+        h('div', { class: 'd' }, fmtDay(cardDay(o)) + (o.card_date ? '' : ' 登録'), h('span', { class: 'tag' + (i === 0 ? '' : ' warn') }, i === 0 ? '現在の名刺' : '過去の名刺'), o.id === c.id ? h('span', { class: 'tag' }, '表示中') : null),
         h('div', null, cardLine(o))))),
     h('div', { class: 'note' }, '「現役」になっている名刺が現在の名刺として一覧に出ます。'),
     h('div', { class: 'acts' }, h('button', { onclick: async () => { if (!confirm('この名刺（' + cardLine(c) + '）を、別の人の名刺として切り離しますか？')) return;
       await guard('切り離し中…', () => unlinkCard(c)); renderList(); renderDetail(); toast('切り離しました'); } }, 'この名刺を別の人として切り離す'))) : null;
+  // 用件タグ：押すと付く・もう一度押すと外れる（同じ人の名刺すべてに）
+  const tt = tagToggles(() => personTags(c), async (t, on) => { const r = await guard('保存中…', () => setPersonTag(c, t, on)); if (r) { renderList(); renderFilters(); } }, 'detailTags');
+  const tagBox = h('div', { class: 'box', id: 'tagBox' }, h('h3', null, '用件タグ', h('button', { class: 'link', style: 'margin-left:8px;font-weight:normal', onclick: openTags }, 'タグを管理')),
+    h('div', { class: 'note' }, '「資材取り寄せ」など、この人に連絡する用件のタグを付けます。上の「タグ」で絞り込むと一覧にできます。'), tt.el);
   const ta = h('textarea', { placeholder: '例：10/2 来店。次回は見積を持参', 'aria-label': '新しいメモ', maxlength: 2000 });
   const memoBox = h('div', { class: 'box' }, h('h3', null, 'メモ（' + memos.length + '）'),
     memos.map(m => h('div', { class: 'memo' }, h('div', { class: 'b' }, h('div', { class: 'd' }, fmtDate(m.at), m.card.id !== c.id ? h('span', { class: 'tag' }, '別の名刺のメモ：' + (m.card.company || m.card.full_name || '')) : null), m.text),
@@ -1660,12 +1925,15 @@ function renderDetail(){
   setKids(d, 
     h('button', { class: 'back', onclick: closeDetail }, '← 一覧へ'),
     h('div', { class: 'dhead', style: 'margin-top:10px' },
-      h('div', { class: 't' }, h('div', { class: 's' }, c.company || '（会社名なし）', c.company_group ? h('button', { class: 'tag', id: 'coTag', title: 'まとめの名前を変える・まとめから外す', style: 'cursor:pointer;background:none;min-height:0', onclick: () => openCompanyLink(c) }, 'まとめ：' + c.company_group) : null), h('h2', null, c.full_name || '（氏名なし）')), sw(c)),
+      h('div', { class: 't' }, h('div', { class: 's' }, c.company ? h('button', { class: 'colink', id: 'coInfoLink', title: 'この会社の人・連絡先の移り変わりを見る', onclick: () => openCompanyInfo(c) }, c.company) : '（会社名なし）',
+        c.corp_group ? h('span', { class: 'tag grpco' }, c.corp_group) : null, c.company_group ? h('button', { class: 'tag', id: 'coTag', title: 'まとめの名前を変える・まとめから外す', style: 'cursor:pointer;background:none;min-height:0', onclick: () => openCompanyLink(c) }, 'まとめ：' + c.company_group) : null), h('h2', null, c.full_name || '（氏名なし）')), sw(c)),
     h('div', { class: 'box' }, (S.cats.length > 1 || S.cfg.dynamicCategories) ? h('div', { class: 'fld' }, h('label', null, '区分'), catSel) : null, kv),
-    memoBox, histBox, imgBox,
+    tagBox, memoBox, histBox, imgBox,
     h('div', { class: 'acts' }, h('button', { onclick: () => openForm(c, {}) }, '編集'),
       h('button', { onclick: () => openLink(c) }, '同じ人の名刺とまとめる'),
       h('button', { onclick: () => openCompanyLink(c) }, '同じ会社とまとめる'),
+      c.company ? h('button', { onclick: () => openCompanyInfo(c) }, '会社の情報・グループ会社') : null,
+      c.company ? h('button', { onclick: () => openNetwork({ focus: 'p:' + pid(c) }) }, 'つながり図で見る') : null,
       h('button', { class: 'danger', onclick: async () => { if (!confirm('「' + (c.full_name || c.company) + '」を削除します。元に戻せません。よろしいですか？')) return;
         const r = await guard('削除中…', () => api.remove(c.id)); if (r !== undefined) { if (r) upsert(r); closeDetail(); toast('削除しました'); } } }, '削除')),
     h('div', { class: 'meta' }, '登録 ' + fmtDate(c.created_at) + '　更新 ' + fmtDate(c.updated_at)));
@@ -1742,7 +2010,7 @@ function chooseSameCompany(company, cands){
       setKids(labelBox, h('h3', null, 'まとめの名前（一覧の見出しになります）'), lp.el,
         h('div', { class: 'note' }, '今の名前と違う名前を選ぶと、すでにまとめてある名刺の見出しも、その名前に変わります。')); };
     setKids($('pick'), h('div', { class: 'pickin' }, h('h2', null, '同じ会社かもしれません'),
-      h('p', { class: 'note' }, '「' + company + '」は、すでに登録されている次の会社と同じ会社（同じグループ）の可能性があります。まとめると、一覧の「会社ごと」で同じ場所に並びます。名刺に書かれた会社名は変わりません。'),
+      h('p', { class: 'note' }, '「' + company + '」は、すでに登録されている次の会社と同じ会社か、グループ会社の可能性があります。同じ会社（表記ちがい・社名変更など）なら「まとめる」と一覧の「会社ごと」で同じ場所に並びます。別の会社だが同じグループなら「グループ会社として記録する」。名刺に書かれた会社名は変わりません。'),
       cands.map(k => h('label', { class: 'cand' }, h('input', { type: 'radio', name: 'ccand', value: k.key, checked: sel === k.key, onchange: () => { sel = k.key; drawLabel(); } }),
         h('div', null, h('div', { class: 'cn' }, k.key), k.names.filter(n => n !== k.key).length ? h('div', { class: 'why', style: 'padding-left:0' }, '含まれる会社：' + k.names.join('、')) : null,
           h('ul', { class: 'why' }, k.reasons.map(x => h('li', null, x)))))),
@@ -1750,6 +2018,16 @@ function chooseSameCompany(company, cands){
       h('div', { class: 'acts' },
         h('button', { class: 'pri', onclick: () => { if (!sel) { alert('まとめる相手を選んでください。'); return; }
           const label = lp ? lp.value() : sel; if (!label) { alert('まとめの名前を入力してください。'); return; } done({ key: sel, label }); } }, '同じ会社としてまとめる'),
+        h('button', { id: 'btnAsGroup', onclick: () => { if (!sel) { alert('グループの相手を選んでください。'); return; }
+          // 別の会社だが同じグループ：グループ名を決めてもらう（相手にグループ名があれば、それを使う）
+          const other = S.cards.find(o => !o.deleted && nkey(orgKey(o)) === nkey(sel) && o.corp_group);
+          const gi = h('input', { type: 'text', maxlength: 100, id: 'groupNameIn', value: other ? other.corp_group : suggestGroupName(sel), 'aria-label': 'グループ名' });
+          setKids(labelBox, h('h3', null, 'グループ会社として記録する'),
+            h('div', { class: 'note' }, '「' + company + '」と「' + sel + '」は別の会社のまま（一覧の見出しは別々）で、同じグループとして記録します。'),
+            h('div', { class: 'fld' }, h('label', null, 'グループ名', gi), groupList()),
+            h('div', { class: 'acts' }, h('button', { class: 'pri', id: 'btnGroupOk', onclick: () => { const g = gi.value.trim(); if (!g) { alert('グループ名を入力してください。'); return; } done({ key: null, group: g, groupKey: sel }); } }, 'この名前で記録する'),
+              h('button', { onclick: drawLabel }, '戻る')));
+          gi.setAttribute('list', 'dlGroups'); gi.focus(); } }, 'グループ会社として記録する'),
         h('button', { onclick: () => done({ key: null }) }, '別の会社のままにする'), h('button', { onclick: () => done(null) }, '戻る'))));
     drawLabel();
     $('pick').classList.add('open'); $('pick').scrollTop = 0; const f = $('pick').querySelector('input,button'); if (f) f.focus();
@@ -1798,6 +2076,485 @@ function openCompanyLink(c){
       return v.length ? h('p', { class: 'note', id: 'coSpaceNote' }, '空白の有無だけが違う「' + v.join('」「') + '」は、同じ会社として一覧の同じ見出しに並んでいます（まとめる必要はありません）。') : null; })(),
     h('div', { class: 'fld' }, q), box, h('div', { class: 'acts' }, h('button', { onclick: closeDlg }, 'やめる'))));
   draw();
+}
+
+// ---------- グループ会社（別の会社だが同じグループ） ----------
+const LEGAL_STRIP = new RegExp('(' + LEGAL_RE + '|\\(株\\)|\\(有\\)|㈱|㈲)', 'g');
+const suggestGroupName = name => { const b = nfkc(name || '').replace(LEGAL_STRIP, '').replace(/\s+/g, ' ').trim(); return b ? b + 'グループ' : ''; };
+const allGroups = () => Array.from(new Set(S.cards.filter(o => !o.deleted && o.corp_group).map(o => o.corp_group))).sort((a, b) => a.localeCompare(b, 'ja'));
+function groupList(){ return h('datalist', { id: 'dlGroups' }, allGroups().map(g => h('option', { value: g }))); }
+// keys（まとめの見出し）に入る名刺すべてのグループ名を name にする（'' で外す）
+async function applyCorpGroup(keys, name){
+  const ks = new Set(keys.map(nkey));
+  for (const o of S.cards.slice()) { if (o.deleted || !o.company || (o.corp_group || '') === name || !ks.has(nkey(orgKey(o)))) continue; upsert(await api.patch(o.id, { corp_group: name })); }
+}
+// そのグループに入っている会社（まとめの見出し単位）
+function groupCompanies(g){ buildCoLabels(); return Array.from(new Set(S.cards.filter(o => !o.deleted && o.company && o.corp_group === g).map(coLabel))); }
+function openCorpGroup(c){
+  buildCoLabels();
+  const me = coLabel(c), cur = c.corp_group || '';
+  const gi = h('input', { type: 'text', maxlength: 100, id: 'corpName', value: cur || suggestGroupName(c.company), list: 'dlGroups', 'aria-label': 'グループ名' });
+  const picked = new Map();          // 見出し → 入れるか
+  if (cur) groupCompanies(cur).forEach(k => picked.set(k, true));
+  picked.set(me, true);
+  const cands = findCompanyCandidates(c);
+  cands.forEach(k => { if (!picked.has(k.key)) picked.set(k.key, false); });
+  const why = new Map(cands.map(k => [k.key, k.reasons]));
+  const box = h('div', { id: 'corpMembers' }), q = h('input', { type: 'search', placeholder: '会社名で探して足す', 'aria-label': 'グループに入れる会社を探す' }), found = h('div');
+  const draw = () => setKids(box, Array.from(picked.keys()).map(k => h('label', { class: 'cand' },
+    h('input', { type: 'checkbox', checked: picked.get(k), disabled: k === me, onchange: e => picked.set(k, e.target.checked) }),
+    h('div', null, h('div', { class: 'cn' }, k, k === me ? h('span', { class: 'tag' }, 'この会社') : null, (() => { const o = S.cards.find(x => !x.deleted && coLabel(x) === k && x.corp_group && x.corp_group !== cur); return o ? h('span', { class: 'tag grpco' }, '今は ' + o.corp_group) : null; })()),
+      why.get(k) ? h('ul', { class: 'why' }, why.get(k).map(x => h('li', null, x))) : null))));
+  q.addEventListener('input', () => { const t = coreName(q.value); if (!t) { setKids(found); return; }
+    const ks = Array.from(new Set(S.cards.filter(o => !o.deleted && o.company && (coreName(o.company).includes(t) || coreName(orgKey(o)).includes(t))).map(coLabel))).filter(k => !picked.has(k)).slice(0, 12);
+    setKids(found, ks.length ? ks.map(k => h('button', { class: 'cand', onclick: () => { picked.set(k, true); q.value = ''; setKids(found); draw(); } }, h('div', { class: 'cn' }, '＋ ' + k))) : h('div', { class: 'note' }, '見つかりません。')); });
+  const save = async () => { const name = gi.value.trim(); if (!name) { alert('グループ名を入力してください。'); return; }
+    const on = Array.from(picked.entries()).filter(x => x[1]).map(x => x[0]), off = Array.from(picked.entries()).filter(x => !x[1]).map(x => x[0]).filter(k => S.cards.some(o => !o.deleted && coLabel(o) === k && o.corp_group === cur && cur));
+    const ok = await guard('保存中…', async () => { if (cur && name !== cur) await applyCorpGroup(groupCompanies(cur), name); await applyCorpGroup(on, name); if (off.length) await applyCorpGroup(off, ''); return true; });
+    if (ok) { closeDlg(); renderList(); renderDetail(); toast('グループ「' + name + '」を記録しました（' + on.length + ' 社）'); } };
+  openDlg(h('div', null, h('h2', null, 'グループ会社を記録する'),
+    h('p', { class: 'note' }, '別の会社（別の法人）だが同じグループの会社を、グループ名でつなぎます。一覧の見出しは会社ごとのままで、「グループ会社ごとにまとめる」で一緒に並びます。表記ちがい・社名変更など同じ会社のときは「同じ会社とまとめる」を使います。'),
+    h('div', { class: 'fld' }, h('label', null, 'グループ名（例：カケハシグループ）', gi), groupList()),
+    h('div', { class: 'box' }, h('h3', null, 'グループに入れる会社'), box, h('div', { class: 'fld', style: 'margin-top:8px' }, q), found),
+    h('div', { class: 'acts' }, h('button', { class: 'pri', id: 'btnCorpSave', onclick: save }, '記録する'),
+      cur ? h('button', { onclick: async () => { if (!confirm('「' + me + '」を「' + cur + '」から外しますか？')) return;
+        const ok = await guard('外しています…', async () => { await applyCorpGroup([me], ''); return true; }); if (ok) { closeDlg(); renderList(); renderDetail(); toast('グループから外しました'); } } }, 'この会社をグループから外す') : null,
+      h('button', { onclick: () => openCompanyInfo(c) }, '戻る'))));
+  draw();
+}
+// ---------- 会社の情報：この会社の人（いつからいつまで）と、連絡先の移り変わり ----------
+const ymLabel = d => d ? d.slice(0, 7).replace('-', '/') : '';
+function spanText(a, b){ return !a ? '作成日なし' : a === b ? fmtDay(a) : ymLabel(a) + '〜' + ymLabel(b); }
+function companyPeople(key){
+  const cards = S.cards.filter(o => !o.deleted && o.company && nkey(orgKey(o)) === nkey(key));
+  const per = new Map(); cards.forEach(o => { const k = pid(o); if (!per.has(k)) per.set(k, []); per.get(k).push(o); });
+  return Array.from(per.values()).map(cs => { cs.sort((a, b) => cardDay(a).localeCompare(cardDay(b)));
+    const last = cs[cs.length - 1], rep = stackOf(last)[0], here = nkey(orgKey(rep)) === nkey(key), ds = cs.filter(o => o.card_date);
+    // 作成日の入っている名刺だけで「いつからいつまで」を出す（入っていなければ空＝作成日なし）
+    return { cards: cs, first: ds.length ? ds[0].card_date : '', last: ds.length ? ds[ds.length - 1].card_date : '', nodate: cs.length - ds.length,
+      latest: cs.includes(rep) ? rep : last, rep, here }; })
+    .sort((a, b) => (b.here - a.here) || b.last.localeCompare(a.last));
+}
+// 項目の値ごとに、いつからいつまでの名刺に出てくるか
+function contactSpans(cards, get){
+  const m = new Map(); cards.forEach(o => { const v = get(o); if (!v) return; const e = m.get(v) || { v, n: 0, a: '9999', b: '0000' }; e.n++; const d = o.card_date; if (d) { if (d < e.a) e.a = d; if (d > e.b) e.b = d; } m.set(v, e); });
+  return Array.from(m.values()).map(e => e.a === '9999' ? Object.assign(e, { a: '', b: '' }) : e).sort((x, y) => (!x.a - !y.a) || x.a.localeCompare(y.a));
+}
+function openCompanyInfo(c){
+  buildCoLabels();
+  const key = coLabel(c), cards = S.cards.filter(o => !o.deleted && o.company && nkey(orgKey(o)) === nkey(orgKey(c)));
+  const names = Array.from(new Set(cards.map(o => o.company))), people = companyPeople(orgKey(c));
+  const g = c.corp_group || '', mates = g ? groupCompanies(g).filter(k => k !== key) : [];
+  const KINDS = [['メールの@以降', o => mailDomain(o) ? '@' + mailDomain(o) : ''], ['Webサイト', o => webHost(o)], ['代表電話', o => o.phone_work], ['住所', o => o.address]];
+  const changed = [];
+  const spansBox = h('div', { id: 'coSpans' }, KINDS.map(([label, get]) => { const sp = contactSpans(cards, get); if (!sp.length) return null; if (sp.length > 1) changed.push(label);
+    return h('div', { class: 'cospan' + (sp.length > 1 ? ' chg' : '') }, h('div', { class: 'csl' }, label, sp.length > 1 ? h('span', { class: 'tag warn' }, '途中で変わっています') : null),
+      sp.map(e => h('div', { class: 'csv' }, h('span', { class: 'csd' }, spanText(e.a, e.b)), h('span', null, e.v), h('span', { class: 'cnt' }, e.n + ' 枚')))); }));
+  const pRow = p => h('button', { class: 'cand cperson', onclick: () => { closeDlg(); select(p.latest.id); } },
+    h('div', null, h('div', { class: 'cn' }, p.latest.full_name || '（氏名なし）', p.here ? (p.rep.active ? null : h('span', { class: 'tag warn' }, '無効')) : h('span', { class: 'tag warn' }, '今は別の会社'), personTags(p.rep).map(t => h('span', { class: 'tag utag' }, t))),
+      h('div', { class: 'why', style: 'padding-left:0' }, spanText(p.first, p.last) + '・' + [p.latest.department, p.latest.position].filter(Boolean).join(' ') + (p.here ? '' : '　→ 現在：' + (p.rep.company || '（会社名なし）')))));
+  // 見え方：一覧（人と連絡先）／担当者マップ（マインドマップ形式）／担当者の年表（串団子形式）。枝・横の線は部署ごと／用件タグごと（この端末に覚えておく）
+  const view = S.coView || 'info', by = S.mapBy || 'dept';
+  const set = (v, b) => { S.coView = v; S.mapBy = b; savePrefs(); openCompanyInfo(c); };
+  const seg = h('div', { class: 'seg', role: 'group', 'aria-label': '見え方', id: 'coViewSeg' },
+    [['info', '人と連絡先'], ['map', '担当者マップ'], ['dango', '担当者の年表']].map(([v, l]) => h('button', { 'aria-pressed': String(view === v), onclick: () => set(v, by) }, l)));
+  const bySel = view === 'info' ? null : h('div', { class: 'seg', role: 'group', 'aria-label': view === 'map' ? '枝のまとめ方' : '串のまとめ方', id: 'coBySeg' },
+    [['dept', '部署ごと'], ['tag', '用件タグごと']].map(([b, l]) => h('button', { 'aria-pressed': String(by === b), onclick: () => set(view, b) }, l)));
+  if (view !== 'info') {
+    const wide = window.innerWidth >= 700, art = view === 'map' ? mindMap(c, by, wide) : dangoChart(c, by);
+    const frame = h('div', { class: 'mmframe' + (view === 'dango' ? ' dgf' : '') + (view === 'map' && S.mapZoom ? ' zoom' : ''), id: view === 'map' ? 'mindMap' : 'dangoChart' }, art);
+    openDlg(h('div', { id: 'coInfo' }, h('h2', null, key, g ? h('span', { class: 'tag grpco' }, g) : null),
+      h('div', { class: 'cotools' }, seg, bySel,
+        view === 'map' ? h('button', { class: 'link', id: 'mmZoom', onclick: () => { S.mapZoom = !S.mapZoom; frame.classList.toggle('zoom', !!S.mapZoom); } }, S.mapZoom ? '全体を表示' : '拡大して見る') : null),
+      h('p', { class: 'note' }, view === 'map' ? (by === 'tag' ? '用件タグごとに、この会社の人をつないでいます。' : '部署ごと（いちばん新しい名刺の部署）に、この会社の人をつないでいます。') + '人を押すと名刺を開きます。点線の人は、今は別の会社にいる人です。' + (mates.length ? '黄色はグループ会社です（押すとその会社を開きます）。' : '')
+        : (by === 'tag' ? '用件タグごとの横の線に、' : '部署ごと（その名刺の時点の部署）の横の線に、') + '名刺1枚を丸1つとして、名刺の作成日の位置に、年の順で並べています。色は人ごとです。色が変わったところが担当の交代です。丸を押すと、その名刺を開きます。'),
+      frame,
+      h('div', { class: 'acts' }, h('button', { onclick: () => openNetwork({ focus: 'c:' + nkey(orgKey(c)) }) }, 'つながり図で見る'), h('button', { onclick: closeDlg }, '閉じる'))));
+    $('dlg').classList.add('wide');
+    const sc = frame.querySelector('.dgscroll'); if (sc) sc.scrollLeft = sc.scrollWidth;           // いちばん新しい年が見えるように
+    return;
+  }
+  openDlg(h('div', { id: 'coInfo' }, h('h2', null, key), h('div', { class: 'cotools' }, seg),
+    h('p', { class: 'note' }, (names.length > 1 ? '名刺に書かれた会社名：' + names.join('、') + '。' : '') + '名刺の作成日（いつ時点の名刺か）で並べています。'),
+    h('div', { class: 'box' }, h('h3', null, 'グループ会社'),
+      g ? h('div', null, h('div', null, h('span', { class: 'tag grpco', style: 'margin-left:0' }, g), mates.length ? '　同じグループ：' + mates.join('、') : '　（ほかの会社はまだ入っていません）'))
+        : h('div', { class: 'note' }, 'グループは記録されていません。'),
+      h('div', { class: 'acts', style: 'margin-top:6px' }, h('button', { id: 'btnCorpGroup', onclick: () => openCorpGroup(c) }, g ? 'グループを直す' : 'グループ会社を記録する'),
+        h('button', { onclick: () => openCompanyLink(c) }, '同じ会社とまとめる'))),
+    h('div', { class: 'box' }, h('h3', null, 'この会社の人（' + people.length + ' 人）'), people.map(pRow)),
+    h('div', { class: 'box' }, h('h3', null, '連絡先の移り変わり'),
+      changed.length ? h('p', { class: 'note warn' }, changed.join('・') + ' が途中で変わっています。支店・移転、社名やドメインの変更、合併・グループ会社になったなどの可能性があります。同じ会社なら、このままで大丈夫です。別の会社として分けるときは、その名刺の会社名を直してください。') : null,
+      spansBox.children.length ? spansBox : h('div', { class: 'note' }, '連絡先の記録はありません。')),
+    h('div', { class: 'acts' }, h('button', { onclick: closeDlg }, '閉じる'))));
+}
+
+// ---------- マインドマップ・串団子（会社の情報の中で切り替えて見る） ----------
+const SVGNS = 'http://www.w3.org/2000/svg';
+function sv(tag, attrs, ...kids){ const e = document.createElementNS(SVGNS, tag);
+  for (const k in (attrs || {})) { const v = attrs[k]; if (v === null || v === undefined || v === false) continue; if (k.startsWith('on')) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v); }
+  kids.flat(Infinity).forEach(c => { if (c !== null && c !== undefined && c !== false) e.append(c.nodeType ? c : document.createTextNode(String(c))); }); return e; }
+// 文字の幅のおおよそ（全角は1文字ぶん、半角は0.6文字ぶん）
+const textW = (s, size) => Array.from(String(s || '')).reduce((t, ch) => t + (ch.charCodeAt(0) > 0x2e7f ? size : size * 0.6), 0);
+const clip = (s, n) => { const a = Array.from(String(s || '')); return a.length > n ? a.slice(0, n - 1).join('') + '…' : a.join(''); };
+const yearOf = d => Number(String(d).slice(0, 4));
+// 枝・串のまとめ方：部署ごと（その名刺の時点の部署）／用件タグごと
+function mapBranches(key, by){
+  const people = companyPeople(key), out = new Map();
+  const add = (k, p) => { if (!out.has(k)) out.set(k, []); if (!out.get(k).includes(p)) out.get(k).push(p); };
+  people.forEach(p => { if (by === 'tag') { const ts = personTags(p.rep); (ts.length ? ts : ['（タグなし）']).forEach(t => add(t, p)); }
+    else add((p.latest.department || '').trim() || '（部署なし）', p); });
+  const order = by === 'tag' ? allTags() : [];
+  return Array.from(out.entries()).sort((a, b) => { const r = k => { const i = order.indexOf(k); return /^（/.test(k) ? 9999 : i === -1 ? 999 : i; };
+    return r(a[0]) - r(b[0]) || b[1].length - a[1].length || a[0].localeCompare(b[0], 'ja'); });
+}
+// マインドマップ：真ん中に会社、枝に部署（または用件タグ）、その先に人。グループ会社は黄色の枝
+function mindMap(c, by, radial){
+  buildCoLabels();
+  const key = coLabel(c), org = orgKey(c), g = c.corp_group || '';
+  const branches = mapBranches(org, by).map(([label, ps]) => ({ label, kind: 'topic', leaves: ps.map(p => ({
+    label: p.latest.full_name || '（氏名なし）', sub: [clip(p.latest.position, 8), p.here ? (!p.first ? '' : p.first === p.last ? fmtDay(p.first) : ymLabel(p.first) + '〜') : (p.last ? '〜' + ymLabel(p.last) + '・' : '') + '他社へ'].filter(Boolean).join('・'),
+    former: !p.here, go: () => { closeDlg(); select(p.latest.id); } })) }));
+  const mates = g ? groupCompanies(g).filter(k => k !== key) : [];
+  if (mates.length) branches.push({ label: g, kind: 'group', leaves: mates.map(k => ({ label: k, sub: companyPeople(k).length + ' 人', group: true,
+    go: () => { const o = S.cards.find(x => !x.deleted && coLabel(x) === k); if (o) openCompanyInfo(o); } })) });
+  const LH = 44, LG = 10, BG = 18, PAD = 24;
+  const leafW = l => Math.max(textW(l.label, 14), textW(l.sub, 11)) + 28, topW = b => textW(b.label, 14) + 32;
+  const cW = Math.max(120, textW(key, 16) + 40), cH = 54;
+  // 枝を左右に分ける（放射状）。狭い画面では右だけ（右型マップ）
+  const sides = { R: [], L: [] }; let hr = 0, hl = 0;
+  const bh = b => Math.max(1, b.leaves.length) * (LH + LG) - LG;
+  branches.forEach(b => { if (!radial || hr <= hl) { sides.R.push(b); hr += bh(b) + BG; } else { sides.L.push(b); hl += bh(b) + BG; } });
+  const H = Math.max(hr, hl, cH + 40) - BG + PAD * 2;
+  const mtw = s => Math.max(0, ...sides[s].map(topW)), mlw = s => Math.max(0, ...sides[s].flatMap(b => b.leaves.map(leafW)));
+  const GAP1 = 54, GAP2 = 44;
+  const leftW = sides.L.length ? mlw('L') + GAP2 + mtw('L') + GAP1 : 0;
+  const cx = PAD + leftW + cW / 2, cy = H / 2;
+  const W = cx + cW / 2 + (sides.R.length ? GAP1 + mtw('R') + GAP2 + mlw('R') : 0) + PAD;
+  const svg = sv('svg', { viewBox: '0 0 ' + Math.ceil(W) + ' ' + Math.ceil(H), width: Math.ceil(W), height: Math.ceil(H), class: 'mm', role: 'img', 'aria-label': key + ' の担当者マップ' });
+  const lines = sv('g', { class: 'mm-lines' }), nodes = sv('g');
+  svg.append(lines, nodes);
+  const curve = (x0, y0, x1, y1) => { const m = (x0 + x1) / 2; lines.append(sv('path', { d: `M${x0} ${y0} C${m} ${y0}, ${m} ${y1}, ${x1} ${y1}`, fill: 'none' })); };
+  const pill = (x, y, w, hh, cls, t1, t2, go, title) => { const gg = sv('g', { class: 'mm-n ' + cls + (go ? ' go' : ''), tabindex: go ? 0 : null, role: go ? 'button' : null, 'aria-label': title || t1 },
+      sv('rect', { x, y: y - hh / 2, width: w, height: hh, rx: 10 }),
+      t2 ? [sv('text', { x: x + w / 2, y: y - 7, class: 't1' }, t1), sv('text', { x: x + w / 2, y: y + 11, class: 't2' }, t2)] : sv('text', { x: x + w / 2, y: y + 1, class: 't1' }, t1));
+    if (go) { gg.addEventListener('click', go); gg.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } }); }
+    nodes.append(gg); };
+  ['R', 'L'].forEach(s => {
+    const list = sides[s], total = list.reduce((t, b) => t + bh(b) + BG, 0) - BG; let y = cy - total / 2;
+    const dir = s === 'R' ? 1 : -1, tw = mtw(s), ex = cx + dir * cW / 2;
+    list.forEach(b => {
+      const h0 = bh(b), ty = y + h0 / 2, w = topW(b), tx = s === 'R' ? ex + GAP1 : ex - GAP1 - w;
+      curve(ex, cy, s === 'R' ? tx : tx + w, ty);
+      pill(tx, ty, w, 36, b.kind === 'group' ? 'grp' : 'top', b.label, null, null);
+      const lx0 = s === 'R' ? ex + GAP1 + tw + GAP2 : ex - GAP1 - tw - GAP2;
+      b.leaves.forEach((l, i) => { const ly = y + i * (LH + LG) + LH / 2, lw = leafW(l), lx = s === 'R' ? lx0 : lx0 - lw;
+        curve(s === 'R' ? tx + w : tx, ty, s === 'R' ? lx : lx + lw, ly);
+        pill(lx, ly, lw, LH, (l.group ? 'gleaf' : 'leaf') + (l.former ? ' former' : ''), l.label, l.sub, l.go, l.label + '（' + l.sub + '）を開く'); });
+      y += h0 + BG;
+    });
+  });
+  pill(cx - cW / 2, cy, cW, cH, 'ctr', key, g ? g : null, null);
+  if (!branches.length) nodes.append(sv('text', { x: cx, y: cy + 50, class: 'mm-empty' }, 'この会社の人はまだいません'));
+  return svg;
+}
+// 串団子：串＝部署（その名刺の時点）または用件タグ。団子＝名刺1枚（名刺の作成日の位置）。色＝人
+const DANGO = ['#17a673', '#f5b800', '#3d8bd9', '#ef7d57', '#8c6ad9', '#21b5b5', '#d9579a', '#7a9a2e'];
+function dangoChart(c, by){
+  const org = orgKey(c), people = companyPeople(org), rows = new Map();
+  const add = (k, p, o) => { if (!rows.has(k)) rows.set(k, []); rows.get(k).push({ p, o, d: o.card_date || '' }); };   // 作成日がなければ d は空（左の「作成日なし」に並べる）
+  people.forEach(p => p.cards.forEach(o => { if (by === 'tag') { const ts = personTags(p.rep); (ts.length ? ts : ['（タグなし）']).forEach(t => add(t, p, o)); }
+    else add((o.department || '').trim() || '（部署なし）', p, o); }));
+  const order = by === 'tag' ? allTags() : [];
+  const rk = Array.from(rows.keys()).sort((a, b) => { const r = k => { const i = order.indexOf(k); return /^（/.test(k) ? 9999 : i === -1 ? 999 : i; }; return r(a) - r(b) || a.localeCompare(b, 'ja'); });
+  const all = Array.from(rows.values()).flat(); if (!all.length) return h('p', { class: 'note' }, 'この会社の名刺はまだありません。');
+  const ys = all.filter(e => e.d).map(e => yearOf(e.d)), nND = all.filter(e => !e.d).length;
+  const y0 = ys.length ? Math.min(...ys) : yearOf(today()), y1 = Math.max(yearOf(today()), ...ys);
+  const PY = window.innerWidth < 700 ? 66 : 96, L = 24, T = 40, RH = 92, R = 15;      // 1年の幅（スマホは狭く）
+  // 作成日のない名刺は、年の並びの左に「作成日なし」の欄を作って、そこに並べる
+  const maxND = Math.max(0, ...rk.map(k => rows.get(k).filter(e => !e.d).length)), UW = maxND ? 34 + maxND * (R * 2 + 6) : 0;
+  const W = L + UW + (y1 - y0 + 1) * PY + 30, H = T + rk.length * RH + 46;
+  const xOf = d => { const t = new Date(d + 'T00:00:00'), s = new Date(y0 + '-01-01T00:00:00'); return L + UW + 14 + (t - s) / (365.25 * 864e5) * PY; };
+  const color = new Map(); people.slice().sort((a, b) => a.first.localeCompare(b.first)).forEach((p, i) => color.set(p, DANGO[i % DANGO.length]));
+  const svg = sv('svg', { viewBox: `0 0 ${Math.ceil(W)} ${H}`, width: Math.ceil(W), height: H, class: 'dg', role: 'img', 'aria-label': coLabel(c) + ' の担当者の移り変わり' });
+  // 串の名前は左に固定（横に動かしても見える）
+  const LW = Math.max(...rk.map(k => textW(k, 13) + 24)) + 12;
+  const side = sv('svg', { viewBox: `0 0 ${Math.ceil(LW)} ${H}`, width: Math.ceil(LW), height: H, class: 'dg dg-side', 'aria-hidden': 'true' });
+  for (let y = y0; y <= y1 + 1; y++) { const x = xOf(y + '-01-01');
+    svg.append(sv('line', { x1: x, y1: T - 14, x2: x, y2: H - 30, class: 'dg-grid' }));
+    if (y <= y1) svg.append(sv('text', { x: x + PY / 2, y: H - 12, class: 'dg-year' }, y + '年')); }
+  const tx = xOf(today()); svg.append(sv('line', { x1: tx, y1: T - 14, x2: tx, y2: H - 30, class: 'dg-now' }), sv('text', { x: tx, y: T - 20, class: 'dg-nowt' }, '今'));
+  if (UW) svg.append(sv('rect', { x: L - 4, y: T - 14, width: UW - 4, height: H - 30 - (T - 14), rx: 8, class: 'dg-ndbox' }), sv('text', { x: L - 4 + (UW - 4) / 2, y: H - 12, class: 'dg-year' }, '作成日なし'));
+  rk.forEach((k, ri) => {
+    const yy = T + ri * RH + 44, pi = p => people.indexOf(p);
+    const list = rows.get(k).filter(e => e.d).sort((a, b) => a.d.localeCompare(b.d)), nd = rows.get(k).filter(e => !e.d).sort((a, b) => pi(a.p) - pi(b.p) || (a.o.created_at || '').localeCompare(b.o.created_at || ''));
+    const lw = textW(k, 13) + 24;
+    side.append(sv('g', { class: 'dg-row' }, sv('rect', { x: 6, y: yy - 12, width: lw, height: 24, rx: 12 }), sv('text', { x: 6 + lw / 2, y: yy + 1, class: 'dg-rowt' }, k)));
+    svg.append(sv('line', { x1: 0, y1: yy, x2: W - 10, y2: yy, class: 'dg-stick' }));
+    let prevP = null, lastX = -99, lastP = null, flip = 1;
+    nd.concat(list).forEach((e, i) => { const und = i < nd.length; let x = und ? L + 10 + R + i * (R * 2 + 6) : xOf(e.d), cy = yy;
+      if (i === nd.length) { prevP = null; lastX = -99; }
+      if (!und && Math.abs(x - lastX) < R * 2 && lastP !== e.p) { cy = yy + flip * 9; flip = -flip; }      // 同じころに別の人の名刺があれば、少し上下にずらす
+      const col = color.get(e.p), nm = e.p.latest.full_name || '？';
+      const dtx = e.d ? fmtDay(e.d) : '作成日なし';
+      const gg = sv('g', { class: 'dg-d' + (e.p.here ? '' : ' former') + (und ? ' nd' : ''), tabindex: 0, role: 'button', 'aria-label': nm + '・' + dtx + '・' + (e.o.department || '') + 'の名刺を開く' },
+        sv('title', null, nm + '　' + dtx + (e.o.department ? '　' + e.o.department : '') + (e.o.position ? '　' + e.o.position : '')),
+        e.p.here ? null : sv('circle', { cx: x, cy, r: R, class: 'dg-under' }),
+        sv('circle', { cx: x, cy, r: R, fill: col, class: 'dgc' }), sv('text', { x, y: cy + 1, class: 'dg-ini' }, Array.from(nm.replace(/\s.*/, ''))[0] || '？'));
+      const go = () => { closeDlg(); select(e.o.id); }; gg.addEventListener('click', go); gg.addEventListener('keydown', ev => { if (ev.key === 'Enter') go(); });
+      svg.append(gg);
+      if (e.p !== prevP) svg.append(sv('text', { x, y: yy + 34 + (und && i % 2 ? 12 : 0), class: 'dg-name' + (e.p.here ? '' : ' former') }, clip(nm.replace(/\s.*/, ''), 5) + (e.p.here ? '' : '（他社へ）')));
+      prevP = e.p; lastX = x; lastP = e.p; });
+  });
+  const wrap = h('div', { class: 'dgwrap' }, side, h('div', { class: 'dgscroll' }, svg));
+  return nND ? h('div', null, h('p', { class: 'note dgnd', id: 'dgNoDate' }, '作成日の入っていない名刺 ' + nND + ' 枚は、左の「作成日なし」に並べています（いつの名刺かわからないため）。作成日を入れると年の位置に移ります（名刺の［編集］、または一覧で選んで［作成日を入れる］）。'), wrap) : wrap;
+}
+
+// ---------- つながり図（会社と人のネットワーク図） ----------
+// 点：会社（大きい丸）・人（小さい丸）・グループ会社（黄色）。線：人の所属（今は実線、以前は点線）、会社とグループ
+// 配置は d3-force（ばねで引き合い、点どうしは押し合う）。ファイルの中に入れてあるので通信はしない
+const NET = { mode: 'all', focus: null, hops: 2, cat: '', tag: '', year: 0, names: false, sel: null, pos: new Map(), k: 1, tx: 0, ty: 0 };
+function netGraph(o){
+  const yEnd = o.year ? o.year + '-12-31' : '9999-12-31';
+  const per = new Map();
+  // 作成日のない名刺は、時点に関係なく出す（いつの名刺かわからないため）
+  S.cards.forEach(c => { if (c.deleted || !c.company) return; if (c.card_date && c.card_date > yEnd) return; const k = pid(c); if (!per.has(k)) per.set(k, []); per.get(k).push(c); });
+  buildCoLabels();
+  const nodes = new Map(), links = [];
+  const node = (id, v) => { if (!nodes.has(id)) nodes.set(id, Object.assign({ id, deg: 0 }, v)); return nodes.get(id); };
+  per.forEach((cs, k) => {
+    const rep = stackOf(cs[0])[0]; if (o.cat && rep.category !== o.cat) return;
+    cs.sort((a, b) => cardDay(a).localeCompare(cardDay(b)));
+    const last = cs.includes(rep) ? rep : cs[cs.length - 1], orgs = new Map();     // 今の所属＝今の名刺（同じ人の重なりの一番上）。作成日がなくても決まる
+    cs.forEach(c => { const ok = nkey(orgKey(c)); const e = orgs.get(ok) || { label: coLabel(c), a: '', b: '', card: c }; const d = c.card_date;
+      if (d) { if (!e.a || d < e.a) e.a = d; if (!e.b || d > e.b) e.b = d; } e.card = c; orgs.set(ok, e); });
+    const tags = personTags(rep);
+    const p = node('p:' + k, { type: 'person', label: last.full_name || '（氏名なし）', card: last, rep, tags, orgs, now: nkey(orgKey(last)) });
+    orgs.forEach((e, ok) => {
+      const co = node('c:' + ok, { type: 'company', label: e.label, card: e.card, people: new Set(), nowPeople: new Set(), group: '' });
+      co.people.add(p.id); if (ok === p.now) co.nowPeople.add(p.id);
+      if (e.card.corp_group) co.group = e.card.corp_group;
+      links.push({ source: p.id, target: co.id, kind: ok === p.now ? 'now' : 'past', span: spanText(e.a, e.b) });
+    });
+  });
+  Array.from(nodes.values()).filter(n => n.type === 'company' && n.group).forEach(co => { const g = node('g:' + co.group, { type: 'group', label: co.group, members: [] }); g.members.push(co.label); links.push({ source: co.id, target: g.id, kind: 'group' }); });
+  links.forEach(l => { nodes.get(l.source).deg++; nodes.get(l.target).deg++; });
+  let list = Array.from(nodes.values());
+  // 周りだけ：選んだ点から、線をたどって hops 段先まで
+  if (o.mode === 'ego' && o.focus && nodes.has(o.focus)) {
+    const adj = new Map(); links.forEach(l => { [[l.source, l.target], [l.target, l.source]].forEach(([a, b]) => { if (!adj.has(a)) adj.set(a, []); adj.get(a).push(b); }); });
+    const keep = new Set([o.focus]); let front = [o.focus];
+    for (let h = 0; h < o.hops; h++) { const nx = []; front.forEach(a => (adj.get(a) || []).forEach(b => { if (!keep.has(b)) { keep.add(b); nx.push(b); } })); front = nx; }
+    list = list.filter(n => keep.has(n.id));
+  }
+  const ids = new Set(list.map(n => n.id));
+  list.forEach(n => { n.r = n.type === 'company' ? Math.min(34, 11 + 3.2 * Math.sqrt(n.people.size)) : n.type === 'group' ? 15 : Math.min(11, 5 + 2.2 * (n.orgs.size - 1)); });
+  return { nodes: list, links: links.filter(l => ids.has(l.source) && ids.has(l.target)).map(l => Object.assign({}, l)), all: nodes };
+}
+function netLayout(g){
+  const roomy = NET.mode === 'ego' || NET.names;          // 名前を出すときは、名前が重ならないよう広めに
+  // 前の位置があれば引き継ぐ（絞り込みを変えても、図がばらばらに動かない）
+  g.nodes.forEach((n, i) => { const p = NET.pos.get(n.id); if (p) { n.x = p.x; n.y = p.y; } else { const a = i * 2.4; n.x = Math.cos(a) * (40 + i * 3); n.y = Math.sin(a) * (40 + i * 3); } });
+  const sim = d3.forceSimulation(g.nodes)
+    .force('link', d3.forceLink(g.links).id(d => d.id).distance(l => l.kind === 'group' ? 120 : (l.kind === 'now' ? 46 : 70) * (roomy ? 1.7 : 1)).strength(l => l.kind === 'past' ? 0.35 : 0.8))
+    .force('charge', d3.forceManyBody().strength(d => d.type === 'person' ? -70 : -300).distanceMax(600))
+    .force('collide', d3.forceCollide(d => d.r + (d.type === 'person' ? (roomy ? 26 : 6) : 24)))
+    .force('x', d3.forceX(0).strength(0.05)).force('y', d3.forceY(0).strength(0.05)).stop();
+  const n = Math.ceil(Math.log(sim.alphaMin()) / Math.log(1 - sim.alphaDecay()));
+  for (let i = 0; i < n; i++) sim.tick();
+  g.nodes.forEach(nd => NET.pos.set(nd.id, { x: nd.x, y: nd.y }));
+  return g;
+}
+// ===== SVG のつながり図（sigma.js のような見せ方を SVG で） =====
+// ・名前は画面上で同じ大きさのまま。重なる名前は出さず、拡大すると増える（大きい会社・橋渡し役が優先）
+// ・点は拡大しても大きくなりすぎない（拡大率の平方根で大きくなる）。線の太さは変わらない
+// ・点を押す（マウスを乗せる）と、つながる相手以外は灰色になり、関係ない線は消える
+// ・ドラッグで移動、ホイール・2本指（ピンチ）で拡大縮小
+function createSvgNet(svg, opt){
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (t, a) => { const e = document.createElementNS(NS, t); for (const k in a) if (a[k] !== null && a[k] !== undefined) e.setAttribute(k, a[k]); return e; };
+  const tw = (s, size) => Array.from(String(s || '')).reduce((t, ch) => t + (ch.charCodeAt(0) > 0x2e7f ? size : size * 0.6), 0);
+  const nodes = opt.nodes, links = opt.links, byId = new Map(nodes.map(n => [n.id, n]));
+  const adj = new Map(nodes.map(n => [n.id, new Set()]));
+  links.forEach(l => { const a = l.source.id || l.source, b = l.target.id || l.target; l.s = byId.get(a); l.t = byId.get(b); adj.get(a).add(b); adj.get(b).add(a); });
+  const st = { k: 1, tx: 0, ty: 0, sel: null, hover: null, raf: 0, onPick: opt.onPick || (() => {}), labelSize: opt.labelSize || 12 };
+  svg.replaceChildren();
+  const vp = el('g', { class: 'sn-vp' }), eg = el('g', { class: 'sn-edges' }), ng = el('g', { class: 'sn-nodes' }), lg = el('g', { class: 'sn-labels' });
+  vp.append(eg, ng); svg.append(vp, lg);
+  links.forEach(l => { l.el = el('line', { x1: l.s.x, y1: l.s.y, x2: l.t.x, y2: l.t.y, class: 'sn-e ' + (l.kind || ''), 'vector-effect': 'non-scaling-stroke' }); eg.append(l.el); });
+  nodes.slice().sort((a, b) => a.r - b.r).forEach(n => { n.el = el('circle', { cx: n.x, cy: n.y, r: n.r, class: 'sn-n ' + (n.cls || n.type), 'data-id': n.id, tabindex: 0, role: 'button', 'aria-label': n.label });
+    n.el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); st.sel = st.sel === n.id ? null : n.id; req(); st.onPick(st.sel ? n : null); } });   // キーボードでも選べる
+    ng.append(n.el); });
+  const size = () => { const r = svg.getBoundingClientRect(); return { w: r.width || 300, h: r.height || 300, left: r.left, top: r.top }; };
+  const focus = () => st.sel || st.hover;
+  function paint(){
+    st.raf = 0;
+    vp.setAttribute('transform', `translate(${st.tx},${st.ty}) scale(${st.k})`);
+    const f = 1 / Math.sqrt(st.k), fid = focus(), nb = fid ? adj.get(fid) : null;
+    nodes.forEach(n => { n.el.setAttribute('r', n.r * f); n.el.classList.toggle('dim', !!fid && n.id !== fid && !nb.has(n.id)); n.el.classList.toggle('sel', n.id === fid); });
+    links.forEach(l => l.el.classList.toggle('hid', !!fid && l.s.id !== fid && l.t.id !== fid));
+    // 名前：優先順に、画面に入っていて重ならないものだけ
+    lg.replaceChildren();
+    const { w, h } = size(), placed = [], cell = 48, grid = new Map(), L = st.labelSize;
+    const hit = (x0, y0, x1, y1) => { for (let gx = Math.floor(x0 / cell); gx <= Math.floor(x1 / cell); gx++) for (let gy = Math.floor(y0 / cell); gy <= Math.floor(y1 / cell); gy++) {
+      for (const r of grid.get(gx + ',' + gy) || []) if (x0 < r[2] && x1 > r[0] && y0 < r[3] && y1 > r[1]) return true; } return false; };
+    const put = r => { for (let gx = Math.floor(r[0] / cell); gx <= Math.floor(r[2] / cell); gx++) for (let gy = Math.floor(r[1] / cell); gy <= Math.floor(r[3] / cell); gy++) { const k = gx + ',' + gy; if (!grid.has(k)) grid.set(k, []); grid.get(k).push(r); } };
+    const order = nodes.slice().sort((a, b) => ((b.id === fid) - (a.id === fid)) || ((nb && nb.has(b.id)) - (nb && nb.has(a.id))) || (b.prio - a.prio));
+    for (const n of order) {
+      const isF = n.id === fid, isN = nb && nb.has(n.id);
+      if (fid && !isF && !isN) continue;                              // 選んでいるときは、相手の名前だけ
+      const rs = n.r * Math.sqrt(st.k), sx = n.x * st.k + st.tx, sy = n.y * st.k + st.ty;
+      if (sx < -40 || sy < -20 || sx > w + 40 || sy > h + 20) continue;
+      if (!isF && !isN && !opt.showAll && rs < (n.type === 'person' ? 4.2 : 2.5)) continue;   // 小さく見えている点の名前は出さない
+      const text = n.label, tw0 = tw(text, L), y0 = sy - L * 0.7, y1 = y0 + L * 1.4;
+      let x0 = sx + rs + 4, left = false, box = [x0 - 2, y0 - 2, x0 + tw0 + 2, y1 + 2];
+      if (!isF && hit(box[0], box[1], box[2], box[3])) {           // 右が詰まっているとき、選んだ点の相手は左に出してみる
+        const lb = [sx - rs - 6 - tw0, y0 - 2, sx - rs - 2, y1 + 2];
+        if (!isN || hit(lb[0], lb[1], lb[2], lb[3])) continue;
+        box = lb; x0 = sx - rs - 4; left = true; }
+      if (isF) {                                     // 選んだ点：点のまわりの白い輪と、点から右へのびる細い札（sigma.js と同じ形）
+        const R = rs + 3, hh = L / 2 + 3, x1 = x0 + tw0 + 7;
+        box = [sx - R, Math.min(sy - R, sy - hh), x1, Math.max(sy + R, sy + hh)];
+        lg.append(el('path', { d: `M${sx + R},${sy}A${R},${R} 0 1 1 ${sx - R},${sy}A${R},${R} 0 1 1 ${sx + R},${sy}ZM${sx},${sy - hh}H${x1}V${sy + hh}H${sx}Z`, class: 'sn-lbox' }),
+          el('circle', { cx: sx, cy: sy, r: rs, class: 'sn-n ' + (n.cls || n.type) })); }
+      put(box);
+      const t = el('text', { x: x0, y: sy + 0.5, class: 'sn-l ' + (n.type || '') + (isF ? ' f' : ''), 'text-anchor': left ? 'end' : 'start' }); t.textContent = text; lg.append(t);
+      placed.push(n);
+    }
+  }
+  const req = () => { if (!st.raf) st.raf = requestAnimationFrame(paint); };
+  function fit(pad){
+    pad = pad === undefined ? 40 : pad; const { w, h } = size();
+    if (!nodes.length) { st.k = 1; st.tx = w / 2; st.ty = h / 2; req(); return; }
+    const xs = nodes.map(n => n.x), ys = nodes.map(n => n.y), x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+    st.k = Math.max(0.05, Math.min(3, (w - pad * 2) / Math.max(1, x1 - x0), (h - pad * 2) / Math.max(1, y1 - y0)));
+    st.tx = w / 2 - st.k * (x0 + x1) / 2; st.ty = h / 2 - st.k * (y0 + y1) / 2; req();
+  }
+  function zoomAt(f, px, py){ const nk = Math.max(0.03, Math.min(30, st.k * f)); st.tx = px - (px - st.tx) * nk / st.k; st.ty = py - (py - st.ty) * nk / st.k; st.k = nk; req(); }
+  function select(id){ st.sel = id; req(); }
+  // ---- 操作 ----
+  const pts = new Map(); let drag = null, moved = false, pinch = null;
+  const loc = e => { const s = size(); return { x: e.clientX - s.left, y: e.clientY - s.top }; };
+  svg.addEventListener('pointerdown', e => {
+    try { svg.setPointerCapture(e.pointerId); } catch (_) {}
+    pts.set(e.pointerId, loc(e)); moved = false;
+    if (pts.size === 2) { const [a, b] = Array.from(pts.values()); pinch = { d: Math.hypot(a.x - b.x, a.y - b.y) || 1, k: st.k, cx: (a.x + b.x) / 2, cy: (a.y + b.y) / 2, tx: st.tx, ty: st.ty }; drag = null; return; }
+    const id = e.target.getAttribute && e.target.getAttribute('data-id');
+    drag = { id, x: pts.get(e.pointerId).x, y: pts.get(e.pointerId).y, tx: st.tx, ty: st.ty };
+  });
+  svg.addEventListener('pointermove', e => {
+    if (!pts.has(e.pointerId)) { if (e.pointerType === 'mouse' && !st.sel) { const id = e.target.getAttribute && e.target.getAttribute('data-id'); if (id !== st.hover) { st.hover = id || null; req(); } } return; }
+    const p = loc(e); pts.set(e.pointerId, p);
+    if (pinch && pts.size === 2) {               // 2本指：指の間の距離で拡大縮小、指の中心で移動
+      const [a, b] = Array.from(pts.values()), d = Math.hypot(a.x - b.x, a.y - b.y), cx = (a.x + b.x) / 2, cy = (a.y + b.y) / 2;
+      const nk = Math.max(0.03, Math.min(30, pinch.k * d / pinch.d));
+      st.tx = cx - (pinch.cx - pinch.tx) * nk / pinch.k; st.ty = cy - (pinch.cy - pinch.ty) * nk / pinch.k; st.k = nk; moved = true; req(); return; }
+    if (!drag) return; const dx = p.x - drag.x, dy = p.y - drag.y;
+    if (!moved && Math.abs(dx) + Math.abs(dy) < 5) return; moved = true;
+    if (drag.id && opt.dragNodes) { const n = byId.get(drag.id); n.x += dx / st.k; n.y += dy / st.k; drag.x = p.x; drag.y = p.y;
+      n.el.setAttribute('cx', n.x); n.el.setAttribute('cy', n.y);
+      links.forEach(l => { if (l.s === n) { l.el.setAttribute('x1', n.x); l.el.setAttribute('y1', n.y); } if (l.t === n) { l.el.setAttribute('x2', n.x); l.el.setAttribute('y2', n.y); } }); if (opt.onMove) opt.onMove(n); req(); }
+    else { st.tx = drag.tx + dx; st.ty = drag.ty + dy; req(); }
+  });
+  const up = e => {
+    pts.delete(e.pointerId); if (pts.size < 2) pinch = null;
+    if (drag && !moved && !pts.size) { const id = drag.id || null; st.sel = id && id !== st.sel ? id : null; st.hover = null; req(); st.onPick(st.sel ? byId.get(st.sel) : null); }
+    if (!pts.size) drag = null;
+  };
+  svg.addEventListener('pointerup', up); svg.addEventListener('pointercancel', up);
+  svg.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse' && st.hover) { st.hover = null; req(); } });
+  svg.addEventListener('wheel', e => { e.preventDefault(); const p = loc(e); zoomAt(Math.exp(-e.deltaY * 0.0015), p.x, p.y); }, { passive: false });
+  return { st, fit, zoomAt, select, paint: req, paintNow: paint, nodes, links, size,
+    center: () => { const s = size(); return [s.w / 2, s.h / 2]; } };
+}
+function openNetwork(opt){
+  opt = opt || {};
+  if (opt.focus) { NET.mode = 'ego'; NET.focus = opt.focus; NET.sel = opt.focus; }
+  const years = S.cards.filter(c => !c.deleted && c.company && c.card_date).map(c => yearOf(c.card_date)).filter(Boolean), nNoDay = S.cards.filter(c => !c.deleted && c.company && !c.card_date).length;
+  const y0 = years.length ? Math.min(...years) : yearOf(today()), y1 = yearOf(today());
+  let g = netLayout(netGraph(NET));
+  // 描く場所の高さを画面に合わせる（スマホは縦長）
+  const fh = Math.max(300, Math.min(window.innerHeight * 0.62, 680));
+  const svg = sv('svg', { class: 'sn net', role: 'img', 'aria-label': '会社と人のつながり図', style: 'height:' + Math.round(fh) + 'px' });
+  const info = h('div', { class: 'netinfo', id: 'netInfo' });
+  let ctl = null;
+  // 描く：見せ方は sigma.js 風（名前は同じ大きさで重ならないものだけ・拡大すると増える、選ぶとほかは灰色）
+  const draw = () => {
+    const prev = ctl ? { k: ctl.st.k, tx: ctl.st.tx, ty: ctl.st.ty } : null;
+    g.nodes.forEach(n => { const tagHit = !!NET.tag && n.type === 'person' && n.tags.includes(NET.tag);
+      n.cls = (n.type === 'person' && n.orgs.size > 1 ? 'bridge' : n.type) + (NET.tag && n.type === 'person' ? (tagHit ? ' tagged' : ' faded') : '');
+      n.prio = (n.type === 'company' ? 1000 + n.r : n.type === 'group' ? 900 : n.orgs.size > 1 ? 500 : 100) + (tagHit ? 300 : 0); });
+    ctl = createSvgNet(svg, { nodes: g.nodes, links: g.links.map(l => ({ source: l.source.id, target: l.target.id, kind: l.kind })), labelSize: 12, dragNodes: true, showAll: NET.names || NET.mode === 'ego',
+      onMove: n => NET.pos.set(n.id, { x: n.x, y: n.y }), onPick: n => { NET.sel = n ? n.id : null; showInfo(); } });
+    if (prev) Object.assign(ctl.st, prev);
+    if (NET.sel && !(NET.mode === 'ego' && NET.sel === NET.focus) && g.nodes.some(n => n.id === NET.sel)) ctl.st.sel = NET.sel;   // 周りだけを見ているときの中心は、灰色にしない
+    ctl.paint();
+  };
+  const fit = () => ctl.fit(36);
+  // 点を選ぶ：つながっている点だけを濃くし、下に詳しい内容を出す
+  const pick = id => { NET.sel = id; ctl.select(id); showInfo(); };
+  const showInfo = () => {
+    const n = g.nodes.find(x => x.id === NET.sel);
+    if (!n) { setKids(info, insights()); return; }
+    const focusBtn = h('button', { onclick: () => { NET.mode = 'ego'; NET.focus = n.id; rebuild(true); } }, 'この周りだけを見る');
+    if (n.type === 'person') {
+      const os = Array.from(n.orgs.entries()).sort((a, b) => b[1].b.localeCompare(a[1].b));
+      setKids(info, h('div', { class: 'nihead' }, h('b', null, n.label), n.tags.map(t => h('span', { class: 'tag utag' }, t))),
+        h('ul', { class: 'nilist' }, os.map(([ok, e]) => h('li', null, h('span', { class: ok === n.now ? 'nnow' : 'npast' }, ok === n.now ? '今' : '以前'), e.label, h('span', { class: 'nd' }, e.a === e.b ? fmtDay(e.a) : ymLabel(e.a) + '〜' + ymLabel(e.b)),
+          [e.card.department, e.card.position].filter(Boolean).length ? h('span', { class: 'nd' }, [e.card.department, e.card.position].filter(Boolean).join(' ')) : null))),
+        h('div', { class: 'acts' }, h('button', { class: 'pri', onclick: () => { closeDlg(); select(n.card.id); } }, '名刺を開く'), focusBtn));
+    } else if (n.type === 'company') {
+      setKids(info, h('div', { class: 'nihead' }, h('b', null, n.label), n.group ? h('span', { class: 'tag grpco' }, n.group) : null),
+        h('div', { class: 'note' }, '今いる人 ' + n.nowPeople.size + ' 人・以前いた人 ' + (n.people.size - n.nowPeople.size) + ' 人'),
+        h('div', { class: 'acts' }, h('button', { class: 'pri', onclick: () => openCompanyInfo(n.card) }, '会社の情報（担当者マップ・年表）'), focusBtn));
+    } else {
+      setKids(info, h('div', { class: 'nihead' }, h('b', null, n.label)), h('div', { class: 'note' }, 'グループの会社：' + n.members.join('、')), h('div', { class: 'acts' }, focusBtn));
+    }
+  };
+  // 図から読み取れること：会社をまたぐ人（橋渡し役）と、つながりの多い会社
+  const insights = () => {
+    const bridges = g.nodes.filter(n => n.type === 'person' && n.orgs.size > 1).sort((a, b) => b.orgs.size - a.orgs.size).slice(0, 8);
+    const big = g.nodes.filter(n => n.type === 'company').sort((a, b) => b.people.size - a.people.size).slice(0, 5);
+    const item = (n, txt) => h('button', { class: 'link nlink', onclick: () => pick(n.id) }, txt);
+    return [h('div', { class: 'note' }, '点を押すと、つながっている相手だけが濃くなり、ここに詳しい内容が出ます。'),
+      h('div', { class: 'nins' }, h('div', null, h('h3', null, '会社をまたぐ人（橋渡し役）'), bridges.length ? bridges.map(n => h('div', null, item(n, n.label), h('span', { class: 'nd' }, Array.from(n.orgs.values()).sort((a, b) => a.a.localeCompare(b.a)).map(e => e.label).join(' → '))))
+          : h('div', { class: 'note' }, 'いません（同じ人の名刺が複数の会社にあると、ここに出ます）。')),
+        h('div', null, h('h3', null, 'つながりの多い会社'), big.map(n => h('div', null, item(n, n.label), h('span', { class: 'nd' }, n.people.size + ' 人')))))];
+  };
+  // 操作欄は、押した欄のイベントが終わってから作り直す（入力中の欄を消すとブラウザがエラーを出すため）
+  const rebuild = refit => { g = netLayout(netGraph(NET)); draw(); if (refit) fit(); showInfo(); setTimeout(drawTools, 0); };
+  // ---- 上の操作欄 ----
+  const tools = h('div', { class: 'nettools', id: 'netTools' });
+  const drawTools = () => {
+    const fnode = NET.focus && g.all.get(NET.focus);
+    const seg = h('div', { class: 'seg', role: 'group', 'aria-label': '見る範囲' },
+      h('button', { 'aria-pressed': String(NET.mode === 'all'), onclick: () => { NET.mode = 'all'; rebuild(true); } }, '全体'),
+      h('button', { 'aria-pressed': String(NET.mode === 'ego'), onclick: () => { if (!NET.focus) { alert('点を押して「この周りだけを見る」を選ぶか、右の欄で人・会社を探してください。'); return; } NET.mode = 'ego'; rebuild(true); } }, '周りだけ' + (fnode ? '：' + clip(fnode.label, 8) : '')));
+    const hopSel = NET.mode === 'ego' ? h('select', { 'aria-label': '何段先まで', onchange: e => { NET.hops = Number(e.target.value); rebuild(true); } },
+      [[1, '1段先まで'], [2, '2段先まで'], [3, '3段先まで'], [4, '4段先まで']].map(([v, l]) => h('option', { value: v, selected: NET.hops === v }, l))) : null;
+    const q = h('input', { type: 'search', placeholder: '人・会社を探して中心に', 'aria-label': '人・会社を探す', list: 'netNames', id: 'netSearch',
+      onchange: e => { const v = e.target.value.trim(); const n = Array.from(g.all.values()).find(x => x.label === v) || Array.from(g.all.values()).find(x => v && x.label.includes(v));
+        if (!n) { toast('見つかりません'); return; } NET.mode = 'ego'; NET.focus = n.id; NET.sel = n.id; rebuild(true); } });
+    const dl = h('datalist', { id: 'netNames' }, Array.from(g.all.values()).filter(n => n.type !== 'group').map(n => h('option', { value: n.label })));
+    const catSel = S.cats.length > 1 ? h('select', { 'aria-label': '区分', onchange: e => { NET.cat = e.target.value; rebuild(true); } }, h('option', { value: '' }, '区分：すべて'), S.cats.map(k => h('option', { value: k, selected: NET.cat === k }, k))) : null;
+    const tagSel = h('select', { 'aria-label': 'タグで色を付ける', id: 'netTag', onchange: e => { NET.tag = e.target.value; draw(); } }, h('option', { value: '' }, 'タグ：色を付けない'), allTags().map(t => h('option', { value: t, selected: NET.tag === t }, 'タグ：' + t)));
+    const yr = h('input', { type: 'range', min: y0, max: y1 + 1, step: 1, value: NET.year || y1 + 1, 'aria-label': 'いつの時点', id: 'netYear',
+      oninput: e => { const v = Number(e.target.value); ylab.textContent = v > y1 ? '今（すべて）' : v + '年末の時点'; },
+      onchange: e => { const v = Number(e.target.value); NET.year = v > y1 ? 0 : v; rebuild(false); } });
+    const ylab = h('span', { class: 'nd', id: 'netYearLabel' }, NET.year ? NET.year + '年末の時点' : '今（すべて）');
+    setKids(tools, h('div', { class: 'ntrow' }, seg, hopSel, q, dl),
+      h('div', { class: 'ntrow' }, catSel, tagSel, h('label', { class: 'chk' }, h('input', { type: 'checkbox', checked: NET.names, onchange: e => { NET.names = e.target.checked; rebuild(true); } }), '人の名前を出す')),
+      y1 > y0 ? h('div', { class: 'ntrow nyear' }, h('span', { class: 'nd' }, '時点'), yr, ylab) : null,
+      y1 > y0 && nNoDay ? h('p', { class: 'note', id: 'netNoDate', style: 'margin:0' }, '作成日の入っていない名刺（' + nNoDay + ' 枚）は、時点に関係なく出しています。') : null);
+  };
+  const zoomBtns = h('div', { class: 'netzoom' }, h('button', { 'aria-label': '拡大', onclick: () => ctl.zoomAt(1.3, ...ctl.center()) }, '＋'), h('button', { 'aria-label': '縮小', onclick: () => ctl.zoomAt(1 / 1.3, ...ctl.center()) }, '−'), h('button', { onclick: fit }, '全体'));
+  drawTools(); draw();
+  openDlg(h('div', { id: 'netDlg' }, h('h2', null, 'つながり図'),
+    h('p', { class: 'note' }, '会社（濃い緑）と人（薄い緑）を、所属でつないだ図です。今の所属は実線、以前の所属は点線、黄色はグループ会社。会社は人が多いほど大きく、ふちのある濃い緑の小さな丸は会社をまたいでいる人です。ドラッグで移動、2本指（ピンチ）・ホイールで拡大縮小。拡大すると名前が増えます。点を押すと、つながる相手のほかは灰色になります。'),
+    tools, h('div', { class: 'netframe' }, svg, zoomBtns), info,
+    h('div', { class: 'acts' }, h('button', { onclick: closeDlg }, '閉じる'))));
+  $('dlg').classList.add('wide');
+  if (!g.nodes.length) setKids(info, h('p', { class: 'note' }, '表示できる名刺がありません（会社名のある名刺が対象です）。'));
+  fit(); showInfo();
 }
 
 // 手動で「同じ人」としてまとめる（候補＋検索）
@@ -1910,6 +2667,7 @@ async function openForm(card, opt){
   const sugBox = h('div', { class: 'cosug', id: 'coSug', hidden: true, role: 'listbox', 'aria-label': '登録済みの会社名' });
   const coNote = h('div', { class: 'conote', id: 'coNote', hidden: true });
   const fillBox = h('div', { class: 'conote', id: 'coFill', hidden: true });
+  const diffBox = h('div', { class: 'conote', id: 'coDiff', hidden: true });
   const nameHint = h('div', { class: 'hint', id: 'nameHint', hidden: true }), kanaHint = h('div', { class: 'hint', id: 'kanaHint', hidden: true });
   const dl = { department: h('datalist', { id: 'dlDept' }), position: h('datalist', { id: 'dlPos' }), address: h('datalist', { id: 'dlAddr' }) };
   const pickCo = e => { inputs.company.value = e.name; inferred.delete('company'); tagEls.company.hidden = true; edited.add('company'); sugBox.hidden = true; assist(); check(); };
@@ -1938,6 +2696,14 @@ async function openForm(card, opt){
     setKids(fillBox, fs.length ? [h('div', null, '「' + v + '」の登録済みの名刺に、' + fs.map(f => LABELS[f]).join('・') + ' があります。'),
       h('div', { class: 'acts' }, h('button', { type: 'button', id: 'btnCoFill', onclick: () => { fs.forEach(f => { if (!inputs[f].value.trim()) { inputs[f].value = ex.info[f]; edited.add(f); } }); assist(); check(); toast('会社の情報を入れました。違っていれば直してください'); } }, '空欄に入れる'))] : []);
     fillBox.hidden = !fs.length; }
+    // 2b. 同じ会社名なのに、メールの@以降や代表電話が登録済みの名刺と違う → 移転・社名やドメインの変更・グループ会社かもしれないと知らせる
+    { const sameOrg = k ? S.cards.filter(o => !o.deleted && o.id !== c.id && coreName(o.company) === k) : [], diffs = [];
+      const dIn = mailDomain({ email: inputs.email.value.trim() }), doms = Array.from(new Set(sameOrg.map(mailDomain).filter(Boolean)));
+      if (dIn && doms.length && !doms.includes(dIn)) diffs.push('メールの@以降（この名刺：@' + dIn + '／登録済み：@' + doms.slice(0, 3).join('、@') + '）');
+      const tIn = digits(inputs.phone_work.value), tels = new Map(); sameOrg.forEach(o => { const d = digits(o.phone_work); if (d.length >= 10) tels.set(d, o.phone_work); });
+      if (tIn.length >= 10 && tels.size && !tels.has(tIn)) diffs.push('代表電話（登録済み：' + Array.from(tels.values()).slice(0, 3).join('、') + '）');
+      diffBox.textContent = diffs.length ? '登録済みの同じ会社の名刺と、' + diffs.join('・') + ' が違います。支店・移転、社名やドメインの変更、合併・グループ会社になったなどの可能性があります。登録したあと、詳細で会社名を押すと「連絡先の移り変わり」で確かめられます。' : '';
+      diffBox.hidden = !diffs.length; }
     // 3. 部署・役職・住所の候補（同じ会社の名刺にあるものを先に）
     const same = S.cards.filter(o => !o.deleted && o.id !== c.id && k && coreName(o.company) === k), all = S.cards.filter(o => !o.deleted);
     const uniq = (list, f) => Array.from(new Set(list.map(o => (o[f] || '').trim()).filter(Boolean)));
@@ -1952,16 +2718,22 @@ async function openForm(card, opt){
   };
   const cp = catPicker(c.category), catSel = cp.sel;
   const memoTa = isNew ? h('textarea', { maxlength: 2000, placeholder: '任意' }, opt.memo || '') : null;
+  // 名刺の作成日：新しく登録するときは今日（確認待ちは撮った日）。いつでも直せる
+  const dateInp = h('input', { type: 'date', id: 'cardDate', value: c.card_date || opt.cardDate || (isNew ? today() : ''), min: '1950-01-01', max: '2100-12-31' });   // 前からある名刺で未入力なら空のまま（登録日を作成日として保存しない）
+  // 用件タグ（新しく登録するとき）
+  const ftags = (opt.tags || c.tags || []).slice();
+  const ftt = isNew ? tagToggles(() => ftags, (t, on) => { const i = ftags.indexOf(t); if (on && i === -1) ftags.push(t); if (!on && i !== -1) ftags.splice(i, 1); }, 'formTags') : null;
   const stop = () => { if (!opt.onDone) { closeDlg(); return; }
     if (!confirm(opt.queueId ? '確認をやめますか？（まだ確認していない名刺は、確認待ちに残ります）' : 'まとめて登録を途中でやめますか？（ここまでに登録した名刺は残ります）')) return; const f = opt.onDone; closeDlg(); f('stop'); };
   const save = async () => {
-    let stackTo = null, groupTo = null;
+    let stackTo = null, groupTo = null, corpTo = null;
     const v = normalize(collect());
     if (!v.full_name && !v.company) { alert('氏名か会社名のどちらかは入力してください。'); return; }
     const w = check();
     if (Object.keys(w).length && !confirm('形式が正しくない可能性のある項目があります：\n' + Object.keys(w).map(f => '・' + LABELS[f] + '：' + w[f]).join('\n') + '\n\nこのまま保存しますか？')) return;
     if (cp.isNew() && !cp.value()) { alert('新しい区分の名前を入力してください。'); return; }
-    const out = Object.assign({}, c, v, { category: cp.value(), inferred: Array.from(inferred) });
+    const out = Object.assign({}, c, v, { category: cp.value(), inferred: Array.from(inferred), card_date: day_(dateInp.value) });
+    if (isNew) out.tags = ftags.slice();
     if (isNew) {
       out.id = uid();
       out.person_id = out.id;
@@ -1970,11 +2742,13 @@ async function openForm(card, opt){
         if (ch.pid) { out.person_id = ch.pid; stackTo = ch; } }
       // 会社：同じ名前の会社がすでにあれば、そのまとめを引き継ぐ。初めての会社名で、似た会社があれば尋ねる
       const sameCo = out.company ? S.cards.find(o => !o.deleted && o.company && sameCompanyName(o.company, out.company)) : null;
-      if (sameCo) out.company_group = sameCo.company_group || '';
+      if (sameCo) { out.company_group = sameCo.company_group || ''; out.corp_group = sameCo.corp_group || ''; }
       else { const cc = findCompanyCandidates(out);
         if (cc.length) { const pick = await chooseSameCompany(out.company, cc); if (!pick) return;
           if (pick.key) { const k = cc.find(x => x.key === pick.key); out.company_group = pick.label || pick.key;
-            groupTo = { names: Array.from(new Set(k.names.concat(groupMembers(pick.key)))), key: out.company_group }; } } }
+            const o2 = S.cards.find(o => !o.deleted && nkey(orgKey(o)) === nkey(pick.key) && o.corp_group); if (o2) out.corp_group = o2.corp_group;
+            groupTo = { names: Array.from(new Set(k.names.concat(groupMembers(pick.key)))), key: out.company_group }; }
+          else if (pick.group) { out.corp_group = pick.group; corpTo = { keys: [pick.groupKey], name: pick.group }; } } }
       const t = memoTa.value.trim(); out.memos = t ? [{ id: uid(), at: nowIso(), text: t, deleted: false }] : [];
     }
     const images = {}; ['front', 'back'].forEach(s => { if (st.changed[s]) images[s] = st[s]; });
@@ -1984,6 +2758,7 @@ async function openForm(card, opt){
     const after = async r => {          // 保存できたあとの後始末（会社のまとめ・前の名刺を無効に）
       if ('front' in images) { if (images.thumb) thumbCache.set(r.id, images.thumb); else thumbCache.delete(r.id); } upsert(r);
       if (groupTo) await applyCompanyGroup(groupTo.names, groupTo.key);
+      if (corpTo) await applyCorpGroup(corpTo.keys, corpTo.name);
       if (stackTo && stackTo.deactivate) for (const o of stackOf(r)) if (o.id !== r.id && o.active) upsert(await api.patch(o.id, { active: false }));
     };
     const msg0 = stackTo ? '同じ人の新しい名刺として重ねました' : '登録しました';
@@ -2000,6 +2775,7 @@ async function openForm(card, opt){
     const r = await guard('保存中…', async () => { if (typeof images.front === 'string') images.thumb = await makeThumb(images.front); return api.save(out, images, saveOpts); });
     if (r) { if ('front' in images) { if (images.thumb) thumbCache.set(r.id, images.thumb); else thumbCache.delete(r.id); } upsert(r);
       if (groupTo) await guard('会社をまとめています…', () => applyCompanyGroup(groupTo.names, groupTo.key));
+      if (corpTo) await guard('グループ会社を記録しています…', () => applyCorpGroup(corpTo.keys, corpTo.name));
       if (stackTo && stackTo.deactivate) await guard('前の名刺を無効にしています…', async () => { for (const o of stackOf(r)) if (o.id !== r.id && o.active) upsert(await api.patch(o.id, { active: false })); });
       const msg = stackTo ? '同じ人の新しい名刺として重ねました' : isNew ? '登録しました' : '保存しました';
       if (opt.onDone) { const f = opt.onDone; closeDlg(); renderList(); toast(msg); f('saved'); }
@@ -2016,6 +2792,7 @@ async function openForm(card, opt){
     const r = await guard(useRetry ? '高精度モデルで読み直し中…' : 'AIが名刺を読み取り中…（10〜30秒）', () => api.scan({ front: st.front, back: st.back }, useRetry)); if (!r) return;
     const memoNow = memoTa ? memoTa.value : '';
     openScanned(r, { front: st.front, back: st.back }, cp.value() || catSel.value, { batch: opt.batch, onDone: opt.onDone, queueId: opt.queueId, queueOrig: opt.queueOrig, bgSave: opt.bgSave, raw: st.raw, fix: st.fix, quad: st.quad,
+      cardDate: day_(dateInp.value), tags: ftags.slice(),
       memo: (memoTa && memoNow.trim() && memoNow !== (opt.memo || '')) ? memoNow : undefined });
   };
   const updateReread = () => { if (!rereadBox) return;
@@ -2047,12 +2824,15 @@ async function openForm(card, opt){
     h('div', { class: 'grid2' }, imageSlot('front', '表面', st), imageSlot('back', '裏面', st)),
     rereadBox,
     (S.cats.length > 1 || S.cfg.dynamicCategories) ? h('div', { class: 'catf' }, h('label', null, '区分'), cp.el) : null,
-    (() => { const el = fld('company'); el.append(sugBox, coNote, fillBox); return el; })(),
+    (() => { const el = fld('company'); el.append(sugBox, coNote, fillBox, diffBox); return el; })(),
     h('div', { class: 'grid2' }, fld('department'), fld('position')),
     h('div', { class: 'grid2' }, (() => { const el = fld('full_name'); el.append(nameHint); return el; })(), (() => { const el = fld('name_kana'); el.append(kanaHint); return el; })()),
     fld('email'), h('div', { class: 'grid2' }, fld('phone_mobile'), fld('phone_work')),
     h('div', { class: 'grid2' }, fld('fax'), fld('postal_code')), fld('address'), fld('website'),
     Object.values(dl),
+    h('div', { class: 'fld', id: 'cardDateFld' }, h('label', null, '名刺の作成日（もらった日など、いつ時点の名刺か）', dateInp),
+      !isNew && !c.card_date && !opt.cardDate ? h('div', { class: 'hint' }, 'まだ入っていません。わかれば入れてください（だいたいでかまいません）。空のままなら、図では「作成日なし」として扱います。') : null),
+    ftt ? h('div', { class: 'fld', id: 'formTagFld' }, h('div', { class: 'flbl' }, '用件タグ（押すと付く。資材取り寄せの連絡先など）'), ftt.el) : null,
     isNew ? h('div', { class: 'fld' }, h('label', null, 'メモ', memoTa)) : null,
     (isNew && !opt.onDone) ? h('label', { class: 'chk' }, h('input', { type: 'checkbox', id: 'contChk', checked: S.cont, onchange: e => { S.cont = e.target.checked; savePrefs(); } }), '登録したら、続けて次の名刺の登録へ進む') : null,
     h('div', { class: 'acts' }, h('button', { class: 'pri', onclick: save }, isNew ? (opt.onDone ? '登録して次へ' : '登録する') : '保存する'),
@@ -2085,6 +2865,7 @@ async function openScanned(r, images, cat, more){
     turned = true; } return true; });
   if (turned) toast('画像の向きを自動で直しました');
   openForm(card, { batch: more.batch, onDone: more.onDone, queueId: more.queueId, queueOrig: more.queueOrig, bgSave: more.bgSave, raw, fix, quad, isNew: true, scanned: true, images, low: r.low || [], usage: r.usage || null, readErr: more.readErr || '',
+    cardDate: more.cardDate || '', tags: more.tags || null,
     memo: more.memo !== undefined ? more.memo : (r.other ? '名刺のその他の記載：' + r.other : '') });
 }
 function openAdd(){
@@ -2572,6 +3353,7 @@ async function reviewQueue(items, after){
     // 読み取れなかった名刺も、画像を出して「AIで読み直す」か手で入力できるようにする（どの名刺かわかるように）
     const res = await new Promise(resolve => openScanned(g._err ? { fields: {}, inferred: [], low: [] } : g.result, { front: g.images.front, back: g.images.back }, g.category,
       { batch: { i: n, n: items.length, label: '確認待ち' + (g.pageNo ? '・ページの ' + g.pageNo + ' 番' : '') }, raw: { front: g.images.rawFront, back: g.images.rawBack }, quad: g.quad || null, onDone: resolve, readErr: g._err || '',
+        cardDate: isoDay(g.at),       // 名刺の作成日は、撮った日
         queueId: x.qid, queueOrig: { front: g.images.front, back: g.images.back }, bgSave }));
     if (res === 'saved') { saved++; LQ.count = Math.max(0, LQ.count - 1); }
     else if (res === 'drop') { dropped++; LQ.count = Math.max(0, LQ.count - 1); }
@@ -2603,7 +3385,7 @@ async function buildExport(cats, withImages, pass, onProgress, extra){
     }
     out[i] = o; onProgress(++n, cards.length); } };
   await Promise.all(Array.from({ length: Math.min(4, cards.length) }, worker));
-  let text = JSON.stringify({ format: FILE_FORMAT, version: 1, exported_at: nowIso(), source: MODE === 'gas' ? 'personal' : 'shared-pc', kind: extra.kind || (MODE === 'gas' ? 'export' : 'full'), handoff: extra.handoff || null, categories: cats || null, since: extra.since || null, cards: out });
+  let text = JSON.stringify({ format: FILE_FORMAT, version: 1, exported_at: nowIso(), source: MODE === 'gas' ? 'personal' : 'shared-pc', kind: extra.kind || (MODE === 'gas' ? 'export' : 'full'), handoff: extra.handoff || null, categories: cats || null, since: extra.since || null, tags: allTags(), cards: out });
   if (pass) text = await encryptText(text, pass);
   return { text, count: out.filter(c => !c.deleted).length };
 }
@@ -2634,6 +3416,10 @@ async function importObjects(list, fallbackCat, mode){
     for (const c of obj.cards) { const sz = JSON.stringify(c).length; if (size + sz > 3000000 || batch.length >= 40) await flush(); batch.push(c); size += sz; }
     await flush();
   }
+  // ファイルに入っていたタグの一覧（まだ誰にも付いていないタグも）を、この端末のタグの一覧に足す
+  const mine = (S.cfg.tags || []).slice(), add = [];
+  list.forEach(({ obj }) => (Array.isArray(obj.tags) ? obj.tags : []).forEach(t => { t = tagName_(t); if (t && !mine.includes(t) && !add.includes(t)) add.push(t); }));
+  if (add.length) { try { await tagRun('set', mine.concat(add)); } catch (e) {} }
   return total;
 }
 async function runImport(file, pass, fallbackCat){       // 1ファイル（従来の呼び方）
@@ -2891,6 +3677,7 @@ async function boot(){
 $('q').addEventListener('input', e => { S.q = e.target.value; renderList(); });
 $('btnAdd').addEventListener('click', openAdd);
 $('btnIO').addEventListener('click', openIO);
+$('btnNet').addEventListener('click', () => openNetwork());
 $('btnSelect').addEventListener('click', () => setSelMode(!S.selMode));
 $('btnSet').addEventListener('click', openSettings);
 $('btnQueue').addEventListener('click', openQueue);
@@ -2907,6 +3694,7 @@ $('bnList').addEventListener('click', () => { if (S.selMode) setSelMode(false); 
 $('bnSelect').addEventListener('click', () => setSelMode(!S.selMode));
 $('bnAdd').addEventListener('click', openAdd);
 $('bnIO').addEventListener('click', openIO);
+$('bnNet').addEventListener('click', () => openNetwork());
 $('bnHelp').addEventListener('click', () => openHelp());
 // スマホ版：一度開けば電波がなくても開けるようにする（https で置いたときだけ）
 if (MOBILE && 'serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
